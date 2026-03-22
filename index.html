@@ -686,7 +686,15 @@ const LOCAL_KB=[
 ═══════════════════════════════════════════════════════ */
 function smartReply(message){
   const text=normalizeText(message);
- 
+  const raw=message.trim();
+
+  if(/^(اهلا|أهلا|هلا|مرحبا|مرحباً|السلام|ازيك|إزيك|هاي|hi|hello|hey)[\s!.؟…]*$/i.test(raw)){
+    return 'وعليكم السلام! أنا دون بوسكو — أحدّثك عن معهدنا في القاهرة.\n\nاسأل عن البرامج (ITI / IPI)، TVET، التسجيل، أو التوظيف — أو اكتب "ساعدني أختار" لو مش متأكد من المسار المناسب.';
+  }
+  if(/بتتكلم|بتشتغل|بتفهم|إنت إيه|انت ايه|انت مين|إنت مين|ده إيه|ده ايه/.test(text)){
+    return 'أيوه، أنا شات بوت بيمثّل شخصية دون بوسكو — أقدر أجاوبك على أي سؤال عن معهد دون بوسكو القاهرة (البرامج، التسجيل، TVET، التوظيف).\n\nاسأل وأنا هرد!';
+  }
+
   // Decision wizard active
   if(DecisionBot.isActive()){
     return DecisionBot.reply(message)||null;
@@ -725,9 +733,15 @@ function smartReply(message){
  
 function isQueryTooVague(q){
   const t=q.replace(/[؟?!.,،]/g,' ').replace(/\s+/g,' ').trim();
-  if(t.length<4) return true;
-  if(t.split(/\s+/).filter(Boolean).length<=2&&t.length<28) return true;
-  return /^(عايز|عايزة|أريد|سؤال|مش فاهم|مش عارف|اسأل|ساعدني|help|مرحبا|مرحباً|السلام عليكم|هلا|هاي|hi|hello)[\s!.؟…]*$/i.test(t);
+  if(t.length<3) return true;
+  if(/^(اهلا|أهلا|هلا|مرحبا|مرحباً|السلام عليكم|ازيك|إزيك|عامل ايه|عامل إيه|هاي|hi|hello|hey|صباح|مساء)[\s!.؟…]*$/i.test(t)) return true;
+  const words=t.split(/\s+/).filter(Boolean);
+  if(words.length<=2&&t.length<20) return true;
+  const arabicOrEnglish=/[\u0600-\u06FF]|[a-z]/i.test(t);
+  if(!arabicOrEnglish) return true;
+  const meaningfulWords=words.filter(w=>w.replace(/[^\u0600-\u06FFa-z]/gi,'').length>=2);
+  if(words.length>2&&meaningfulWords.length/words.length<0.4) return true;
+  return false;
 }
  
 function findLocalAnswer(q){
@@ -802,7 +816,12 @@ function initSpeechRecognition(){
   try{speechRecognition.maxAlternatives=5;}catch(e){try{speechRecognition.maxAlternatives=3;}catch(e2){speechRecognition.maxAlternatives=1;}}
   const textInput=document.getElementById('text-input');
   if(textInput){
-    const mark=()=>{if(!voiceUpdatingFromSr) appendNextVoiceSession=false;};
+    const mark=()=>{
+      if(!voiceUpdatingFromSr){
+        appendNextVoiceSession=false;
+        setTimeout(()=>{if(textInput.value.trim()==='') speechFinalBuffer='';},50);
+      }
+    };
     textInput.addEventListener('keydown',mark);textInput.addEventListener('paste',mark);textInput.addEventListener('cut',mark);
   }
   speechRecognition.onstart=()=>{micListening=true;micBtn.classList.add('listening');setStatus('أستمع… اضغط الأحمر لإيقاف وإرسال السؤال');};
@@ -814,6 +833,9 @@ function initSpeechRecognition(){
       else interim+=t;
     }
     const input=document.getElementById('text-input');
+    if(!voiceUpdatingFromSr&&input.value.trim()===''&&speechFinalBuffer.trim()!==''){
+      speechFinalBuffer='';
+    }
     voiceUpdatingFromSr=true;input.value=normalizeArabicSpeech(speechFinalBuffer+interim);voiceUpdatingFromSr=false;
     autoResize(input);
   };
