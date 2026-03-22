@@ -788,8 +788,8 @@ const TOPICS=[
    STATE
 ═══════════════════════════════════════════════════════ */
 let chatHistory=[],isBusy=false;
-let speechRecognition=null,micListening=false,speechFinalBuffer='';
-let voiceUpdatingFromSr=false,appendNextVoiceSession=false;
+let speechRecognition=null,micListening=false;
+let voiceUpdatingFromSr=false;
 let pillsNavBound=false,pillsResizeTimer=0;
  
 function trimHistory(){if(chatHistory.length>30) chatHistory=chatHistory.slice(-20);}
@@ -808,102 +808,124 @@ function normalizeArabicSpeech(s){
   if(!s) return '';
   return s.replace(/\u0640/g,'').replace(/[\u200B-\u200D\uFEFF]/g,'').replace(/\s+/g,' ').trim();
 }
+
 function refineArabicTranscript(s){
-  let t=normalizeArabicSpeech(s); if(!t) return '';
-  const words=t.split(/\s+/),out=[];
-  for(let i=0;i<words.length;i++){if(i===0||words[i]!==words[i-1]) out.push(words[i]);}
+  let t = normalizeArabicSpeech(s);
+  if(!t) return '';
+  // إزالة تكرار الكلمات المتتالية
+  const words = t.split(/\s+/), out = [];
+  for(let i = 0; i < words.length; i++){
+    if(i === 0 || words[i] !== words[i-1]) out.push(words[i]);
+  }
   return out.join(' ');
 }
+
 function pickBestTranscript(result){
-  if(!result||!result.length) return '';
-  if(result.length===1) return result[0].transcript||'';
-  let bestIdx=0,bestConf=-1;
-  for(let j=0;j<result.length;j++){const c=result[j].confidence;if(typeof c==='number'&&c>bestConf){bestConf=c;bestIdx=j;}}
-  if(bestConf>=0) return result[bestIdx].transcript||'';
-  let longest='';
-  for(let j=0;j<result.length;j++){const tr=result[j].transcript||'';if(tr.length>longest.length) longest=tr;}
-  return longest||result[0].transcript||'';
+  if(!result || !result.length) return '';
+  if(result.length === 1) return result[0].transcript || '';
+  let bestIdx = 0, bestConf = -1;
+  for(let j = 0; j < result.length; j++){
+    const c = result[j].confidence;
+    if(typeof c === 'number' && c > bestConf){ bestConf = c; bestIdx = j; }
+  }
+  if(bestConf >= 0) return result[bestIdx].transcript || '';
+  let longest = '';
+  for(let j = 0; j < result.length; j++){
+    const tr = result[j].transcript || '';
+    if(tr.length > longest.length) longest = tr;
+  }
+  return longest || result[0].transcript || '';
 }
-function appendFinalSegment(buffer,segment){
-  const t=(segment||'').trim();if(!t) return buffer;if(!buffer) return t;
-  return buffer+(!/\s$/.test(buffer)&&!/^\s/.test(t)?' ':'')+t;
-}
+
 function initSpeechRecognition(){
-  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
-  const micBtn=document.getElementById('mic-btn');
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  const micBtn = document.getElementById('mic-btn');
   if(!micBtn) return;
-  if(!SR){micBtn.style.display='none';return;}
-  speechRecognition=new SR();
-  speechRecognition.lang='ar-EG';speechRecognition.interimResults=true;speechRecognition.continuous=true;
-  try{speechRecognition.maxAlternatives=5;}catch(e){try{speechRecognition.maxAlternatives=3;}catch(e2){speechRecognition.maxAlternatives=1;}}
-  const textInput=document.getElementById('text-input');
-  if(textInput){
-    const mark=()=>{
-      if(!voiceUpdatingFromSr){
-        appendNextVoiceSession=false;
-        setTimeout(()=>{if(textInput.value.trim()==='') speechFinalBuffer='';},50);
-      }
-    };
-    textInput.addEventListener('keydown',mark);textInput.addEventListener('paste',mark);textInput.addEventListener('cut',mark);
-  }
-  speechRecognition.onstart=()=>{micListening=true;micBtn.classList.add('listening');setStatus('أستمع… اضغط الأحمر لإيقاف وإرسال السؤال');};
-  speechRecognition.onresult=(e)=>{
-    let finalText='';
-    let interimText='';
-    for(let i=0;i<e.results.length;i++){
-      const r=e.results[i];
-      const t=pickBestTranscript(r);
-      if(r.isFinal) finalText+=(finalText?' ':'')+t;
-      else interimText+=t;
-    }
-    const input=document.getElementById('text-input');
-    if(!voiceUpdatingFromSr&&input.value.trim()===''){
-      speechFinalBuffer='';
-    }
-    if(finalText) speechFinalBuffer=finalText;
-    const merged=normalizeArabicSpeech(speechFinalBuffer+(interimText?' '+interimText:''));
-    voiceUpdatingFromSr=true;input.value=merged;voiceUpdatingFromSr=false;
-    autoResize(input);
+  if(!SR){ micBtn.style.display = 'none'; return; }
+
+  speechRecognition = new SR();
+  speechRecognition.lang            = 'ar-EG';
+  speechRecognition.interimResults  = true;
+  speechRecognition.continuous      = false;  // ✅ مش تراكمي
+  speechRecognition.maxAlternatives = 3;
+
+  const textInput = document.getElementById('text-input');
+
+  speechRecognition.onstart = () => {
+    micListening = true;
+    micBtn.classList.add('listening');
+    setStatus('أستمع… اضغط الأحمر لإيقاف وإرسال السؤال');
+    // ✅ صفّر الـ textarea في بداية كل جلسة
+    voiceUpdatingFromSr = true;
+    textInput.value = '';
+    voiceUpdatingFromSr = false;
+    autoResize(textInput);
   };
-  speechRecognition.onerror=(ev)=>{
-    if(ev.error==='not-allowed') setStatus('اسمح بالميكروفون من شريط العنوان');
-    else if(ev.error==='no-speech') setStatus('لم يُسمَع صوت — أعد المحاولة');
-    else if(ev.error==='audio-capture') setStatus('الميكروفون غير متاح');
-    else if(ev.error!=='aborted') setStatus('تعذّر التعرف على الصوت');
-    micBtn.classList.remove('listening');micListening=false;speechFinalBuffer='';clearVoiceUi();
+
+  speechRecognition.onresult = (e) => {
+    // ✅ ابني النص من الصفر — مش تراكمي على الإطلاق
+    let finals = '', interim = '';
+    for(let i = 0; i < e.results.length; i++){
+      const t = pickBestTranscript(e.results[i]);
+      if(e.results[i].isFinal) finals  += (finals  ? ' ' : '') + t;
+      else                      interim += (interim ? ' ' : '') + t;
+    }
+    const merged = normalizeArabicSpeech(finals + (interim ? ' ' + interim : ''));
+    voiceUpdatingFromSr = true;
+    textInput.value = merged;
+    voiceUpdatingFromSr = false;
+    autoResize(textInput);
   };
-  function clearVoiceUi(){
-    const input=document.getElementById('text-input'),wrap=input&&input.closest('.input-wrap');
-    if(input) input.classList.remove('voice-ready');if(wrap) wrap.classList.remove('voice-ready-wrap');
-  }
-  function finishVoice(){
-    const input=document.getElementById('text-input');
-    const q=refineArabicTranscript(speechFinalBuffer||input.value||'');speechFinalBuffer='';
-    const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  speechRecognition.onerror = (ev) => {
+    if     (ev.error === 'not-allowed')    setStatus('اسمح بالميكروفون من شريط العنوان');
+    else if(ev.error === 'no-speech')      setStatus('لم يُسمَع صوت — أعد المحاولة');
+    else if(ev.error === 'audio-capture')  setStatus('الميكروفون غير متاح');
+    else if(ev.error !== 'aborted')        setStatus('تعذّر التعرف على الصوت');
     micBtn.classList.remove('listening');
-    if(!reduce){micBtn.classList.add('mic-release');setTimeout(()=>micBtn.classList.remove('mic-release'),700);}
-    if(!q||isBusy){
-      voiceUpdatingFromSr=true;input.value='';voiceUpdatingFromSr=false;
-      autoResize(input);clearVoiceUi();if(!isBusy) setStatus('أنا معك — اكتب سؤالك');return;
+    micListening = false;
+  };
+
+  speechRecognition.onend = () => {
+    micListening = false;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    micBtn.classList.remove('listening');
+    if(!reduce){
+      micBtn.classList.add('mic-release');
+      setTimeout(() => micBtn.classList.remove('mic-release'), 700);
     }
-    clearVoiceUi();voiceUpdatingFromSr=true;input.value='';voiceUpdatingFromSr=false;autoResize(input);
-    if(reduce) sendMessage(q); else setTimeout(()=>sendMessage(q),100);
-  }
-  speechRecognition.onend=()=>{micListening=false;finishVoice();};
-  micBtn.addEventListener('click',()=>{
-    if(isBusy||!speechRecognition) return;
+
+    // ✅ خد النص الموجود في الـ textarea وأرسله
+    const q = refineArabicTranscript(textInput.value || '');
+    voiceUpdatingFromSr = true;
+    textInput.value = '';
+    voiceUpdatingFromSr = false;
+    autoResize(textInput);
+
+    if(q && !isBusy){
+      if(reduce) sendMessage(q);
+      else setTimeout(() => sendMessage(q), 100);
+    } else if(!isBusy){
+      setStatus('أنا معك — اكتب سؤالك');
+    }
+  };
+
+  micBtn.addEventListener('click', () => {
+    if(isBusy || !speechRecognition) return;
     try{
-      if(micListening){speechRecognition.stop();}
-      else{
-        const input=document.getElementById('text-input');
-        if(appendNextVoiceSession&&input.value.trim()){speechFinalBuffer=input.value.trim()+' ';}
-        else{speechFinalBuffer='';voiceUpdatingFromSr=true;input.value='';voiceUpdatingFromSr=false;}
-        autoResize(input);speechRecognition.start();
+      if(micListening){
+        // ✅ إيقاف يدوي → onend هيشتغل تلقائياً ويرسل
+        speechRecognition.stop();
+      } else {
+        speechRecognition.start();
       }
-    }catch(err){if(err.name==='InvalidStateError'){try{speechRecognition.stop();}catch(e2){}}}
+    } catch(err){
+      if(err.name === 'InvalidStateError'){
+        try{ speechRecognition.stop(); } catch(e2){}
+      }
+    }
   });
 }
- 
 /* ═══════════════════════════════════════════════════════
    START
 ═══════════════════════════════════════════════════════ */
