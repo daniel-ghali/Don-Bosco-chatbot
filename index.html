@@ -950,6 +950,34 @@ function startApp(){
 /* ═══════════════════════════════════════════════════════
    CHAT — Cloudflare Worker → Gemini
 ═══════════════════════════════════════════════════════ */
+function showCooldownTimer(seconds){
+  const msgs=document.getElementById('msgs');
+  document.getElementById('cooldown-row')?.remove();
+  const row=document.createElement('div');
+  row.className='row msg-in bot';row.id='cooldown-row';
+  const av=document.createElement('div');av.className='row-av';
+  av.innerHTML=`<svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="5.5" r="3" fill="#9FE1CB"/><path d="M2 15c0-3 2.5-5 6-5s6 2 6 5" fill="#9FE1CB"/></svg>`;
+  const col=document.createElement('div');col.className='row-col';
+  const bub=document.createElement('div');bub.className='bubble';
+  let remaining=seconds;
+  function update(){bub.textContent=`اصبر شويه يا ابني لغايه ما اخد نفسي شويه 🤭\n\nهعود معاك خلال ${remaining} ثانية...`;}
+  update();
+  col.appendChild(bub);row.appendChild(av);row.appendChild(col);
+  msgs.appendChild(row);msgs.scrollTop=msgs.scrollHeight;
+  setStatus('جاري الانتظار...');
+  setInputControlsBusy(true);
+  const interval=setInterval(()=>{
+    remaining--;
+    if(remaining<=0){
+      clearInterval(interval);
+      bub.textContent='تمام، خلصت نفسي! 😄 اسألني براحتك.';
+      setStatus('أنا معك — اكتب سؤالك');
+      setInputControlsBusy(false);
+      setTimeout(()=>document.getElementById('cooldown-row')?.remove(),3000);
+    } else { update(); }
+  },1000);
+}
+
 async function sendMessage(overrideText){
   const input=document.getElementById('text-input');
   const q=(overrideText||input.value).trim();
@@ -1046,8 +1074,7 @@ async function sendMessage(overrideText){
       .replace(/^أنا يوحنا بوسكو[،,]?\s*/i,'')
       .replace(/^أسعدني (أن تتصل بي|تواصلك|سؤالك)[،,.]?\s*/i,'')
       .replace(/^يسعدني (أن أساعدك|مساعدتك)[،,.]?\s*/i,'')
-      .replace(/\n{3,}/g,'\n\n')
-      .trim();
+      .replace(/\n{3,}/g,'\n\n').trim();
     if(reply.length){
       const nonArabicEnglish=reply.replace(/[\u0600-\u06FF\u0020-\u007Fa-zA-Z0-9\n\r\t.,،؟?!:؛()\-•*]/g,'');
       if(nonArabicEnglish.length/reply.length>0.05){
@@ -1066,9 +1093,15 @@ async function sendMessage(overrideText){
       }
       setStatus('أنا معك — اكتب سؤالك');
     } else {
+      // ✅ 429 — cooldown timer
+      if(res?.status===429){
+        hideTyping();
+        showCooldownTimer(60);
+        isBusy=false;setInputControlsBusy(false);
+        return;
+      }
       let errMsg='تعذّر إتمام الرد حالياً. أعد المحاولة بعد لحظات.';
       if(res?.status===403) errMsg='تم رفض الوصول — تحقق من إعدادات الـ Worker.';
-      else if(res?.status===429) errMsg='تم تجاوز حد الطلبات — انتظر قليلاً.';
       else if(data?.error?.message) errMsg='خطأ: '+data.error.message;
       appendMessage('bot',errMsg);setStatus('أنا معك — اكتب سؤالك');
     }
