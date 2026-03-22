@@ -593,8 +593,16 @@ function scoreMatch(query,entry){
     const k=normalizeText(kw); if(!k) continue;
     if(q===k){score+=12;continue;}
     if(q.includes(k)){score+=7+Math.min(k.length/12,3);continue;}
-    const hits=tokenize(k).filter(tok=>tokenize(q).includes(tok)).length;
-    if(hits>0) score+=hits*1.5;
+    const kToks=tokenize(k).filter(tok=>tok.length>=2);
+    if(kToks.length===0) continue;
+    const qToks=tokenize(q);
+    const hits=kToks.filter(tok=>qToks.includes(tok));
+    if(hits.length===0) continue;
+    if(kToks.length===1){
+      score+=hits.length*1.8;
+    } else if(hits.length===kToks.length){
+      score+=hits.length*2;
+    }
   }
   return score;
 }
@@ -663,7 +671,7 @@ const LOCAL_KB=[
   {k:['رؤية','رسالة','هدف المعهد','فلسفة','نظام وقائي'],a:'• الرؤية: تنمية شاملة للشباب لمواكبة التحديات والفرص.\n• الرسالة: تكوين شخصيات مستقيمة مع انضباط وفضيلة وتعليم تقني عالٍ.\n• الطريقة: النظام الوقائي — العقل والدين والمحبة.'},
   {k:['iti','آي تي آي','خمس سنوات','5 سنوات','فوق المتوسط','خمس سنين','5 سنين'],a:'ITI — نظام الخمس سنوات:\n\nالسنتان الأولى والثانية:\n• لغات: عربي + إيطالي + إنجليزي\n• علوم: رياضيات، فيزياء، كيمياء، رسم فني، IT\n\nمن السنة الثالثة — التخصص:\n• كهرباء وإلكترونيات\n• ميكانيكا وميكاترونيكس\n• اتصالات وتكنولوجيا معلومات\n\nالتخرج: امتحان دولة بلجنة إيطالية.\nالمؤهل: دبلوم فوق المتوسط فني\nمعترف به في مصر وإيطاليا والاتحاد الأوروبي.'},
   {k:['ipi','آي بي آي','ثلاث سنوات','3 سنوات','دبلوم صناعي','ثلاث سنين','3 سنين'],a:'IPI — نظام الثلاث سنوات:\n\nتخصص من السنة الأولى — ساعات عملي أعلى:\n• كهرباء (PLC، طاقة شمسية، لوحات تحكم)\n• ميكانيكا CNC وتشكيل معادن\n• ميكانيكا سيارات\n• لحام (أنواع متعددة)\n\nالتخرج: امتحان نهائي بلجنة 5 أفراد.\nالمؤهل: دبلوم صناعي\nمعترف به في مصر والاتحاد الأوروبي.'},
-  {k:['فرق','الفرق بين','iti و ipi','آي تي آي وآي بي آي','أي أحسن','اي احسن'],a:'الفرق بين ITI و IPI:\n\nITI (5 سنوات):\n• تأسيس لغوي وعلمي قوي أول سنتين\n• تخصص من السنة الثالثة\n• المؤهل: دبلوم فوق المتوسط\n• يفتح باب الجامعات والمعاهد العليا\n\nIPI (3 سنوات):\n• تخصص من أول سنة — عملي أكثر\n• المؤهل: دبلوم صناعي\n• أسرع للدخول لسوق العمل\n\nكلاهما معترف به في مصر وأوروبا.\nلو مش متأكد اكتب "ساعدني أختار" وهرشح ليك المناسب.'},
+  {k:['iti و ipi','iti أو ipi','آي تي آي وآي بي آي','أي أحسن بين المسارين','اي احسن بين المسارين','مسارين iti ipi','3 سنين و5 سنين','ثلاث وخمس'],a:'الفرق بين ITI و IPI:\n\nITI (5 سنوات):\n• تأسيس لغوي وعلمي قوي أول سنتين\n• تخصص من السنة الثالثة\n• المؤهل: دبلوم فوق المتوسط\n• يفتح باب الجامعات والمعاهد العليا\n\nIPI (3 سنوات):\n• تخصص من أول سنة — عملي أكثر\n• المؤهل: دبلوم صناعي\n• أسرع للدخول لسوق العمل\n\nكلاهما معترف به في مصر وأوروبا.\nلو مش متأكد اكتب "ساعدني أختار" وهرشح ليك المناسب.'},
   {k:['tvet','تيفيت','دورات','كورسات','تدريب مهني','كورس'],a:'TVET — دورات مهنية منفصلة:\n\nأقسام: سيارات، كهرباء، إلكترونيات، IT، طاقة متجددة، لغات، مهارات حياتية، أزياء، ميكانيكا، لحام.\nأمثلة: PLC، SCADA، HMI، Arduino، IoT، G SCAN، جرافيك، تصوير، طاقة كهروضوئية.\n\nالقائمة: donboscocairo.org/course/\nللتواصل: segretaria.corsi@donboscocairo.org'},
   {k:['توظيف','شغل','خريج','مكتب التوظيف','وظيفة','شغل بره'],a:'مكتب التوظيف يربط الخريجين بشركات ومصانع:\n\n• joboffice.coordinator@donboscocairo.org\n• شراكات: Siemens، Eratec\n• مشروع Vescovini: فرص عمل في إيطاليا\n• اتفاقية MITS لخريجي الخمس سنوات:\n  سنتان دراسة في معهد تقني إيطالي + عقد عمل'},
   {k:['classeviva','كلاسي','درجات','حضور','spaggiari','متابعة','غياب'],a:'متابعة الدرجات والغياب:\nمنصتا Spaggiari وClasseViva\nالرابط: donboscocairo.org/school/classeviva'},
@@ -711,9 +719,12 @@ function smartReply(message){
   if(containsAny(text,['بعد التخرج','تنسيق','جامعه','جامعة','هندسه','هندسة','معادله','معادلة','اكمل تعليم','أكمل تعليم'])){
     return getGraduationAnswer(detectTrack(text));
   }
-  // Difference question
-  if(containsAny(text,['فرق','الفرق بين','iti و ipi','أي أحسن','اي احسن'])){
-    return LOCAL_KB.find(e=>e.k.includes('فرق'))?.a||null;
+  if(containsAny(text,['الفرق بين iti','الفرق بين ipi','iti و ipi','ipi و iti','آي تي آي وآي بي آي','أي أحسن بين','اي احسن بين'])
+    ||(containsAny(text,['فرق','الفرق'])&&containsAny(text,['iti','ipi','آي تي','آي بي','3 سنين','5 سنين','ثلاث سنين','خمس سنين']))){
+    return LOCAL_KB.find(e=>e.k.includes('iti و ipi'))?.a||null;
+  }
+  if(containsAny(text,['بيميز','مميز','مميزات','يميز'])&&containsAny(text,['مدرسه','مدرسة','تانيه','تانية','غير','معهد تاني','مدرسة تانيه','مقارنه','مقارنة','عن غير','وغيره'])){
+    return LOCAL_KB.find(e=>e.k.includes('مميزات'))?.a||null;
   }
   // Track specific
   const track=detectTrack(text);
@@ -727,7 +738,7 @@ function smartReply(message){
     const s=scoreMatch(text,entry);
     if(s>bestScore){bestScore=s;best=entry;}
   }
-  if(best&&bestScore>=4) return best.a;
+  if(best&&bestScore>=6) return best.a;
   return null;
 }
  
