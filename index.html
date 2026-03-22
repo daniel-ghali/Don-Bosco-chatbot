@@ -960,7 +960,7 @@ function showCooldownTimer(seconds){
   const col=document.createElement('div');col.className='row-col';
   const bub=document.createElement('div');bub.className='bubble';
   let remaining=seconds;
-  function update(){bub.textContent=`اصبر شويه يا ابني لغايه ما اخد نفسي شويه 🤭\n\nهعود معاك خلال ${remaining} ثانية...`;}
+  function update(){bub.textContent=`اصبر شويه يا ابني لغايه ما اخد نفسي شويه 🤭\n\nهرجعلك بعد  ${remaining} ثانية...`;}
   update();
   col.appendChild(bub);row.appendChild(av);row.appendChild(col);
   msgs.appendChild(row);msgs.scrollTop=msgs.scrollHeight;
