@@ -901,7 +901,7 @@ function startApp(){
     document.getElementById('send-btn').addEventListener('click',()=>sendMessage());
     buildTopics();initSpeechRecognition();
     requestAnimationFrame(()=>requestAnimationFrame(()=>appEl.classList.add('app-ready')));
-    const intro='السلام عليكم.\nأنا يوحنا بوسكو — دون بوسكو — أحدّثك عن معهدنا في القاهرة (روض الفرج): ثانوية فنية إيطالية، مساران ITI وIPI، وتيفيت للدورات، ومكتب توظيف.\n\nتنبيه: هذا الشات بوت مخصص لمعهد دون بوسكو القاهرة فقط — لا أملك معلومات عن فروع أخرى.\n\nاسأل عن البرامج، التقديم، TVET، التوظيف، أو سيرتي. كل التفاصيل على donboscocairo.org';
+    const intro='اهلا يا ابنائي الاعزاء.\nأنا يوحنا بوسكو — دون بوسكو — أحدّثك عن معهدنا في القاهرة (روض الفرج): ثانوية فنية إيطالية، مساران ITI وIPI، وتيفيت للدورات، ومكتب توظيف.\n\nتنبيه: هذا الشات بوت مخصص لمعهد دون بوسكو القاهرة فقط — لا أملك معلومات عن فروع أخرى.\n\nاسأل عن البرامج، التقديم، TVET، التوظيف، أو سيرتي. كل التفاصيل على donboscocairo.org';
     setTimeout(()=>appendMessage('bot',intro),380);
   }
   startEl.classList.add('start-hide');
