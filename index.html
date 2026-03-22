@@ -954,7 +954,6 @@ async function sendMessage(overrideText){
   const input=document.getElementById('text-input');
   const q=(overrideText||input.value).trim();
   if(!q||isBusy) return;
-  appendNextVoiceSession=false;
   input.value='';autoResize(input);
   isBusy=true;setInputControlsBusy(true);setStatus('جاري التجهيز…');
 
