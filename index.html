@@ -888,11 +888,34 @@ async function sendMessage(overrideText){
   input.value='';autoResize(input);
   isBusy=true;setInputControlsBusy(true);setStatus('جاري التجهيز…');
 
-  // If DecisionBot is active but user typed a real question → bypass it
   const looksLikeNumber=/^[١٢12]$/.test(q.trim());
-  if(DecisionBot.isActive()&&!looksLikeNumber){
-    DecisionBot.cancel();
-    removeChoiceButtons();
+
+  if(DecisionBot.isActive()){
+    if(looksLikeNumber){
+      const botReply=DecisionBot.reply(q);
+      if(botReply){
+        appendMessage('user',q);
+        chatHistory.push({role:'user',content:q});
+        removeChoiceButtons();
+        showTyping();
+        setTimeout(()=>{
+          hideTyping();
+          chatHistory.push({role:'assistant',content:botReply});
+          trimHistory();
+          appendMessage('bot',botReply);
+          if(DecisionBot.isActive()){
+            const step=DecisionBot.state?.step;
+            if(step===2) appendChoiceButtons(['دراسة + نظري + عملي (متوازن)','عملي بإيدي أساساً']);
+            else if(step===3) appendChoiceButtons(['آه، مستعد','لا، أفضل 3 سنين']);
+          }
+          isBusy=false;setInputControlsBusy(false);setStatus('أنا معك — اكتب سؤالك');
+        },420);
+        return;
+      }
+    } else {
+      DecisionBot.cancel();
+      removeChoiceButtons();
+    }
   }
 
   const localQuick=findLocalAnswer(q);
@@ -907,10 +930,7 @@ async function sendMessage(overrideText){
       trimHistory();
       appendMessage('bot',localQuick);
       if(DecisionBot.isActive()){
-        const step=DecisionBot.state?.step;
-        if(step===1) appendChoiceButtons(['أكمل تعليم (كلية / هندسة)','أدخل سوق العمل بسرعة']);
-        else if(step===2) appendChoiceButtons(['دراسة + نظري + عملي (متوازن)','عملي بإيدي أساساً']);
-        else if(step===3) appendChoiceButtons(['آه، مستعد','لا، أفضل 3 سنين']);
+        appendChoiceButtons(['أكمل تعليم (كلية / هندسة)','أدخل سوق العمل بسرعة']);
       }
       isBusy=false;setInputControlsBusy(false);setStatus('أنا معك — اكتب سؤالك');
     },420);
