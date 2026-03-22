@@ -696,11 +696,11 @@ function smartReply(message){
   const text=normalizeText(message);
   const raw=message.trim();
 
-  if(/^(اهلا|أهلا|هلا|مرحبا|مرحباً|السلام|ازيك|إزيك|هاي|hi|hello|hey)[\s!.؟…]*$/i.test(raw)){
-    return 'وعليكم السلام! أنا دون بوسكو — أحدّثك عن معهدنا في القاهرة.\n\nاسأل عن البرامج (ITI / IPI)، TVET، التسجيل، أو التوظيف — أو اكتب "ساعدني أختار" لو مش متأكد من المسار المناسب.';
+  if(/^(اهلا|أهلا|هلا|مرحبا|مرحباً|السلام|ازيك|إزيك|عامل ايه|عامل إيه|هاي|hi|hello|hey|كويس|بخير)[\s!.؟…]*$/i.test(normalizeText(raw))){
+    return 'أهلاً! أنا هنا للإجابة عن أسئلتك عن معهد دون بوسكو القاهرة.\n\nاسأل عن البرامج (ITI / IPI)، TVET، التسجيل، أو التوظيف — أو اكتب "ساعدني أختار" لو مش عارف المسار المناسب ليك.';
   }
-  if(/بتتكلم|بتشتغل|بتفهم|إنت إيه|انت ايه|انت مين|إنت مين|ده إيه|ده ايه/.test(text)){
-    return 'أيوه، أنا شات بوت بيمثّل شخصية دون بوسكو — أقدر أجاوبك على أي سؤال عن معهد دون بوسكو القاهرة (البرامج، التسجيل، TVET، التوظيف).\n\nاسأل وأنا هرد!';
+  if(/بتتكلم|بتشتغل|بتفهم|إنت إيه|انت ايه|انت مين|إنت مين/.test(text)){
+    return 'أيوه، أنا شات بوت بيمثّل شخصية دون بوسكو — أقدر أجاوبك على أي سؤال عن معهد دون بوسكو القاهرة.\n\nاسأل وأنا هرد!';
   }
 
   // Decision wizard active
@@ -745,13 +745,21 @@ function smartReply(message){
 function isQueryTooVague(q){
   const t=q.replace(/[؟?!.,،]/g,' ').replace(/\s+/g,' ').trim();
   if(t.length<3) return true;
-  if(/^(اهلا|أهلا|هلا|مرحبا|مرحباً|السلام عليكم|ازيك|إزيك|عامل ايه|عامل إيه|هاي|hi|hello|hey|صباح|مساء)[\s!.؟…]*$/i.test(t)) return true;
   const words=t.split(/\s+/).filter(Boolean);
+  if(/^(اهلا|أهلا|هلا|مرحبا|مرحباً|السلام|ازيك|إزيك|عامل ايه|عامل إيه|هاي|hi|hello|hey|صباح|مساء|كيف حالك)[\s!.؟…]*$/i.test(t)) return true;
   if(words.length<=2&&t.length<20) return true;
-  const arabicOrEnglish=/[\u0600-\u06FF]|[a-z]/i.test(t);
-  if(!arabicOrEnglish) return true;
-  const meaningfulWords=words.filter(w=>w.replace(/[^\u0600-\u06FFa-z]/gi,'').length>=2);
-  if(words.length>2&&meaningfulWords.length/words.length<0.4) return true;
+  const wordCount={};
+  words.forEach(w=>{wordCount[w]=(wordCount[w]||0)+1;});
+  const maxRepeat=Math.max(...Object.values(wordCount));
+  if(maxRepeat/words.length>0.4&&words.length>3) return true;
+  if(words.length>=6){
+    const half=Math.floor(words.length/2);
+    const firstHalf=words.slice(0,half).join(' ');
+    const secondHalf=words.slice(half).join(' ');
+    if(secondHalf.includes(firstHalf)||firstHalf.includes(secondHalf)) return true;
+  }
+  const meaningful=words.filter(w=>w.replace(/[^\u0600-\u06FFa-z]/gi,'').length>=2);
+  if(words.length>4&&meaningful.length/words.length<0.35) return true;
   return false;
 }
  
@@ -837,17 +845,21 @@ function initSpeechRecognition(){
   }
   speechRecognition.onstart=()=>{micListening=true;micBtn.classList.add('listening');setStatus('أستمع… اضغط الأحمر لإيقاف وإرسال السؤال');};
   speechRecognition.onresult=(e)=>{
-    let interim='';
-    for(let i=e.resultIndex;i<e.results.length;i++){
-      const r=e.results[i],t=pickBestTranscript(r);
-      if(r.isFinal) speechFinalBuffer=appendFinalSegment(speechFinalBuffer,t);
-      else interim+=t;
+    let finalText='';
+    let interimText='';
+    for(let i=0;i<e.results.length;i++){
+      const r=e.results[i];
+      const t=pickBestTranscript(r);
+      if(r.isFinal) finalText+=(finalText?' ':'')+t;
+      else interimText+=t;
     }
     const input=document.getElementById('text-input');
-    if(!voiceUpdatingFromSr&&input.value.trim()===''&&speechFinalBuffer.trim()!==''){
+    if(!voiceUpdatingFromSr&&input.value.trim()===''){
       speechFinalBuffer='';
     }
-    voiceUpdatingFromSr=true;input.value=normalizeArabicSpeech(speechFinalBuffer+interim);voiceUpdatingFromSr=false;
+    if(finalText) speechFinalBuffer=finalText;
+    const merged=normalizeArabicSpeech(speechFinalBuffer+(interimText?' '+interimText:''));
+    voiceUpdatingFromSr=true;input.value=merged;voiceUpdatingFromSr=false;
     autoResize(input);
   };
   speechRecognition.onerror=(ev)=>{
