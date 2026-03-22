@@ -3,26 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta name="description" content="مساعد حواري عن معهد السالزيان دون بوسكو في القاهرة — البرامج، TVET، التوظيف، والتسجيل.">
+
+<meta name="description" content="مساعد حواري عن معهد السالزيان دون بوسكو في القاهرة — البرامج، TVET، التوظيف، والتسجيل. مصدر المعلومات: donboscocairo.org">
 <meta name="theme-color" content="#070b10">
 <meta name="application-name" content="دون بوسكو">
 <meta property="og:title" content="دون بوسكو — معهد القاهرة">
 <meta property="og:description" content="حديث عن المعهد في القاهرة: البرامج، TVET، التوظيف، والتسجيل.">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><circle cx='12' cy='8' r='4.5' fill='%231D9E75'/><path d='M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8' fill='%231D9E75'/></svg>">
-<title>دون بوسكو — معهد القاهرة</title>
-<!-- ✅ iOS vh fix -->
-<script>
-  function setVh(){document.documentElement.style.setProperty('--vh',window.innerHeight+'px');}
-  setVh(); window.addEventListener('resize',setVh);
-</script>
-<style>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⛪</text></svg>">
+<style>  
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap');
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 :root{
   --g:#1D9E75;--gl:#2ecf9a;--gd:#0F6E56;
-  --bg:#070b10;--bg2:#0d1520;--s2:#1a2a38;
+  --bg:#070b10;--bg2:#0d1520;
+  --s2:#1a2a38;
   --b:rgba(29,158,117,.22);--b2:rgba(29,158,117,.38);
   --t:#eef4f8;--tm:#7a94a8;
   --ease-out:cubic-bezier(0.22,1,0.36,1);
@@ -33,8 +29,11 @@
   --radius-lg:18px;--radius-xl:22px;
   --vh:100dvh;
 }
+ 
+
 html,body{
-  height:100%;min-height:-webkit-fill-available;
+  height:100%;
+  min-height:-webkit-fill-available;
   font-family:'Cairo',sans-serif;color:var(--t);overflow:hidden;
   background:var(--bg);
   background-image:
@@ -43,15 +42,20 @@ html,body{
     linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%);
   background-attachment:fixed;
 }
-/* START */
+ 
+
 #start{
   position:absolute;inset:0;z-index:100;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
-  gap:20px;padding:32px;text-align:center;background:inherit;
+  gap:20px;padding:32px;text-align:center;
+  background:inherit;
   transition:opacity .45s var(--ease-soft),transform .45s var(--ease-soft),filter .45s ease;
   will-change:opacity,transform;
 }
-#start::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 50% 35%,rgba(46,207,154,.06),transparent 55%);}
+#start::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(circle at 50% 35%,rgba(46,207,154,.06),transparent 55%);
+}
 #start.start-hide{opacity:0;transform:scale(.97) translateY(8px);filter:blur(2px);pointer-events:none;}
 #start .logo-wrap{position:relative;animation:startLogo .9s var(--ease-out) both;}
 @keyframes startLogo{from{opacity:0;transform:translateY(16px) scale(.92)}to{opacity:1;transform:translateY(0) scale(1)}}
@@ -63,7 +67,11 @@ html,body{
   display:flex;align-items:center;justify-content:center;position:relative;
   transition:transform .35s var(--ease-out),box-shadow .35s ease;
 }
-#start .logo::after{content:'';position:absolute;inset:-3px;border-radius:50%;border:1px solid rgba(29,158,117,.25);animation:logoRing 3s ease-in-out infinite;}
+#start .logo::after{
+  content:'';position:absolute;inset:-3px;border-radius:50%;
+  border:1px solid rgba(29,158,117,.25);
+  animation:logoRing 3s ease-in-out infinite;
+}
 @keyframes logoRing{0%,100%{opacity:.35;transform:scale(1)}50%{opacity:.65;transform:scale(1.04)}}
 #start .logo svg{width:50px;height:50px}
 #start h1{font-size:23px;font-weight:700;color:var(--t);letter-spacing:.02em;animation:startText .6s var(--ease-out) .12s both;}
@@ -79,39 +87,75 @@ html,body{
   transition:transform .2s var(--ease-out),box-shadow .25s ease,filter .2s ease;
   animation:startText .6s var(--ease-out) .32s both;
 }
-#start-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.18) 50%,transparent 60%);transform:translateX(-100%);transition:transform .6s var(--ease-out);}
+#start-btn::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.18) 50%,transparent 60%);
+  transform:translateX(-100%);transition:transform .6s var(--ease-out);
+}
 #start-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(29,158,117,.42);filter:brightness(1.05);}
 #start-btn:hover::before{transform:translateX(100%)}
 #start-btn:active{transform:translateY(0) scale(.98)}
 #start-note{font-size:11px;color:var(--tm);animation:startText .6s var(--ease-out) .4s both;}
-/* APP */
+ 
+
 #app{
-  display:none;flex-direction:column;
+  display:none;
+  flex-direction:column;
   height:calc(var(--vh, 100dvh));
   max-width:480px;margin:0 auto;
   position:relative;z-index:1;opacity:0;transform:translateY(14px);
   transition:opacity .5s var(--ease-out),transform .5s var(--ease-out);
 }
 #app.app-ready{opacity:1;transform:translateY(0);}
-/* HEADER */
-.hdr{background:linear-gradient(180deg,rgba(19,30,40,.92) 0%,rgba(13,21,32,.88) 100%);backdrop-filter:saturate(140%) blur(12px);-webkit-backdrop-filter:saturate(140%) blur(12px);border-bottom:1px solid var(--b);padding:12px 14px 10px;display:flex;align-items:center;gap:11px;flex-shrink:0;box-shadow:0 4px 20px rgba(0,0,0,.15);}
-.hdr-av{width:44px;height:44px;border-radius:50%;background:linear-gradient(145deg,var(--gd),#0c5c48);border:2px solid rgba(46,207,154,.35);box-shadow:0 2px 12px rgba(29,158,117,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;transition:transform .3s var(--ease-out),box-shadow .3s ease;}
+
+.hdr{
+  background:linear-gradient(180deg,rgba(19,30,40,.92) 0%,rgba(13,21,32,.88) 100%);
+  backdrop-filter:saturate(140%) blur(12px);-webkit-backdrop-filter:saturate(140%) blur(12px);
+  border-bottom:1px solid var(--b);
+  padding:12px 14px 10px;display:flex;align-items:center;gap:11px;flex-shrink:0;
+  box-shadow:0 4px 20px rgba(0,0,0,.15);
+}
+.hdr-av{
+  width:44px;height:44px;border-radius:50%;
+  background:linear-gradient(145deg,var(--gd),#0c5c48);
+  border:2px solid rgba(46,207,154,.35);box-shadow:0 2px 12px rgba(29,158,117,.2);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;
+  transition:transform .3s var(--ease-out),box-shadow .3s ease;
+}
 .hdr:hover .hdr-av{transform:scale(1.03)}
 .hdr-av svg{width:22px;height:22px}
-.hdr-dot{position:absolute;bottom:1px;left:1px;width:11px;height:11px;border-radius:50%;background:var(--gl);border:2px solid var(--s2);box-shadow:0 0 0 2px rgba(29,158,117,.25);animation:statusPulse 2.2s ease-in-out infinite;}
+.hdr-dot{
+  position:absolute;bottom:1px;left:1px;width:11px;height:11px;border-radius:50%;
+  background:var(--gl);border:2px solid var(--s2);box-shadow:0 0 0 2px rgba(29,158,117,.25);
+  animation:statusPulse 2.2s ease-in-out infinite;
+}
 @keyframes statusPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.85;transform:scale(.92)}}
 .hdr-name{font-size:14.5px;font-weight:700;letter-spacing:.02em}
 .hdr-status{font-size:10.5px;color:var(--gl);margin-top:2px;min-height:15px;transition:color .3s ease;}
-.hdr-badge{font-size:9px;padding:4px 9px;border-radius:999px;background:rgba(29,158,117,.12);color:var(--gl);border:1px solid var(--b);margin-right:auto;letter-spacing:.35px;transition:background .25s ease,border-color .25s ease;}
+.hdr-badge{
+  font-size:9px;padding:4px 9px;border-radius:999px;
+  background:rgba(29,158,117,.12);color:var(--gl);border:1px solid var(--b);
+  margin-right:auto;letter-spacing:.35px;transition:background .25s ease,border-color .25s ease;
+}
 .hdr-badge:hover{background:rgba(29,158,117,.18)}
-/* MESSAGES */
-.msgs{flex:1;overflow-y:auto;padding:14px 12px 10px;display:flex;flex-direction:column;gap:12px;scroll-behavior:smooth;}
+ 
+/* ── MESSAGES ── */
+.msgs{
+  flex:1;overflow-y:auto;padding:14px 12px 10px;
+  display:flex;flex-direction:column;gap:12px;scroll-behavior:smooth;
+}
 .msgs::-webkit-scrollbar{width:4px}
 .msgs::-webkit-scrollbar-thumb{background:rgba(29,158,117,.28);border-radius:4px;}
 .msgs::-webkit-scrollbar-track{background:transparent}
 .row{display:flex;gap:8px;align-items:flex-end}
 .row.u{flex-direction:row-reverse}
-.row-av{width:28px;height:28px;border-radius:50%;background:linear-gradient(145deg,var(--gd),#0a4a3a);border:1px solid rgba(46,207,154,.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .25s var(--ease-out);}
+.row-av{
+  width:28px;height:28px;border-radius:50%;
+  background:linear-gradient(145deg,var(--gd),#0a4a3a);
+  border:1px solid rgba(46,207,154,.35);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  transition:transform .25s var(--ease-out);
+}
 .row:hover .row-av{transform:scale(1.05)}
 .row-av svg{width:14px;height:14px}
 .row-col{display:flex;flex-direction:column}
@@ -121,78 +165,212 @@ html,body{
 @keyframes msgInUser{from{opacity:0;transform:translateY(12px) translateX(8px) scale(.97)}to{opacity:1;transform:translateY(0) translateX(0) scale(1)}}
 .row.msg-in.bot{animation:msgInBot .48s var(--ease-out) both}
 .row.msg-in.u{animation:msgInUser .42s var(--ease-out) both}
-.bubble{max-width:86%;padding:12px 15px;border-radius:var(--radius-lg);font-size:13.5px;line-height:1.75;letter-spacing:.01em;transition:box-shadow .25s ease,transform .2s ease;}
-.bot .bubble{background:linear-gradient(165deg,rgba(30,45,58,.95) 0%,rgba(22,35,48,.98) 100%);border:1px solid rgba(29,158,117,.18);border-bottom-right-radius:5px;white-space:pre-wrap;word-break:break-word;box-shadow:var(--shadow-sm);}
+.bubble{
+  max-width:86%;padding:12px 15px;
+  border-radius:var(--radius-lg);font-size:13.5px;line-height:1.75;letter-spacing:.01em;
+  transition:box-shadow .25s ease,transform .2s ease;
+}
+.bot .bubble{
+  background:linear-gradient(165deg,rgba(30,45,58,.95) 0%,rgba(22,35,48,.98) 100%);
+  border:1px solid rgba(29,158,117,.18);border-bottom-right-radius:5px;
+  white-space:pre-wrap;word-break:break-word;box-shadow:var(--shadow-sm);
+}
 .bot .bubble:hover{box-shadow:var(--shadow-glow)}
-.u .bubble{background:linear-gradient(165deg,var(--gl) 0%,var(--g) 50%,var(--gd) 100%);border:1px solid rgba(255,255,255,.12);border-bottom-left-radius:5px;color:#fff;font-weight:500;box-shadow:0 4px 16px rgba(29,158,117,.28);}
+.u .bubble{
+  background:linear-gradient(165deg,var(--gl) 0%,var(--g) 50%,var(--gd) 100%);
+  border:1px solid rgba(255,255,255,.12);border-bottom-left-radius:5px;
+  color:#fff;font-weight:500;box-shadow:0 4px 16px rgba(29,158,117,.28);
+}
 .row-time{font-size:9px;color:var(--tm);margin-top:3px;padding:0 4px;opacity:.85;animation:timeFade .35s ease .12s both;}
 @keyframes timeFade{from{opacity:0}to{opacity:.85}}
-.typing-bub{background:linear-gradient(165deg,rgba(30,45,58,.95),rgba(22,35,48,.98));border:1px solid rgba(29,158,117,.18);border-radius:var(--radius-lg);border-bottom-right-radius:5px;padding:13px 16px;display:flex;gap:6px;align-items:center;box-shadow:var(--shadow-sm);}
+
+.typing-bub{
+  background:linear-gradient(165deg,rgba(30,45,58,.95),rgba(22,35,48,.98));
+  border:1px solid rgba(29,158,117,.18);
+  border-radius:var(--radius-lg);border-bottom-right-radius:5px;
+  padding:13px 16px;display:flex;gap:6px;align-items:center;box-shadow:var(--shadow-sm);
+}
 .tdot{width:6px;height:6px;border-radius:50%;background:var(--gl);animation:bop 1.2s infinite ease-in-out;}
 .tdot:nth-child(2){animation-delay:.2s}.tdot:nth-child(3){animation-delay:.4s}
 @keyframes bop{0%,80%,100%{transform:translateY(0);opacity:.35}40%{transform:translateY(-6px);opacity:1}}
-/* BOTTOM ZONE */
-.bzone{flex-shrink:0;background:linear-gradient(180deg,rgba(16,24,34,.95) 0%,rgba(11,18,26,.98) 100%);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--b);padding:11px 12px 14px;display:flex;flex-direction:column;align-items:stretch;gap:9px;box-shadow:0 -8px 32px rgba(0,0,0,.2);}
-/* CHIPS ROW */
-.chips-row{display:flex;flex-direction:row;align-items:center;gap:6px;width:100%;}
-.chips-nav{flex-shrink:0;width:34px;height:34px;border-radius:50%;border:1px solid rgba(29,158,117,.35);background:rgba(26,42,56,.75);color:var(--gl);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;line-height:1;padding:0;transition:background .2s,border-color .2s,color .2s,opacity .2s;}
+
+.bzone{
+  flex-shrink:0;
+  background:linear-gradient(180deg,rgba(16,24,34,.95) 0%,rgba(11,18,26,.98) 100%);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border-top:1px solid var(--b);padding:11px 12px 14px;
+  display:flex;flex-direction:column;align-items:stretch;gap:9px;
+  box-shadow:0 -8px 32px rgba(0,0,0,.2);
+}
+ 
+
+.chips-row{
+  display:flex;flex-direction:row;align-items:center;gap:6px;width:100%;
+}
+.chips-nav{
+  flex-shrink:0;width:34px;height:34px;border-radius:50%;
+  border:1px solid rgba(29,158,117,.35);background:rgba(26,42,56,.75);color:var(--gl);
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  font-size:18px;line-height:1;padding:0;
+  transition:background .2s,border-color .2s,color .2s,opacity .2s;
+}
 .chips-nav:hover:not(:disabled){background:rgba(29,158,117,.14);border-color:rgba(46,207,154,.45);color:var(--t);}
 .chips-nav:disabled{opacity:.35;cursor:not-allowed;}
-.chips-viewport{flex:1;min-width:0;overflow:hidden;padding:4px 0 12px;}
-.chips{display:flex;flex-direction:row;flex-wrap:nowrap;gap:7px;width:max-content;max-width:none;transition:transform 0.38s var(--ease-out);will-change:transform;}
-.chip{white-space:nowrap;font-size:10.5px;font-weight:600;padding:6px 12px;border-radius:999px;border:1px solid var(--b);background:rgba(26,42,56,.5);color:var(--tm);cursor:pointer;font-family:'Cairo',sans-serif;flex-shrink:0;transition:background .25s var(--ease-soft),border-color .25s,color .25s,transform .2s var(--ease-out),box-shadow .25s;}
+.chips-viewport{
+  flex:1;min-width:0;overflow:hidden;padding:4px 0 12px;
+}
+.chips{
+  display:flex;flex-direction:row;flex-wrap:nowrap;gap:7px;
+  width:max-content;max-width:none;
+  transition:transform 0.38s var(--ease-out);will-change:transform;
+}
+.chip{
+  white-space:nowrap;font-size:10.5px;font-weight:600;padding:6px 12px;
+  border-radius:999px;border:1px solid var(--b);background:rgba(26,42,56,.5);color:var(--tm);
+  cursor:pointer;font-family:'Cairo',sans-serif;flex-shrink:0;
+  transition:background .25s var(--ease-soft),border-color .25s,color .25s,transform .2s var(--ease-out),box-shadow .25s;
+}
 .chip:hover{border-color:var(--b2);color:var(--t);transform:translateY(-1px);}
 .chip.on{background:rgba(29,158,117,.18);border-color:rgba(46,207,154,.45);color:var(--gl);box-shadow:0 2px 12px rgba(29,158,117,.15);}
-/* PILLS ROW */
+ 
+
 .pills-row{display:flex;flex-direction:row;align-items:center;gap:6px;width:100%;}
-.pills-nav{flex-shrink:0;width:34px;height:34px;border-radius:50%;border:1px solid rgba(29,158,117,.35);background:rgba(26,42,56,.75);color:var(--gl);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;line-height:1;padding:0;transition:background .2s,border-color .2s,color .2s,opacity .2s;}
+.pills-nav{
+  flex-shrink:0;width:34px;height:34px;border-radius:50%;
+  border:1px solid rgba(29,158,117,.35);background:rgba(26,42,56,.75);color:var(--gl);
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  font-size:18px;line-height:1;padding:0;
+  transition:background .2s,border-color .2s,color .2s,opacity .2s;
+}
 .pills-nav:hover:not(:disabled){background:rgba(29,158,117,.14);border-color:rgba(46,207,154,.45);color:var(--t);}
 .pills-nav:disabled{opacity:.35;cursor:not-allowed;}
 .pills-viewport{flex:1;min-width:0;overflow:hidden;padding:2px 0 12px;}
-.pills{display:flex;flex-direction:row;flex-wrap:nowrap;gap:7px;width:max-content;max-width:none;transition:transform 0.38s var(--ease-out);will-change:transform;}
-.pill{white-space:nowrap;font-size:11px;font-weight:500;padding:7px 13px;border-radius:999px;border:1px solid rgba(29,158,117,.22);background:rgba(26,42,56,.65);color:var(--t);cursor:pointer;font-family:'Cairo',sans-serif;flex-shrink:0;transition:background .25s var(--ease-soft),border-color .25s,color .25s,transform .2s var(--ease-out),box-shadow .25s;}
+.pills{
+  display:flex;flex-direction:row;flex-wrap:nowrap;gap:7px;
+  width:max-content;max-width:none;
+  transition:transform 0.38s var(--ease-out);will-change:transform;
+}
+.pill{
+  white-space:nowrap;font-size:11px;font-weight:500;padding:7px 13px;
+  border-radius:999px;border:1px solid rgba(29,158,117,.22);
+  background:rgba(26,42,56,.65);color:var(--t);
+  cursor:pointer;font-family:'Cairo',sans-serif;flex-shrink:0;
+  transition:background .25s var(--ease-soft),border-color .25s,color .25s,transform .2s var(--ease-out),box-shadow .25s;
+}
 .pill:hover{border-color:var(--g);color:var(--gl);background:rgba(29,158,117,.12);transform:translateY(-2px);box-shadow:0 4px 14px rgba(29,158,117,.12);}
 .pill:active{transform:translateY(0) scale(.98)}
-/* INPUT */
+ 
+
 .input-row{display:flex;gap:11px;align-items:flex-end;width:100%}
 .input-wrap{width:100%;display:flex;flex-direction:column;gap:4px}
 .input-field-label{font-size:10.5px;font-weight:600;color:var(--tm);letter-spacing:.04em;padding:0 2px;cursor:text;}
 .input-actions{display:flex;flex-direction:row;gap:8px;align-items:center;flex-shrink:0;}
-.mic-btn{width:48px;height:48px;border-radius:50%;background:rgba(26,42,56,.85);border:1.5px solid rgba(29,158,117,.28);color:var(--gl);cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;outline:none;transition:transform .2s var(--ease-out),border-color .25s,background .25s,box-shadow .25s,color .2s;}
+ 
+.mic-btn{
+  width:48px;height:48px;border-radius:50%;
+  background:rgba(26,42,56,.85);border:1.5px solid rgba(29,158,117,.28);color:var(--gl);
+  cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;outline:none;
+  transition:transform .2s var(--ease-out),border-color .25s,background .25s,box-shadow .25s,color .2s;
+}
 .mic-btn svg{width:22px;height:22px}
 .mic-btn:hover:not(:disabled){border-color:rgba(46,207,154,.45);background:rgba(29,158,117,.12);color:var(--t);transform:scale(1.04);}
 .mic-btn.listening:hover:not(:disabled){border-color:rgba(240,100,90,.95);background:rgba(200,60,55,.55);color:#fff;transform:scale(1.03);}
 .mic-btn:focus-visible{box-shadow:0 0 0 3px rgba(29,158,117,.25);}
 .mic-btn:disabled{opacity:.35;cursor:not-allowed;}
-.mic-btn.listening{border-color:rgba(220,80,70,.9);background:rgba(190,55,50,.45);color:#fff;animation:micPulseRed 1.15s ease-in-out infinite;box-shadow:0 0 0 0 rgba(220,80,70,.5);transition:background .45s var(--ease-soft),border-color .45s var(--ease-soft),transform .4s var(--ease-soft),box-shadow .45s ease,color .2s;}
+.mic-btn.listening{
+  border-color:rgba(220,80,70,.9);background:rgba(190,55,50,.45);color:#fff;
+  animation:micPulseRed 1.15s ease-in-out infinite;box-shadow:0 0 0 0 rgba(220,80,70,.5);
+  transition:background .45s var(--ease-soft),border-color .45s var(--ease-soft),transform .4s var(--ease-soft),box-shadow .45s ease,color .2s;
+}
 @keyframes micPulseRed{0%,100%{box-shadow:0 0 0 0 rgba(220,80,70,.45)}50%{box-shadow:0 0 0 11px rgba(220,80,70,0)}}
 @keyframes micRelease{0%{transform:scale(1.06);filter:brightness(1.08)}100%{transform:scale(1);filter:brightness(1)}}
 .mic-btn.mic-release{animation:micRelease .65s var(--ease-soft) forwards;}
-textarea{flex:1;background:rgba(22,35,48,.85);border:1.5px solid rgba(29,158,117,.2);border-radius:var(--radius-xl);padding:10px 15px;font-size:13px;color:var(--t);font-family:'Cairo',sans-serif;resize:none;outline:none;max-height:76px;min-height:42px;line-height:1.5;direction:rtl;transition:border-color .25s ease,box-shadow .3s ease,background .25s ease,transform .2s ease;}
+ 
+textarea{
+  flex:1;background:rgba(22,35,48,.85);
+  border:1.5px solid rgba(29,158,117,.2);border-radius:var(--radius-xl);
+  padding:10px 15px;font-size:13px;color:var(--t);
+  font-family:'Cairo',sans-serif;resize:none;outline:none;
+  max-height:76px;min-height:42px;line-height:1.5;direction:rtl;
+  transition:border-color .25s ease,box-shadow .3s ease,background .25s ease,transform .2s ease;
+}
 textarea::placeholder{color:var(--tm);opacity:.85}
 textarea:hover{border-color:rgba(29,158,117,.32)}
 textarea:focus{border-color:var(--g);background:rgba(26,42,56,.95);box-shadow:0 0 0 3px rgba(29,158,117,.12),0 4px 20px rgba(0,0,0,.2);}
-textarea.voice-ready{transition:border-color .55s var(--ease-soft),box-shadow .55s var(--ease-soft),background .55s ease;animation:voiceFieldSettle 1.05s var(--ease-soft) forwards;}
-@keyframes voiceFieldSettle{0%{border-color:rgba(29,158,117,.22);box-shadow:0 0 0 0 rgba(29,158,117,0)}35%{border-color:rgba(46,207,154,.5);box-shadow:0 0 0 4px rgba(29,158,117,.18),0 6px 28px rgba(29,158,117,.12)}100%{border-color:rgba(29,158,117,.32);box-shadow:0 0 0 3px rgba(29,158,117,.1),0 4px 18px rgba(0,0,0,.15)}}
+textarea.voice-ready{
+  transition:border-color .55s var(--ease-soft),box-shadow .55s var(--ease-soft),background .55s ease;
+  animation:voiceFieldSettle 1.05s var(--ease-soft) forwards;
+}
+@keyframes voiceFieldSettle{
+  0%{border-color:rgba(29,158,117,.22);box-shadow:0 0 0 0 rgba(29,158,117,0)}
+  35%{border-color:rgba(46,207,154,.5);box-shadow:0 0 0 4px rgba(29,158,117,.18),0 6px 28px rgba(29,158,117,.12)}
+  100%{border-color:rgba(29,158,117,.32);box-shadow:0 0 0 3px rgba(29,158,117,.1),0 4px 18px rgba(0,0,0,.15)}
+}
 .input-wrap.voice-ready-wrap{transition:transform .5s var(--ease-soft);animation:inputWrapNudge .95s var(--ease-soft) forwards;}
 @keyframes inputWrapNudge{0%{transform:translateY(0)}40%{transform:translateY(-2px)}100%{transform:translateY(0)}}
-.send-btn{width:48px;height:48px;border-radius:50%;background:linear-gradient(155deg,var(--gl) 0%,var(--g) 55%,var(--gd) 100%);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 4px 16px rgba(29,158,117,.35),inset 0 1px 0 rgba(255,255,255,.15);transition:transform .22s var(--ease-out),box-shadow .25s ease,filter .2s ease,opacity .2s;outline:none;}
+ 
+.send-btn{
+  width:48px;height:48px;border-radius:50%;
+  background:linear-gradient(155deg,var(--gl) 0%,var(--g) 55%,var(--gd) 100%);
+  border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  box-shadow:0 4px 16px rgba(29,158,117,.35),inset 0 1px 0 rgba(255,255,255,.15);
+  transition:transform .22s var(--ease-out),box-shadow .25s ease,filter .2s ease,opacity .2s;outline:none;
+}
 .send-btn:hover:not(:disabled){transform:translateY(-2px) scale(1.03);box-shadow:0 6px 22px rgba(29,158,117,.45);filter:brightness(1.06);}
 .send-btn:active:not(:disabled){transform:translateY(0) scale(.97)}
 .send-btn:focus-visible{box-shadow:0 0 0 3px rgba(29,158,117,.35),0 4px 16px rgba(29,158,117,.35);}
 .send-btn:disabled{opacity:.4;cursor:not-allowed;filter:grayscale(.3);box-shadow:none;}
 .send-btn svg{width:17px;height:17px;transition:transform .2s var(--ease-out)}
 .send-btn:hover:not(:disabled) svg{transform:translate(-1px,-1px)}
+ 
 .footer{text-align:center;font-size:9px;color:rgba(122,148,168,.75);padding:4px 8px 6px;flex-shrink:0;letter-spacing:.04em;opacity:.9;}
+ 
 @media (prefers-reduced-motion: reduce){
   *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;}
-  #start .logo::after,  .hdr-dot, .mic-btn.listening, .mic-btn.mic-release, textarea.voice-ready, .input-wrap.voice-ready-wrap{animation:none}
+  #start .logo::after{animation:none}
+  .hdr-dot{animation:none}
+  .mic-btn.listening{animation:none}
+  .mic-btn.mic-release{animation:none}
+  textarea.voice-ready{animation:none}
+  .input-wrap.voice-ready-wrap{animation:none}
 }
+
+  .choice-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 4px 12px 8px 12px;
+  align-items: flex-start;
+}
+.choice-btn {
+  background: rgba(29,158,117,.12);
+  border: 1px solid rgba(29,158,117,.35);
+  border-radius: 12px;
+  color: var(--gl);
+  font-family: 'Cairo', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 9px 18px;
+  cursor: pointer;
+  text-align: right;
+  direction: rtl;
+  transition: background .2s, border-color .2s, transform .15s;
+  width: 100%;
+  max-width: 320px;
+}
+.choice-btn:hover {
+  background: rgba(29,158,117,.22);
+  border-color: rgba(46,207,154,.55);
+  transform: translateY(-1px);
+}
+.choice-btn:active {
+  transform: translateY(0) scale(.98);
+}
+
 </style>
 </head>
 <body>
 
-<!-- START SCREEN -->
 <div id="start">
   <div class="logo-wrap">
     <div class="logo">
@@ -209,7 +387,6 @@ textarea.voice-ready{transition:border-color .55s var(--ease-soft),box-shadow .5
   <div id="start-note">محادثة نصية أو صوتية (Chrome أو Edge)</div>
 </div>
 
-<!-- MAIN APP -->
 <div id="app">
   <div class="hdr">
     <div class="hdr-av">
@@ -230,15 +407,13 @@ textarea.voice-ready{transition:border-color .55s var(--ease-soft),box-shadow .5
   <div class="msgs" id="msgs"></div>
 
   <div class="bzone">
-    <!-- CHIPS with nav -->
-    <div class="chips-row">
-      <button type="button" class="chips-nav" id="chips-prev" aria-label="السابق">‹</button>
-      <div class="chips-viewport" id="chips-viewport">
-        <div class="chips" id="chips"></div>
-      </div>
-      <button type="button" class="chips-nav" id="chips-next" aria-label="التالي">›</button>
-    </div>
-    <!-- PILLS with nav -->
+   <div class="chips-row">
+  <button type="button" class="chips-nav" id="chips-prev">‹</button>
+  <div class="chips-viewport" id="chips-viewport">
+    <div class="chips" id="chips"></div>
+  </div>
+  <button type="button" class="chips-nav" id="chips-next">›</button>
+</div>
     <div class="pills-row">
       <button type="button" class="pills-nav" id="pills-prev" aria-label="السابق">‹</button>
       <div class="pills-viewport" id="pills-viewport">
@@ -250,7 +425,9 @@ textarea.voice-ready{transition:border-color .55s var(--ease-soft),box-shadow .5
       <label class="input-field-label" for="text-input">رسالتك</label>
       <div class="input-row">
         <div class="input-actions">
-          <button class="mic-btn" id="mic-btn" type="button" title="تسجيل صوتي — اضغط مرة أخرى لإيقاف وإرسال" aria-label="تسجيل صوتي">
+          <button class="mic-btn" id="mic-btn" type="button"
+            title="تسجيل صوتي — اضغط مرة أخرى لإيقاف التسجيل وإرسال السؤال"
+            aria-label="تسجيل صوتي">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
               <path d="M19 10v1a7 7 0 0 1-14 0v-1"/>
@@ -259,91 +436,127 @@ textarea.voice-ready{transition:border-color .55s var(--ease-soft),box-shadow .5
             </svg>
           </button>
           <button class="send-btn" id="send-btn" type="button" title="إرسال">
-            <svg viewBox="0 0 16 16" fill="none"><path d="M14 8L2 2l3 6-3 6 12-6z" fill="white"/></svg>
+            <svg viewBox="0 0 16 16" fill="none">
+              <path d="M14 8L2 2l3 6-3 6 12-6z" fill="white"/>
+            </svg>
           </button>
         </div>
-        <textarea id="text-input" placeholder="اكتب هنا أو استخدم الميكروفون…" rows="1" oninput="autoResize(this)" onkeydown="handleEnter(event)"></textarea>
+        <textarea id="text-input"
+          placeholder="اكتب هنا أو استخدم الميكروفون…"
+          rows="1"
+          oninput="autoResize(this)"
+          onkeydown="handleEnter(event)">
+        </textarea>
       </div>
     </div>
   </div>
+
   <div class="footer">Google Gemini · donboscocairo.org</div>
 </div>
 
 <script>
 'use strict';
 
-/* ═══════════════════════════════════════════════════════
-   WORKER URL — API Key مخفي في Cloudflare Worker
-═══════════════════════════════════════════════════════ */
 const WORKER_URL = 'https://lively-disk-6167.automationn6.workers.dev';
 
-/* ═══════════════════════════════════════════════════════
-   SYSTEM PROMPT
-═══════════════════════════════════════════════════════ */
-const SYSTEM = `أنت تتكلّم بلسان شخصية دون بوسكو — يوحنا ملكيوري بوسكو، قديس الكنيسة الكاثوليكية ومؤسّس جمعية السالزيان.
+const SYSTEM = `أنت تتكلّم بلسان شخصية دون بوسكو — يوحنا ملكيوري بوسكو (Giovanni Melchiorre Bosco)، المسمّى دون بوسكو، قديس الكنيسة الكاثوليكية ومؤسّس جمعية السالزيان. أنت تُجيب من يتحدّث معك: طالب، مهتم بالتسجيل، أو باحث عن معلومات عن المعهد في القاهرة أو عن سيرتك أو رسالتك.
 
-تنبيه مهم: هذا الشات بوت مخصص حصراً لمعهد دون بوسكو القاهرة — روض الفرج / الساحل. لا تملك معلومات عن فروع أخرى كمعهد دون بوسكو الإسكندرية — وإن سُئلت عنها أخبر المستخدم بذلك بوضوح.
+شخصيتك في الكلام:
+• ضمير المتكلّم: قل «أنا»، «علّمتُ شبابي…»، «في معهدنا في القاهرة…» حيث يناسب.
+• نبرة مربٍّ حقيقية: عربية فصحى واضحة ودافئة دون مبالغة أو عبارات مفتعلة؛ لمسة مصرية خفيفة عند مخاطبة الشباب.
+• اربط غالباً بين ذكرياتك في تورينو وبين استمرار رسالتك اليوم في مصر عبر السالزيان والمعهد.
+• **السؤال الواضح والمحدّد:** مقدّمة قصيرة، ثم حقائق منظّمة كنقاط مركّزة على ما طُلب فقط، ثم خاتمة أو دعوة للتواصل عند الحاجة.
+• **السؤال غير الواضح أو العام أو المبهم:** لا تُلقِ قائمةً طويلة. اكتفِ بجملة أو جملتين دافئتين، ثم اسأل سؤالاً واحداً أو سؤالين فقط لتحديد ما يهمّ المستخدم.
+• **السؤال خارج نطاق المعهد:** قل بلطف إن الموضوع خارج ما تستطيع تأكيده هنا.
+• الدقة: لا تخترع مواعيد تسجيل أو مصاريف أو أرقاماً غير واردة أدناه.
 
-شخصيتك: نبرة مربٍّ حقيقية — عربية فصحى دافئة مع لمسة مصرية خفيفة. اربط بين ذكرياتك في تورينو واستمرار رسالتك في مصر.
+الاختصارات عند النطق: آي تي آي (ITI)، آي بي آي (IPI)، تيفيت (TVET).
 
-للأسئلة الواضحة: مقدّمة قصيرة ثم نقاط مركّزة.
-للأسئلة المبهمة: جملة أو جملتان ثم اسأل للتوضيح.
-للأسئلة خارج النطاق: اعتذر بلطف.
-لا تخترع مواعيد أو مصاريف غير واردة أدناه.
+════════════════════════════════════════
+حياتي — يوحنا بوسكو
+════════════════════════════════════════
+• الولادة: 16 أغسطس 1815 في قرية بيكي (Becchi) قرب كاستيلنوفو دون بوسكو بإيطاليا؛ الوفاة: 31 يناير 1888 في تورينو عن 72 عاماً.
+• الأم: مارغريت (ماما مارغريت) ساعدتني بعد وفاة أبي وأنا صغير.
+• الكهنوت: رسامة كاهن 1841؛ كرّست حياتي لتعليم الشباب الفقراء والمهمشين في تورينو.
+• بداية الأوراتوريو: لقاء الشاب بارتولوميو غاريلي (Garelli) عام 1841 كان شرارة «الأوراتوريو».
+• الجمعية: أسّستُ جمعية السالزيان عام 1859.
+• التقديس: 1934؛ عيدي في الكنيسة: 31 يناير.
+• شعار رسالتي: النظام الوقائي — العقل والدين والمحبة.
 
-════════════════════
-حياتي
-════════════════════
-• الولادة: 16 أغسطس 1815 في بيكي، إيطاليا — الوفاة: 31 يناير 1888 في تورينو.
-• رسامة كاهن 1841 — أسّستُ السالزيان 1859 — تقديسي 1934.
-• شعاري: النظام الوقائي — العقل والدين والمحبة.
-
-════════════════════
-المعهد في القاهرة
-════════════════════
-• العنوان: 2 شارع عبد القادر طه، الساحل، القاهرة 11241 (روض الفرج / شبرا).
+════════════════════════════════════════
+معهدنا في القاهرة
+════════════════════════════════════════
+• الاسم: Istituto Salesiano Don Bosco / معهد السالزيان دون بوسكو.
+• العنوان: 2 شارع عبد القادر طه، الساحل، القاهرة 11241. خريطة: https://goo.gl/maps/qjWFTa1GjZjeEihq8
 • الموقع: https://www.donboscocairo.org
-• التأسيس: 1926 — المئوية: 1926–2026.
-• بروتوكول 28 مارس 1970: اعتراف مصري–إيطالي رسمي.
 
-════════════════════
+════════════════════════════════════════
 التواصل
-════════════════════
-• هاتف: 02-24576794 و02-24579650 (9:00–12:00)
+════════════════════════════════════════
+• هاتف: 02-24576794 و 02-24579650 (9:00–12:00)
 • جوال: 01024942814 — 01226304832
-• info@donboscocairo.org / secretary@donboscocairo.org
+• عام: info@donboscocairo.org
+• المدرسة: secretary@donboscocairo.org
 • TVET: segretaria.corsi@donboscocairo.org
 • توظيف: joboffice.coordinator@donboscocairo.org
-• جروب أولياء الأمور والخريجين: اتحاد أولياء أمور طلبة معهد دون بوسكو القاهرة
-  https://www.facebook.com/share/g/1CJpwMWQAw/
+• فيسبوك: facebook.com/DonBoscoCai
 
-════════════════════
-البرامج
-════════════════════
-ITI (5 سنوات): عامان تمهيديان (لغات + علوم) ثم تخصص من السنة الثالثة: كهرباء/إلكترونيات، ميكانيكا/ميكاترونيكس، اتصالات/IT. امتحان دولة بلجنة إيطالية. المؤهل: دبلوم فوق المتوسط فني — تنسيق هندسة + معاهد عليا.
+════════════════════════════════════════
+التاريخ في مصر
+════════════════════════════════════════
+• السالزيان في مصر منذ 1891؛ المعهد في القاهرة منذ 1926؛ احتفال المئوية 1926–2026.
+• 28 مارس 1970: بروتوكول مصري–إيطالي؛ دبلومات معترف بها في مصر وإيطاليا وأوروبا.
 
-IPI (3 سنوات): تخصص من السنة الأولى — ساعات عملي أعلى. أقسام: كهرباء (PLC/طاقة شمسية)، ميكانيكا CNC، سيارات، لحام. المؤهل: دبلوم صناعي — تنسيق معاهد ثلاث سنوات.
+════════════════════════════════════════
+البرامج الدراسية
+════════════════════════════════════════
+**آي تي آي ITI (خمس سنوات):**
+• عامان تمهيديان: لغات (عربي، إيطالي، إنجليزي) وعلوم.
+• من الثالث: تخصص كهرباء وإلكترونيات أو ميكانيكا وميكاترونيكس أو اتصالات وIT.
+• التخرج: امتحان دولة بلجنة فيها خبراء من إيطاليا.
+• المؤهل: دبلوم فوق المتوسط فني — تنسيق هندسة حكومية وخاصة ومعاهد عليا.
 
-كلاهما معترف به في مصر وإيطاليا والاتحاد الأوروبي.
+**آي بي آي IPI (ثلاث سنوات):**
+• تخصص من السنة الأولى؛ ساعات عملي أكثر.
+• أقسام: كهرباء (PLC، طاقة شمسية) — ميكانيكا CNC — سيارات — لحام.
+• المؤهل: دبلوم صناعي — تنسيق معاهد ثلاث سنوات.
 
-TVET: دورات مهنية منفصلة — PLC، SCADA، Arduino، IoT، G SCAN، جرافيك، طاقة كهروضوئية وغيرها. القائمة: donboscocairo.org/course/
+**اللغات:** الإيطالية أولاً؛ الإنجليزية ثانية؛ العربية للدين والتربية البدنية.
+**القبول:** المعهد يقبل الطلاب والطالبات.
 
-════════════════════
-التسجيل
-════════════════════
-المواعيد والمصاريف تُعلَن سنوياً على donboscocairo.org.
-اختبار قدرات: ذكاء + رياضيات + إنجليزي + مقابلة.
-دورة صيفية تمهيدية ~125 ساعة — نتيجتها تحدد ITI أو IPI.
+════════════════════════════════════════
+TVET — دورات تدريبية
+════════════════════════════════════════
+• مسار منفصل: دورات مهنية للأفراد والشركات.
+• أقسام: سيارات، كهرباء، إلكترونيات، اتصالات، IT، طاقة متجددة، لغات، مهارات حياتية، أزياء، صيانة، ميكانيكا.
+• أمثلة: PLC، SCADA، HMI، Arduino، IoT، G SCAN، جرافيك، تصوير، طاقة كهروضوئية.
+• القائمة: donboscocairo.org/course/
 
-════════════════════
+════════════════════════════════════════
 بعد التخرج
-════════════════════
-مكتب توظيف: joboffice.coordinator@donboscocairo.org
-شراكات: Siemens، Eratec.
-مشروع Vescovini: فرص عمل في إيطاليا.
-اتفاقية MITS لخريجي الخمس سنوات: سنتان دراسة في إيطاليا + عقد عمل.
+════════════════════════════════════════
+• مكتب توظيف: يربط الخريجين بشركات ومصانع؛ joboffice.coordinator@donboscocairo.org
+• شراكات: Siemens، Eratec، مشروع Vescovini لفرص في إيطاليا.
+• اتفاقية MITS لخريجي الخمس سنوات: سنتان دراسة في إيطاليا ثم عقد عمل.
 
-قواعد: لا تذكر مواعيد أو مصاريف إلا من إعلان رسمي. لا تخاطب بـ «ابني». عند السؤال عن الإسكندرية: وضّح أن هذا الشات بوت للقاهرة فقط.`;
+════════════════════════════════════════
+التسجيل
+════════════════════════════════════════
+• المواعيد والمصاريف تُعلَن كل عام على donboscocairo.org.
+• اختبار قدرات: ذكاء، رياضيات، إنجليزي، مقابلة شخصية.
+• دورة صيفية تمهيدية: ~125 ساعة إيطالي ورياضيات وفيزياء بالإيطالي.
+• متابعة الدرجات: Spaggiari وClasseViva — donboscocairo.org/school/classeviva
+• المصاريف: من الإدارة فقط.
+
+════════════════════════════════════════
+الأنشطة
+════════════════════════════════════════
+• الأوراتوريو: مركز شبابي — غالباً مساء الإثنين 18:00–22:00.
+
+قواعد:
+• لا تُذكر مواعيد تسجيل أو مصاريف إلا من إعلان رسمي.
+• أجب بحزم على الأسئلة المحددة، واطلب توضيحاً على الأسئلة المبهمة.
+• لا تخاطب المستخدم بصيغة «ابني، ابنتك».`;
 
 /* ═══════════════════════════════════════════════════════
    TEXT NORMALIZATION
@@ -360,7 +573,7 @@ function normalizeText(input=''){
 }
 function containsAny(text,list){const t=normalizeText(text);return list.some(i=>t.includes(normalizeText(i)));}
 function tokenize(text){return normalizeText(text).split(' ').filter(Boolean);}
-
+ 
 /* ═══════════════════════════════════════════════════════
    TRACK DETECTION
 ═══════════════════════════════════════════════════════ */
@@ -370,7 +583,7 @@ function detectTrack(text){
   if(containsAny(t,['ipi','3 سنين','ثلاث سنين','ثلاث سنوات','3 سنوات','دبلوم صناعي'])||/\b3\b/.test(t)) return 'ipi';
   return null;
 }
-
+ 
 /* ═══════════════════════════════════════════════════════
    SCORE MATCHING
 ═══════════════════════════════════════════════════════ */
@@ -385,7 +598,7 @@ function scoreMatch(query,entry){
   }
   return score;
 }
-
+ 
 /* ═══════════════════════════════════════════════════════
    DECISION BOT
 ═══════════════════════════════════════════════════════ */
@@ -426,7 +639,7 @@ const DecisionBot={
   isActive(){return this.state!==null;},
   cancel(){this.state=null;}
 };
-
+ 
 /* ═══════════════════════════════════════════════════════
    GRADUATION ANSWERS
 ═══════════════════════════════════════════════════════ */
@@ -435,7 +648,7 @@ function getGraduationAnswer(track){
   if(track==='ipi') return 'بعد التخرج من IPI (3 سنوات):\n\nالمؤهل: دبلوم صناعي\n\nمسارات التعليم:\n• معاهد ثلاث سنوات (منها هندسة خاصة)\n• امتحان معادلة لو عايز تكمل هندسة\n\nفرص العمل:\n• دخول سريع لسوق العمل\n• شراكات صناعية عبر مكتب التوظيف\n\nللاستفسار: joboffice.coordinator@donboscocairo.org';
   return 'بعد التخرج يعتمد على المسار:\n\n• IPI (3 سنوات): دبلوم صناعي → معاهد ثلاث سنوات → شغل مباشر\n• ITI (5 سنوات): دبلوم فوق المتوسط → معاهد عليا + جامعات + هندسة (بمعادلة)\n\nقولي بتدرس 3 سنين ولا 5 سنين وأديك الرد المناسب.';
 }
-
+ 
 /* ═══════════════════════════════════════════════════════
    LOCAL KB
 ═══════════════════════════════════════════════════════ */
@@ -467,13 +680,13 @@ const LOCAL_KB=[
   {k:['1859','جمعية','اسست','السالزيان'],a:'في 1859 أسّستُ جمعية السالزيان.\nاليوم فيه أكثر من 15,000 مؤسسة في 130+ دولة.'},
   {k:['نظام وقائي','عقل ودين','ثلاثة أعمدة'],a:'النظام الوقائي — أعمدتُه ثلاث:\n• العقلُ يوجّه\n• الدينُ يرفع\n• المحبةُ تربطُ المربّي بالفتى دون قسوة.'},
 ];
-
+ 
 /* ═══════════════════════════════════════════════════════
    SMART REPLY
 ═══════════════════════════════════════════════════════ */
 function smartReply(message){
   const text=normalizeText(message);
-
+ 
   // Decision wizard active
   if(DecisionBot.isActive()){
     return DecisionBot.reply(message)||null;
@@ -498,7 +711,7 @@ function smartReply(message){
   const track=detectTrack(text);
   if(track==='iti') return LOCAL_KB.find(e=>e.k.includes('iti'))?.a||null;
   if(track==='ipi') return LOCAL_KB.find(e=>e.k.includes('ipi'))?.a||null;
-
+ 
   // Fuzzy KB match
   let best=null, bestScore=0;
   for(const entry of LOCAL_KB){
@@ -509,19 +722,19 @@ function smartReply(message){
   if(best&&bestScore>=4) return best.a;
   return null;
 }
-
+ 
 function isQueryTooVague(q){
   const t=q.replace(/[؟?!.,،]/g,' ').replace(/\s+/g,' ').trim();
   if(t.length<4) return true;
   if(t.split(/\s+/).filter(Boolean).length<=2&&t.length<28) return true;
   return /^(عايز|عايزة|أريد|سؤال|مش فاهم|مش عارف|اسأل|ساعدني|help|مرحبا|مرحباً|السلام عليكم|هلا|هاي|hi|hello)[\s!.؟…]*$/i.test(t);
 }
-
+ 
 function findLocalAnswer(q){
   if(isQueryTooVague(q)) return null;
   return smartReply(q);
 }
-
+ 
 /* ═══════════════════════════════════════════════════════
    TOPICS
 ═══════════════════════════════════════════════════════ */
@@ -534,7 +747,7 @@ const TOPICS=[
   {label:'تواصل',     qs:['أرقام التليفون والجوال وساعات الرد؟','فيه جروب لأولياء الأمور والخريجين؟','فيسبوك ويوتيوب للمعهد؟','إيميل التسجيل أو TVET؟']},
   {label:'أنشطة',     qs:['الأوراتوريو إيه؟','فيه تدريب صيفي في التخصص؟','إيه أخبار المئوية 2026؟']},
 ];
-
+ 
 /* ═══════════════════════════════════════════════════════
    STATE
 ═══════════════════════════════════════════════════════ */
@@ -542,16 +755,16 @@ let chatHistory=[],isBusy=false;
 let speechRecognition=null,micListening=false,speechFinalBuffer='';
 let voiceUpdatingFromSr=false,appendNextVoiceSession=false;
 let pillsNavBound=false,pillsResizeTimer=0;
-
+ 
 function trimHistory(){if(chatHistory.length>30) chatHistory=chatHistory.slice(-20);}
-
+ 
 function setInputControlsBusy(busy){
   const send=document.getElementById('send-btn'),mic=document.getElementById('mic-btn');
   if(send) send.disabled=busy;
   if(mic)  mic.disabled=busy;
   if(busy&&speechRecognition&&micListening){try{speechRecognition.stop();}catch(e){}}
 }
-
+ 
 /* ═══════════════════════════════════════════════════════
    SPEECH RECOGNITION
 ═══════════════════════════════════════════════════════ */
@@ -642,7 +855,7 @@ function initSpeechRecognition(){
     }catch(err){if(err.name==='InvalidStateError'){try{speechRecognition.stop();}catch(e2){}}}
   });
 }
-
+ 
 /* ═══════════════════════════════════════════════════════
    START
 ═══════════════════════════════════════════════════════ */
@@ -663,7 +876,7 @@ function startApp(){
   startEl.addEventListener('transitionend',onEnd);
   setTimeout(()=>{startEl.removeEventListener('transitionend',onEnd);revealApp();},550);
 }
-
+ 
 /* ═══════════════════════════════════════════════════════
    CHAT — Cloudflare Worker → Gemini
 ═══════════════════════════════════════════════════════ */
@@ -675,17 +888,38 @@ async function sendMessage(overrideText){
   input.value='';autoResize(input);
   isBusy=true;setInputControlsBusy(true);setStatus('جاري التجهيز…');
 
+  // If DecisionBot is active but user typed a real question → bypass it
+  const looksLikeNumber=/^[١٢12]$/.test(q.trim());
+  if(DecisionBot.isActive()&&!looksLikeNumber){
+    DecisionBot.cancel();
+    removeChoiceButtons();
+  }
+
   const localQuick=findLocalAnswer(q);
   if(localQuick){
-    appendMessage('user',q);chatHistory.push({role:'user',content:q});showTyping();
+    appendMessage('user',q);
+    chatHistory.push({role:'user',content:q});
+    removeChoiceButtons();
+    showTyping();
     setTimeout(()=>{
-      hideTyping();chatHistory.push({role:'assistant',content:localQuick});trimHistory();
-      appendMessage('bot',localQuick);isBusy=false;setInputControlsBusy(false);setStatus('أنا معك — اكتب سؤالك');
+      hideTyping();
+      chatHistory.push({role:'assistant',content:localQuick});
+      trimHistory();
+      appendMessage('bot',localQuick);
+      if(DecisionBot.isActive()){
+        const step=DecisionBot.state?.step;
+        if(step===1) appendChoiceButtons(['أكمل تعليم (كلية / هندسة)','أدخل سوق العمل بسرعة']);
+        else if(step===2) appendChoiceButtons(['دراسة + نظري + عملي (متوازن)','عملي بإيدي أساساً']);
+        else if(step===3) appendChoiceButtons(['آه، مستعد','لا، أفضل 3 سنين']);
+      }
+      isBusy=false;setInputControlsBusy(false);setStatus('أنا معك — اكتب سؤالك');
     },420);
     return;
   }
 
-  appendMessage('user',q);chatHistory.push({role:'user',content:q});showTyping();setStatus('جاري التفكير…');trimHistory();
+  appendMessage('user',q);chatHistory.push({role:'user',content:q});
+  removeChoiceButtons();
+  showTyping();setStatus('جاري التفكير…');trimHistory();
 
   try{
     const geminiMessages=[];
@@ -719,7 +953,15 @@ async function sendMessage(overrideText){
     const reply=raw.replace(/\r\n/g,'\n').replace(/\n{3,}/g,'\n\n').trim();
     if(res&&res.ok&&reply){
       chatHistory.push({role:'assistant',content:reply});trimHistory();
-      appendMessage('bot',reply);setStatus('أنا معك — اكتب سؤالك');
+      removeChoiceButtons();
+      appendMessage('bot',reply);
+      if(DecisionBot.isActive()){
+        const step=DecisionBot.state?.step;
+        if(step===1) appendChoiceButtons(['أكمل تعليم (كلية / هندسة)','أدخل سوق العمل بسرعة']);
+        else if(step===2) appendChoiceButtons(['دراسة + نظري + عملي (متوازن)','عملي بإيدي أساساً']);
+        else if(step===3) appendChoiceButtons(['آه، مستعد','لا، أفضل 3 سنين']);
+      }
+      setStatus('أنا معك — اكتب سؤالك');
     } else {
       let errMsg='تعذّر إتمام الرد حالياً. أعد المحاولة بعد لحظات.';
       if(res?.status===403) errMsg='تم رفض الوصول — تحقق من إعدادات الـ Worker.';
@@ -735,7 +977,7 @@ async function sendMessage(overrideText){
     isBusy=false;setInputControlsBusy(false);
   }
 }
-
+ 
 /* ═══════════════════════════════════════════════════════
    DOM HELPERS
 ═══════════════════════════════════════════════════════ */
@@ -750,6 +992,30 @@ function appendMessage(role,text){
   col.appendChild(bub);col.appendChild(time);row.appendChild(col);msgs.appendChild(row);
   msgs.scrollTop=msgs.scrollHeight;return bub;
 }
+
+  function appendChoiceButtons(choices) {
+  const msgs = document.getElementById('msgs');
+  const wrap = document.createElement('div');
+  wrap.className = 'choice-btns';
+  wrap.id = 'choice-btns';
+  choices.forEach((label, idx) => {
+    const btn = document.createElement('button');
+    btn.className = 'choice-btn';
+    btn.textContent = (idx + 1) + ') ' + label;
+    btn.onclick = () => {
+      removeChoiceButtons();
+      sendMessage(String(idx + 1));
+    };
+    wrap.appendChild(btn);
+  });
+  msgs.appendChild(wrap);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function removeChoiceButtons() {
+  document.getElementById('choice-btns')?.remove();
+}
+
 function showTyping(){
   const msgs=document.getElementById('msgs');
   const row=document.createElement('div');row.id='typing-row';row.className='row bot msg-in';
@@ -760,7 +1026,7 @@ function hideTyping(){document.getElementById('typing-row')?.remove();}
 function setStatus(t){document.getElementById('hdr-status').textContent=t;}
 function autoResize(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,76)+'px';}
 function handleEnter(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage();}}
-
+ 
 /* ═══════════════════════════════════════════════════════
    CHIPS NAV
 ═══════════════════════════════════════════════════════ */
@@ -784,7 +1050,7 @@ function slideChips(delta){
   updateChipsNavState();
 }
 function scheduleChipsNavUpdate(){requestAnimationFrame(()=>{resetChipsSlide();updateChipsNavState();});}
-
+ 
 /* ═══════════════════════════════════════════════════════
    PILLS NAV
 ═══════════════════════════════════════════════════════ */
@@ -808,7 +1074,7 @@ function slidePills(delta){
   updatePillsNavState();
 }
 function schedulePillsNavUpdate(){requestAnimationFrame(()=>{resetPillsSlide();updatePillsNavState();});}
-
+ 
 /* ═══════════════════════════════════════════════════════
    BUILD TOPICS
 ═══════════════════════════════════════════════════════ */
