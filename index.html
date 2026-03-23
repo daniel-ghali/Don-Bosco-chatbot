@@ -684,9 +684,6 @@ function getGraduationAnswer(track){
 }
  
 
-/* ═══════════════════════════════════════════════════════
-   SMART REPLY
-═══════════════════════════════════════════════════════ */
 function smartReply(message){
   const text=normalizeText(message);
   const raw=message.trim();
@@ -698,24 +695,23 @@ function smartReply(message){
     return 'أيوه، أنا شات بوت بيمثّل شخصية دون بوسكو — أقدر أجاوبك على أي سؤال عن معهد دون بوسكو القاهرة.\n\nاسأل وأنا هرد!';
   }
 
-  // Decision wizard active
+
   if(DecisionBot.isActive()){
     return DecisionBot.reply(message)||null;
   }
-  // Trigger decision wizard
+
   if(containsAny(text,['ساعدني اختار','ساعدني أختار','مش عارف اختار','iti ولا ipi','ipi ولا iti','3 ولا 5','انهي احسن','أنهي أحسن'])){
     return DecisionBot.start();
   }
-  // Alexandria branch
+
   if(containsAny(text,['اسكندريه','اسكندرية','الإسكندرية','إسكندرية','alexandria'])){
     return 'هذا الشات بوت مخصص لمعهد دون بوسكو القاهرة (روض الفرج) فقط.\n\nلا أملك معلومات عن معهد دون بوسكو الإسكندرية — يُرجى التواصل معهم مباشرة.';
   }
-  // Graduation / university
   if(containsAny(text,['بعد التخرج','تنسيق','جامعه','جامعة','هندسه','هندسة','معادله','معادلة','اكمل تعليم','أكمل تعليم'])){
     return getGraduationAnswer(detectTrack(text));
   }
 
-  if (/مين عملك|من عملك|مين صنعك|مين برمجك|مين صاحبك|مين اللي عملك|created by|who made|who built|who created|طورك|برمجك|انشأك|أنشأك|صاحبك|بناك/.test(t)) {
+if (containsAny(text, ['مين عملك', 'من عملك', 'مين صنعك', 'مين برمجك', 'مين صاحبك', 'مين اللي عملك', 'created by', 'who made', 'who built', 'who created', 'طورك', 'برمجك', 'انشأك', 'أنشأك', 'صاحبك', 'بناك'])) {
   return 'أنا تم تطويري بواسطة Daniel Ghaly 👨‍💻\n\nشات بوت مخصص لمعهد دون بوسكو القاهرة — روض الفرج.';
 }
   
@@ -726,12 +722,12 @@ function smartReply(message){
   if(containsAny(text,['بيميز','مميز','مميزات','يميز'])&&containsAny(text,['مدرسه','مدرسة','تانيه','تانية','غير','معهد تاني','مدرسة تانيه','مقارنه','مقارنة','عن غير','وغيره'])){
     return LOCAL_KB.find(e=>e.k.includes('مميزات'))?.a||null;
   }
-  // Track specific
+
   const track=detectTrack(text);
   if(track==='iti') return LOCAL_KB.find(e=>e.k.includes('iti'))?.a||null;
   if(track==='ipi') return LOCAL_KB.find(e=>e.k.includes('ipi'))?.a||null;
  
-  // Fuzzy KB match
+
   let best=null, bestScore=0;
   for(const entry of LOCAL_KB){
     if(!entry.a) continue;
@@ -767,10 +763,7 @@ function findLocalAnswer(q){
   if(isQueryTooVague(q)) return null;
   return smartReply(q);
 }
- 
-/* ═══════════════════════════════════════════════════════
-   TOPICS
-═══════════════════════════════════════════════════════ */
+
 const TOPICS=[
   {label:'حياتي',     qs:['امتى وصل السالزيان مصر؟','ليه اهتميت بالشباب؟','مين أنت يا دون بوسكو؟','إمتى أسست جمعية السالزيان؟']},
   {label:'المعهد',    qs:['فين يقع معهدنا في القاهرة؟','إيه رؤية المعهد ورسالته؟','ليه الشهادات معترفة في أوروبا؟','إيه مميزات المعهد؟']},
@@ -781,9 +774,7 @@ const TOPICS=[
   {label:'أنشطة',     qs:['الأوراتوريو إيه؟','فيه تدريب صيفي في التخصص؟','إيه أخبار المئوية 2026؟']},
 ];
  
-/* ═══════════════════════════════════════════════════════
-   STATE
-═══════════════════════════════════════════════════════ */
+
 let chatHistory=[],isBusy=false;
 let speechRecognition=null,micListening=false;
 let voiceUpdatingFromSr=false;
@@ -798,9 +789,7 @@ function setInputControlsBusy(busy){
   if(busy&&speechRecognition&&micListening){try{speechRecognition.stop();}catch(e){}}
 }
  
-/* ═══════════════════════════════════════════════════════
-   SPEECH RECOGNITION
-═══════════════════════════════════════════════════════ */
+
 function normalizeArabicSpeech(s){
   if(!s) return '';
   return s.replace(/\u0640/g,'').replace(/[\u200B-\u200D\uFEFF]/g,'').replace(/\s+/g,' ').trim();
@@ -809,7 +798,6 @@ function normalizeArabicSpeech(s){
 function refineArabicTranscript(s){
   let t = normalizeArabicSpeech(s);
   if(!t) return '';
-  // إزالة تكرار الكلمات المتتالية
   const words = t.split(/\s+/), out = [];
   for(let i = 0; i < words.length; i++){
     if(i === 0 || words[i] !== words[i-1]) out.push(words[i]);
@@ -843,7 +831,7 @@ function initSpeechRecognition(){
   speechRecognition = new SR();
   speechRecognition.lang            = 'ar-EG';
   speechRecognition.interimResults  = true;
-  speechRecognition.continuous      = false;  // ✅ مش تراكمي
+  speechRecognition.continuous      = false;    
   speechRecognition.maxAlternatives = 3;
 
   const textInput = document.getElementById('text-input');
@@ -852,7 +840,6 @@ function initSpeechRecognition(){
     micListening = true;
     micBtn.classList.add('listening');
     setStatus('أستمع… اضغط الأحمر لإيقاف وإرسال السؤال');
-    // ✅ صفّر الـ textarea في بداية كل جلسة
     voiceUpdatingFromSr = true;
     textInput.value = '';
     voiceUpdatingFromSr = false;
@@ -860,7 +847,6 @@ function initSpeechRecognition(){
   };
 
   speechRecognition.onresult = (e) => {
-    // ✅ ابني النص من الصفر — مش تراكمي على الإطلاق
     let finals = '', interim = '';
     for(let i = 0; i < e.results.length; i++){
       const t = pickBestTranscript(e.results[i]);
@@ -892,7 +878,6 @@ function initSpeechRecognition(){
       setTimeout(() => micBtn.classList.remove('mic-release'), 700);
     }
 
-    // ✅ خد النص الموجود في الـ textarea وأرسله
     const q = refineArabicTranscript(textInput.value || '');
     voiceUpdatingFromSr = true;
     textInput.value = '';
@@ -911,7 +896,6 @@ function initSpeechRecognition(){
     if(isBusy || !speechRecognition) return;
     try{
       if(micListening){
-        // ✅ إيقاف يدوي → onend هيشتغل تلقائياً ويرسل
         speechRecognition.stop();
       } else {
         speechRecognition.start();
@@ -923,9 +907,7 @@ function initSpeechRecognition(){
     }
   });
 }
-/* ═══════════════════════════════════════════════════════
-   START
-═══════════════════════════════════════════════════════ */
+
 function startApp(){
   const startEl=document.getElementById('start'),appEl=document.getElementById('app');
   let revealed=false;
@@ -944,36 +926,6 @@ function startApp(){
   setTimeout(()=>{startEl.removeEventListener('transitionend',onEnd);revealApp();},550);
 }
  
-/* ═══════════════════════════════════════════════════════
-   CHAT — Cloudflare Worker → Gemini
-═══════════════════════════════════════════════════════ */
-function showCooldownTimer(seconds){
-  const msgs=document.getElementById('msgs');
-  document.getElementById('cooldown-row')?.remove();
-  const row=document.createElement('div');
-  row.className='row msg-in bot';row.id='cooldown-row';
-  const av=document.createElement('div');av.className='row-av';
-  av.innerHTML=`<svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="5.5" r="3" fill="#9FE1CB"/><path d="M2 15c0-3 2.5-5 6-5s6 2 6 5" fill="#9FE1CB"/></svg>`;
-  const col=document.createElement('div');col.className='row-col';
-  const bub=document.createElement('div');bub.className='bubble';
-  let remaining=seconds;
-  function update(){bub.textContent=`اصبر شويه يا ابني لغايه ما اخد نفسي شويه 🤭\n\nهرجعلك بعد  ${remaining} ثانية...`;}
-  update();
-  col.appendChild(bub);row.appendChild(av);row.appendChild(col);
-  msgs.appendChild(row);msgs.scrollTop=msgs.scrollHeight;
-  setStatus('جاري الانتظار...');
-  setInputControlsBusy(true);
-  const interval=setInterval(()=>{
-    remaining--;
-    if(remaining<=0){
-      clearInterval(interval);
-      bub.textContent='تمام، خلصت نفسي! 😄 اسألني براحتك.';
-      setStatus('أنا معك — اكتب سؤالك');
-      setInputControlsBusy(false);
-      setTimeout(()=>document.getElementById('cooldown-row')?.remove(),3000);
-    } else { update(); }
-  },1000);
-}
 
 async function sendMessage(overrideText){
   const input=document.getElementById('text-input');
@@ -1090,14 +1042,12 @@ async function sendMessage(overrideText){
       }
       setStatus('أنا معك — اكتب سؤالك');
     } else {
-      // ✅ 429 — cooldown timer
       if(res?.status===429){
         hideTyping();
-        showCooldownTimer(60);
         isBusy=false;setInputControlsBusy(false);
         return;
       }
-      let errMsg='تعذّر إتمام الرد حالياً. أعد المحاولة بعد لحظات.';
+      let errMsg='اصبر شويه يا ابني لغايه ما اخد نفسي شويه 🤭.';
       if(res?.status===403) errMsg='تم رفض الوصول — تحقق من إعدادات الـ Worker.';
       else if(data?.error?.message) errMsg='خطأ: '+data.error.message;
       appendMessage('bot',errMsg);setStatus('أنا معك — اكتب سؤالك');
@@ -1111,9 +1061,7 @@ async function sendMessage(overrideText){
   }
 }
  
-/* ═══════════════════════════════════════════════════════
-   DOM HELPERS
-═══════════════════════════════════════════════════════ */
+
 function appendMessage(role,text){
   const msgs=document.getElementById('msgs'),isBot=role==='bot';
   const row=document.createElement('div');row.className='row msg-in '+(isBot?'bot':'u');
@@ -1160,9 +1108,7 @@ function setStatus(t){document.getElementById('hdr-status').textContent=t;}
 function autoResize(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,76)+'px';}
 function handleEnter(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage();}}
  
-/* ═══════════════════════════════════════════════════════
-   CHIPS NAV
-═══════════════════════════════════════════════════════ */
+
 function resetChipsSlide(){const t=document.getElementById('chips');if(!t) return;t.dataset.off='0';t.style.transform='translate3d(0,0,0)';}
 function updateChipsNavState(){
   const v=document.getElementById('chips-viewport'),t=document.getElementById('chips');
@@ -1183,10 +1129,7 @@ function slideChips(delta){
   updateChipsNavState();
 }
 function scheduleChipsNavUpdate(){requestAnimationFrame(()=>{resetChipsSlide();updateChipsNavState();});}
- 
-/* ═══════════════════════════════════════════════════════
-   PILLS NAV
-═══════════════════════════════════════════════════════ */
+
 function resetPillsSlide(){const t=document.getElementById('pills');if(!t) return;t.dataset.off='0';t.style.transform='translate3d(0,0,0)';}
 function updatePillsNavState(){
   const v=document.getElementById('pills-viewport'),t=document.getElementById('pills');
@@ -1208,9 +1151,7 @@ function slidePills(delta){
 }
 function schedulePillsNavUpdate(){requestAnimationFrame(()=>{resetPillsSlide();updatePillsNavState();});}
  
-/* ═══════════════════════════════════════════════════════
-   BUILD TOPICS
-═══════════════════════════════════════════════════════ */
+
 function buildTopics(){
   const chipsEl=document.getElementById('chips'),pillsEl=document.getElementById('pills');
   if(!pillsNavBound){
