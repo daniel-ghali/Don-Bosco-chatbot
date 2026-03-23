@@ -7,7 +7,7 @@
 <meta name="description" content="مساعد حواري عن معهد السالزيان دون بوسكو في القاهرة — البرامج، TVET، التوظيف، والتسجيل. مصدر المعلومات: donboscocairo.org">
 <meta name="theme-color" content="#070b10">
 <meta name="application-name" content="دون بوسكو">
-<meta property="og:title" content="دون بوسكو —  القاهرة">
+<meta property="og:title" content="دون بوسكو — معهد القاهرة">
 <meta property="og:description" content="حديث عن المعهد في القاهرة: البرامج، TVET، التوظيف، والتسجيل.">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary">
@@ -384,7 +384,7 @@ textarea.voice-ready{
   <h1>دون بوسكو</h1>
   <p>حديث مع دون بوسكو عن المعهد في القاهرة: البرامج، TVET، التوظيف، والتسجيل.</p>
   <button id="start-btn" onclick="startApp()">بدء المحادثة</button>
-  <div id="start-note">Developed By Daniel Ghaly</div>
+  <div id="start-note">محادثة نصية أو صوتية (Chrome أو Edge)</div>
 </div>
 
 <div id="app">
@@ -451,7 +451,7 @@ textarea.voice-ready{
     </div>
   </div>
 
-  <div class="footer">donboscocairo.org</div>
+  <div class="footer">Google Gemini · donboscocairo.org</div>
 </div>
 
 <script>
@@ -460,22 +460,46 @@ textarea.voice-ready{
 const WORKER_URL = 'https://lively-disk-6167.automationn6.workers.dev';
 
 
-  function normalizeText(input = '') {
+const AR_DIACRITICS = /[\u064B-\u0652\u0670\u0640]/g;
+function normalizeText(input=''){
   return input.toString().toLowerCase()
-    .replace(AR_DIACRITICS, '')
-    .replace(/[أإآا]/g, 'ا').replace(/ى/g, 'ي').replace(/ة/g, 'ه')
-    .replace(/ؤ/g, 'و').replace(/ئ/g, 'ي')
-    .replace(/[\u200e\u200f\u200b-\u200d\uFEFF]/g, '')
-    .replace(/[^\w\s\u0600-\u06FF]+/g, ' ')
-    .replace(/\s+/g, ' ').trim();
+    .replace(AR_DIACRITICS,'')
+    .replace(/[أإآا]/g,'ا').replace(/ى/g,'ي').replace(/ة/g,'ه')
+    .replace(/ؤ/g,'و').replace(/ئ/g,'ي')
+    .replace(/[\u200e\u200f\u200b-\u200d\uFEFF]/g,'')
+    .replace(/[^\w\s\u0600-\u06FF]+/g,' ')
+    .replace(/\s+/g,' ').trim();
 }
-
+function containsAny(text,list){const t=normalizeText(text);return list.some(i=>t.includes(normalizeText(i)));}
+function tokenize(text){return normalizeText(text).split(' ').filter(Boolean);}
+ 
 
 function detectTrack(text){
   const t=normalizeText(text);
   if(containsAny(t,['iti','5 سنين','خمس سنين','خمس سنوات','5 سنوات','فوق المتوسط','دبلوم فوق المتوسط'])||/\b5\b/.test(t)) return 'iti';
   if(containsAny(t,['ipi','3 سنين','ثلاث سنين','ثلاث سنوات','3 سنوات','دبلوم صناعي'])||/\b3\b/.test(t)) return 'ipi';
   return null;
+}
+ 
+
+function scoreMatch(query,entry){
+  const q=normalizeText(query); let score=0;
+  for(const kw of entry.k){
+    const k=normalizeText(kw); if(!k) continue;
+    if(q===k){score+=12;continue;}
+    if(q.includes(k)){score+=7+Math.min(k.length/12,3);continue;}
+    const kToks=tokenize(k).filter(tok=>tok.length>=2);
+    if(kToks.length===0) continue;
+    const qToks=tokenize(q);
+    const hits=kToks.filter(tok=>qToks.includes(tok));
+    if(hits.length===0) continue;
+    if(kToks.length===1){
+      score+=hits.length*1.8;
+    } else if(hits.length===kToks.length){
+      score+=hits.length*2;
+    }
+  }
+  return score;
 }
  
 
@@ -525,6 +549,9 @@ function getGraduationAnswer(track){
 }
  
 
+/* ═══════════════════════════════════════════════════════
+   SMART REPLY
+═══════════════════════════════════════════════════════ */
 function smartReply(message){
   const text=normalizeText(message);
   const raw=message.trim();
@@ -536,18 +563,19 @@ function smartReply(message){
     return 'أيوه، أنا شات بوت بيمثّل شخصية دون بوسكو — أقدر أجاوبك على أي سؤال عن معهد دون بوسكو القاهرة.\n\nاسأل وأنا هرد!';
   }
 
-
+  // Decision wizard active
   if(DecisionBot.isActive()){
     return DecisionBot.reply(message)||null;
   }
-
+  // Trigger decision wizard
   if(containsAny(text,['ساعدني اختار','ساعدني أختار','مش عارف اختار','iti ولا ipi','ipi ولا iti','3 ولا 5','انهي احسن','أنهي أحسن'])){
     return DecisionBot.start();
   }
-
+  // Alexandria branch
   if(containsAny(text,['اسكندريه','اسكندرية','الإسكندرية','إسكندرية','alexandria'])){
     return 'هذا الشات بوت مخصص لمعهد دون بوسكو القاهرة (روض الفرج) فقط.\n\nلا أملك معلومات عن معهد دون بوسكو الإسكندرية — يُرجى التواصل معهم مباشرة.';
   }
+  // Graduation / university
   if(containsAny(text,['بعد التخرج','تنسيق','جامعه','جامعة','هندسه','هندسة','معادله','معادلة','اكمل تعليم','أكمل تعليم'])){
     return getGraduationAnswer(detectTrack(text));
   }
@@ -558,12 +586,12 @@ function smartReply(message){
   if(containsAny(text,['بيميز','مميز','مميزات','يميز'])&&containsAny(text,['مدرسه','مدرسة','تانيه','تانية','غير','معهد تاني','مدرسة تانيه','مقارنه','مقارنة','عن غير','وغيره'])){
     return LOCAL_KB.find(e=>e.k.includes('مميزات'))?.a||null;
   }
-
+  // Track specific
   const track=detectTrack(text);
   if(track==='iti') return LOCAL_KB.find(e=>e.k.includes('iti'))?.a||null;
   if(track==='ipi') return LOCAL_KB.find(e=>e.k.includes('ipi'))?.a||null;
  
-
+  // Fuzzy KB match
   let best=null, bestScore=0;
   for(const entry of LOCAL_KB){
     if(!entry.a) continue;
@@ -599,7 +627,23 @@ function findLocalAnswer(q){
   if(isQueryTooVague(q)) return null;
   return smartReply(q);
 }
-
+ 
+/* ═══════════════════════════════════════════════════════
+   TOPICS
+═══════════════════════════════════════════════════════ */
+const TOPICS=[
+  {label:'حياتي',     qs:['امتى وصل السالزيان مصر؟','ليه اهتميت بالشباب؟','مين أنت يا دون بوسكو؟','إمتى أسست جمعية السالزيان؟']},
+  {label:'المعهد',    qs:['فين يقع معهدنا في القاهرة؟','إيه رؤية المعهد ورسالته؟','ليه الشهادات معترفة في أوروبا؟','إيه مميزات المعهد؟']},
+  {label:'البرامج',   qs:['إيه الفرق بين ITI و IPI؟','ساعدني أختار بين 3 سنين و5 سنين','إيه تخصصات ITI؟','إيه تخصصات IPI؟']},
+  {label:'بعد التخرج',qs:['مكتب التوظيف بيعمل إيه؟','خريج ITI يدخل تنسيق إيه؟','فيه فرص شغل أو دراسة في إيطاليا؟','إيه مشروع MITS؟']},
+  {label:'التسجيل',   qs:['ما خطوات التقديم في المعهد؟','ما اختبار القدرات والدورة الصيفية؟','كيف أتابع درجات الطالب؟','هل المعهد يقبل الطالبات؟']},
+  {label:'تواصل',     qs:['أرقام التليفون والجوال وساعات الرد؟','فيه جروب لأولياء الأمور والخريجين؟','فيسبوك ويوتيوب للمعهد؟','إيميل التسجيل أو TVET؟']},
+  {label:'أنشطة',     qs:['الأوراتوريو إيه؟','فيه تدريب صيفي في التخصص؟','إيه أخبار المئوية 2026؟']},
+];
+ 
+/* ═══════════════════════════════════════════════════════
+   STATE
+═══════════════════════════════════════════════════════ */
 let chatHistory=[],isBusy=false;
 let speechRecognition=null,micListening=false;
 let voiceUpdatingFromSr=false;
@@ -614,7 +658,9 @@ function setInputControlsBusy(busy){
   if(busy&&speechRecognition&&micListening){try{speechRecognition.stop();}catch(e){}}
 }
  
-
+/* ═══════════════════════════════════════════════════════
+   SPEECH RECOGNITION
+═══════════════════════════════════════════════════════ */
 function normalizeArabicSpeech(s){
   if(!s) return '';
   return s.replace(/\u0640/g,'').replace(/[\u200B-\u200D\uFEFF]/g,'').replace(/\s+/g,' ').trim();
@@ -657,7 +703,7 @@ function initSpeechRecognition(){
   speechRecognition = new SR();
   speechRecognition.lang            = 'ar-EG';
   speechRecognition.interimResults  = true;
-  speechRecognition.continuous      = false; 
+  speechRecognition.continuous      = false;  // ✅ مش تراكمي
   speechRecognition.maxAlternatives = 3;
 
   const textInput = document.getElementById('text-input');
@@ -666,7 +712,7 @@ function initSpeechRecognition(){
     micListening = true;
     micBtn.classList.add('listening');
     setStatus('أستمع… اضغط الأحمر لإيقاف وإرسال السؤال');
-
+    // ✅ صفّر الـ textarea في بداية كل جلسة
     voiceUpdatingFromSr = true;
     textInput.value = '';
     voiceUpdatingFromSr = false;
@@ -674,7 +720,7 @@ function initSpeechRecognition(){
   };
 
   speechRecognition.onresult = (e) => {
-
+    // ✅ ابني النص من الصفر — مش تراكمي على الإطلاق
     let finals = '', interim = '';
     for(let i = 0; i < e.results.length; i++){
       const t = pickBestTranscript(e.results[i]);
@@ -706,7 +752,7 @@ function initSpeechRecognition(){
       setTimeout(() => micBtn.classList.remove('mic-release'), 700);
     }
 
-
+    // ✅ خد النص الموجود في الـ textarea وأرسله
     const q = refineArabicTranscript(textInput.value || '');
     voiceUpdatingFromSr = true;
     textInput.value = '';
@@ -725,7 +771,7 @@ function initSpeechRecognition(){
     if(isBusy || !speechRecognition) return;
     try{
       if(micListening){
-
+        // ✅ إيقاف يدوي → onend هيشتغل تلقائياً ويرسل
         speechRecognition.stop();
       } else {
         speechRecognition.start();
@@ -737,7 +783,9 @@ function initSpeechRecognition(){
     }
   });
 }
-
+/* ═══════════════════════════════════════════════════════
+   START
+═══════════════════════════════════════════════════════ */
 function startApp(){
   const startEl=document.getElementById('start'),appEl=document.getElementById('app');
   let revealed=false;
@@ -756,7 +804,9 @@ function startApp(){
   setTimeout(()=>{startEl.removeEventListener('transitionend',onEnd);revealApp();},550);
 }
  
-
+/* ═══════════════════════════════════════════════════════
+   CHAT — Cloudflare Worker → Gemini
+═══════════════════════════════════════════════════════ */
 function showCooldownTimer(seconds){
   const msgs=document.getElementById('msgs');
   document.getElementById('cooldown-row')?.remove();
@@ -900,7 +950,7 @@ async function sendMessage(overrideText){
       }
       setStatus('أنا معك — اكتب سؤالك');
     } else {
-
+      // ✅ 429 — cooldown timer
       if(res?.status===429){
         hideTyping();
         showCooldownTimer(60);
@@ -921,7 +971,9 @@ async function sendMessage(overrideText){
   }
 }
  
-
+/* ═══════════════════════════════════════════════════════
+   DOM HELPERS
+═══════════════════════════════════════════════════════ */
 function appendMessage(role,text){
   const msgs=document.getElementById('msgs'),isBot=role==='bot';
   const row=document.createElement('div');row.className='row msg-in '+(isBot?'bot':'u');
@@ -968,7 +1020,9 @@ function setStatus(t){document.getElementById('hdr-status').textContent=t;}
 function autoResize(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,76)+'px';}
 function handleEnter(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage();}}
  
-
+/* ═══════════════════════════════════════════════════════
+   CHIPS NAV
+═══════════════════════════════════════════════════════ */
 function resetChipsSlide(){const t=document.getElementById('chips');if(!t) return;t.dataset.off='0';t.style.transform='translate3d(0,0,0)';}
 function updateChipsNavState(){
   const v=document.getElementById('chips-viewport'),t=document.getElementById('chips');
@@ -990,7 +1044,9 @@ function slideChips(delta){
 }
 function scheduleChipsNavUpdate(){requestAnimationFrame(()=>{resetChipsSlide();updateChipsNavState();});}
  
-
+/* ═══════════════════════════════════════════════════════
+   PILLS NAV
+═══════════════════════════════════════════════════════ */
 function resetPillsSlide(){const t=document.getElementById('pills');if(!t) return;t.dataset.off='0';t.style.transform='translate3d(0,0,0)';}
 function updatePillsNavState(){
   const v=document.getElementById('pills-viewport'),t=document.getElementById('pills');
@@ -1012,16 +1068,9 @@ function slidePills(delta){
 }
 function schedulePillsNavUpdate(){requestAnimationFrame(()=>{resetPillsSlide();updatePillsNavState();});}
  
-const TOPICS = [
-  { label: 'حياتي',      qs: ['امتى وصل السالزيان مصر؟', 'ليه اهتميت بالشباب؟', 'مين أنت يا دون بوسكو؟', 'إمتى أسست جمعية السالزيان؟'] },
-  { label: 'المعهد',     qs: ['فين يقع معهدنا في القاهرة؟', 'إيه رؤية المعهد ورسالته؟', 'ليه الشهادات معترفة في أوروبا؟', 'إيه مميزات المعهد؟'] },
-  { label: 'البرامج',    qs: ['إيه الفرق بين ITI و IPI؟', 'ساعدني أختار بين 3 سنين و5 سنين', 'إيه تخصصات ITI؟', 'إيه تخصصات IPI؟'] },
-  { label: 'بعد التخرج', qs: ['مكتب التوظيف بيعمل إيه؟', 'خريج ITI يدخل تنسيق إيه؟', 'فيه فرص شغل أو دراسة في إيطاليا؟', 'إيه مشروع MITS؟'] },
-  { label: 'التسجيل',    qs: ['ما خطوات التقديم في المعهد؟', 'ما اختبار القدرات والدورة الصيفية؟', 'كيف أتابع درجات الطالب؟', 'هل المعهد يقبل الطالبات؟'] },
-  { label: 'تواصل',      qs: ['أرقام التليفون والجوال وساعات الرد؟', 'فيه جروب لأولياء الأمور والخريجين؟', 'فيسبوك ويوتيوب للمعهد؟', 'إيميل التسجيل أو TVET؟'] },
-  { label: 'أنشطة',      qs: ['الأوراتوريو إيه؟', 'فيه تدريب صيفي في التخصص؟', 'إيه أخبار المئوية 2026؟'] },
-];
-  
+/* ═══════════════════════════════════════════════════════
+   BUILD TOPICS
+═══════════════════════════════════════════════════════ */
 function buildTopics(){
   const chipsEl=document.getElementById('chips'),pillsEl=document.getElementById('pills');
   if(!pillsNavBound){
