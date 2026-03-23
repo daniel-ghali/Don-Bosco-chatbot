@@ -460,6 +460,16 @@ textarea.voice-ready{
 const WORKER_URL = 'https://lively-disk-6167.automationn6.workers.dev';
 
 
+  function normalizeText(input = '') {
+  return input.toString().toLowerCase()
+    .replace(AR_DIACRITICS, '')
+    .replace(/[أإآا]/g, 'ا').replace(/ى/g, 'ي').replace(/ة/g, 'ه')
+    .replace(/ؤ/g, 'و').replace(/ئ/g, 'ي')
+    .replace(/[\u200e\u200f\u200b-\u200d\uFEFF]/g, '')
+    .replace(/[^\w\s\u0600-\u06FF]+/g, ' ')
+    .replace(/\s+/g, ' ').trim();
+}
+
 
 function detectTrack(text){
   const t=normalizeText(text);
