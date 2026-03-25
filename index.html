@@ -1,1197 +1,1514 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-<meta name="description" content="مساعد حواري عن معهد السالزيان دون بوسكو في القاهرة — البرامج، TVET، التوظيف، والتسجيل. مصدر المعلومات: donboscocairo.org">
-<meta name="theme-color" content="#070b10">
-<meta name="application-name" content="دون بوسكو">
-<meta property="og:title" content="دون بوسكو — معهد القاهرة">
-<meta property="og:description" content="حديث عن المعهد في القاهرة: البرامج، TVET، التوظيف، والتسجيل.">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⛪</text></svg>">
-<style>  
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap');
-*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-:root{
-  --g:#1D9E75;--gl:#2ecf9a;--gd:#0F6E56;
-  --bg:#070b10;--bg2:#0d1520;
-  --s2:#1a2a38;
-  --b:rgba(29,158,117,.22);--b2:rgba(29,158,117,.38);
-  --t:#eef4f8;--tm:#7a94a8;
-  --ease-out:cubic-bezier(0.22,1,0.36,1);
-  --ease-soft:cubic-bezier(0.4,0,0.2,1);
-  --shadow-sm:0 2px 8px rgba(0,0,0,.22);
-  --shadow-md:0 8px 32px rgba(0,0,0,.35);
-  --shadow-glow:0 0 0 1px rgba(29,158,117,.12),0 4px 24px rgba(29,158,117,.08);
-  --radius-lg:18px;--radius-xl:22px;
-  --vh:100dvh;
-}
- 
+  <meta name="description"
+    content="مساعد حواري عن معهد السالزيان دون بوسكو في القاهرة — البرامج، TVET، التوظيف، والتسجيل. مصدر المعلومات: donboscocairo.org">
+  <meta name="theme-color" content="#070b10">
+  <meta name="application-name" content="دون بوسكو">
+  <meta property="og:title" content="دون بوسكو — معهد القاهرة">
+  <meta property="og:description" content="حديث عن المعهد في القاهرة: البرامج، TVET، التوظيف، والتسجيل.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⛪</text></svg>">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap');
 
-html,body{
-  height:100%;
-  min-height:-webkit-fill-available;
-  font-family:'Cairo',sans-serif;color:var(--t);overflow:hidden;
-  background:var(--bg);
-  background-image:
-    radial-gradient(ellipse 120% 80% at 100% -20%,rgba(29,158,117,.14),transparent 50%),
-    radial-gradient(ellipse 90% 60% at 0% 100%,rgba(15,110,86,.12),transparent 45%),
-    linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%);
-  background-attachment:fixed;
-}
- 
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent
+    }
 
-#start{
-  position:absolute;inset:0;z-index:100;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  gap:20px;padding:32px;text-align:center;
-  background:inherit;
-  transition:opacity .45s var(--ease-soft),transform .45s var(--ease-soft),filter .45s ease;
-  will-change:opacity,transform;
-}
-#start::before{
-  content:'';position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(circle at 50% 35%,rgba(46,207,154,.06),transparent 55%);
-}
-#start.start-hide{opacity:0;transform:scale(.97) translateY(8px);filter:blur(2px);pointer-events:none;}
-#start .logo-wrap{position:relative;animation:startLogo .9s var(--ease-out) both;}
-@keyframes startLogo{from{opacity:0;transform:translateY(16px) scale(.92)}to{opacity:1;transform:translateY(0) scale(1)}}
-#start .logo{
-  width:92px;height:92px;border-radius:50%;
-  background:linear-gradient(145deg,var(--gd) 0%,#0a4a3a 100%);
-  border:2px solid rgba(46,207,154,.45);
-  box-shadow:var(--shadow-glow),var(--shadow-md),inset 0 1px 0 rgba(255,255,255,.08);
-  display:flex;align-items:center;justify-content:center;position:relative;
-  transition:transform .35s var(--ease-out),box-shadow .35s ease;
-}
-#start .logo::after{
-  content:'';position:absolute;inset:-3px;border-radius:50%;
-  border:1px solid rgba(29,158,117,.25);
-  animation:logoRing 3s ease-in-out infinite;
-}
-@keyframes logoRing{0%,100%{opacity:.35;transform:scale(1)}50%{opacity:.65;transform:scale(1.04)}}
-#start .logo svg{width:50px;height:50px}
-#start h1{font-size:23px;font-weight:700;color:var(--t);letter-spacing:.02em;animation:startText .6s var(--ease-out) .12s both;}
-#start p{font-size:13px;color:var(--tm);line-height:1.65;max-width:300px;animation:startText .6s var(--ease-out) .22s both;}
-@keyframes startText{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-#start-btn{
-  position:relative;overflow:hidden;
-  background:linear-gradient(165deg,var(--gl) 0%,var(--g) 45%,var(--gd) 100%);
-  color:#fff;border:none;border-radius:999px;padding:15px 40px;
-  font-size:16px;font-weight:700;font-family:'Cairo',sans-serif;
-  cursor:pointer;width:100%;max-width:300px;
-  box-shadow:0 4px 20px rgba(29,158,117,.35),inset 0 1px 0 rgba(255,255,255,.2);
-  transition:transform .2s var(--ease-out),box-shadow .25s ease,filter .2s ease;
-  animation:startText .6s var(--ease-out) .32s both;
-}
-#start-btn::before{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.18) 50%,transparent 60%);
-  transform:translateX(-100%);transition:transform .6s var(--ease-out);
-}
-#start-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(29,158,117,.42);filter:brightness(1.05);}
-#start-btn:hover::before{transform:translateX(100%)}
-#start-btn:active{transform:translateY(0) scale(.98)}
-#start-note{font-size:11px;color:var(--tm);animation:startText .6s var(--ease-out) .4s both;}
- 
+    :root {
+      --g: #1D9E75;
+      --gl: #2ecf9a;
+      --gd: #0F6E56;
+      --bg: #070b10;
+      --bg2: #0d1520;
+      --s2: #1a2a38;
+      --b: rgba(29, 158, 117, .22);
+      --b2: rgba(29, 158, 117, .38);
+      --t: #eef4f8;
+      --tm: #7a94a8;
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+      --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, .22);
+      --shadow-md: 0 8px 32px rgba(0, 0, 0, .35);
+      --shadow-glow: 0 0 0 1px rgba(29, 158, 117, .12), 0 4px 24px rgba(29, 158, 117, .08);
+      --radius-lg: 18px;
+      --radius-xl: 22px;
+      --vh: 100dvh;
+    }
 
-#app{
-  display:none;
-  flex-direction:column;
-  height:calc(var(--vh, 100dvh));
-  max-width:480px;margin:0 auto;
-  position:relative;z-index:1;opacity:0;transform:translateY(14px);
-  transition:opacity .5s var(--ease-out),transform .5s var(--ease-out);
-}
-#app.app-ready{opacity:1;transform:translateY(0);}
 
-.hdr{
-  background:linear-gradient(180deg,rgba(19,30,40,.92) 0%,rgba(13,21,32,.88) 100%);
-  backdrop-filter:saturate(140%) blur(12px);-webkit-backdrop-filter:saturate(140%) blur(12px);
-  border-bottom:1px solid var(--b);
-  padding:12px 14px 10px;display:flex;align-items:center;gap:11px;flex-shrink:0;
-  box-shadow:0 4px 20px rgba(0,0,0,.15);
-}
-.hdr-av{
-  width:44px;height:44px;border-radius:50%;
-  background:linear-gradient(145deg,var(--gd),#0c5c48);
-  border:2px solid rgba(46,207,154,.35);box-shadow:0 2px 12px rgba(29,158,117,.2);
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;
-  transition:transform .3s var(--ease-out),box-shadow .3s ease;
-}
-.hdr:hover .hdr-av{transform:scale(1.03)}
-.hdr-av svg{width:22px;height:22px}
-.hdr-dot{
-  position:absolute;bottom:1px;left:1px;width:11px;height:11px;border-radius:50%;
-  background:var(--gl);border:2px solid var(--s2);box-shadow:0 0 0 2px rgba(29,158,117,.25);
-  animation:statusPulse 2.2s ease-in-out infinite;
-}
-@keyframes statusPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.85;transform:scale(.92)}}
-.hdr-name{font-size:14.5px;font-weight:700;letter-spacing:.02em}
-.hdr-status{font-size:10.5px;color:var(--gl);margin-top:2px;min-height:15px;transition:color .3s ease;}
-.hdr-badge{
-  font-size:9px;padding:4px 9px;border-radius:999px;
-  background:rgba(29,158,117,.12);color:var(--gl);border:1px solid var(--b);
-  margin-right:auto;letter-spacing:.35px;transition:background .25s ease,border-color .25s ease;
-}
-.hdr-badge:hover{background:rgba(29,158,117,.18)}
- 
-/* ── MESSAGES ── */
-.msgs{
-  flex:1;overflow-y:auto;padding:14px 12px 10px;
-  display:flex;flex-direction:column;gap:12px;scroll-behavior:smooth;
-}
-.msgs::-webkit-scrollbar{width:4px}
-.msgs::-webkit-scrollbar-thumb{background:rgba(29,158,117,.28);border-radius:4px;}
-.msgs::-webkit-scrollbar-track{background:transparent}
-.row{display:flex;gap:8px;align-items:flex-end}
-.row.u{flex-direction:row-reverse}
-.row-av{
-  width:28px;height:28px;border-radius:50%;
-  background:linear-gradient(145deg,var(--gd),#0a4a3a);
-  border:1px solid rgba(46,207,154,.35);
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;
-  transition:transform .25s var(--ease-out);
-}
-.row:hover .row-av{transform:scale(1.05)}
-.row-av svg{width:14px;height:14px}
-.row-col{display:flex;flex-direction:column}
-.bot .row-col{align-items:flex-start}
-.u   .row-col{align-items:flex-end}
-@keyframes msgInBot{from{opacity:0;transform:translateY(14px) translateX(-6px) scale(.97)}to{opacity:1;transform:translateY(0) translateX(0) scale(1)}}
-@keyframes msgInUser{from{opacity:0;transform:translateY(12px) translateX(8px) scale(.97)}to{opacity:1;transform:translateY(0) translateX(0) scale(1)}}
-.row.msg-in.bot{animation:msgInBot .48s var(--ease-out) both}
-.row.msg-in.u{animation:msgInUser .42s var(--ease-out) both}
-.bubble{
-  max-width:86%;padding:12px 15px;
-  border-radius:var(--radius-lg);font-size:13.5px;line-height:1.75;letter-spacing:.01em;
-  transition:box-shadow .25s ease,transform .2s ease;
-}
-.bot .bubble{
-  background:linear-gradient(165deg,rgba(30,45,58,.95) 0%,rgba(22,35,48,.98) 100%);
-  border:1px solid rgba(29,158,117,.18);border-bottom-right-radius:5px;
-  white-space:pre-wrap;word-break:break-word;box-shadow:var(--shadow-sm);
-}
-.bot .bubble:hover{box-shadow:var(--shadow-glow)}
-.u .bubble{
-  background:linear-gradient(165deg,var(--gl) 0%,var(--g) 50%,var(--gd) 100%);
-  border:1px solid rgba(255,255,255,.12);border-bottom-left-radius:5px;
-  color:#fff;font-weight:500;box-shadow:0 4px 16px rgba(29,158,117,.28);
-}
-.row-time{font-size:9px;color:var(--tm);margin-top:3px;padding:0 4px;opacity:.85;animation:timeFade .35s ease .12s both;}
-@keyframes timeFade{from{opacity:0}to{opacity:.85}}
+    html,
+    body {
+      height: 100%;
+      min-height: -webkit-fill-available;
+      font-family: 'Cairo', sans-serif;
+      color: var(--t);
+      overflow: hidden;
+      background: var(--bg);
+      background-image:
+        radial-gradient(ellipse 120% 80% at 100% -20%, rgba(29, 158, 117, .14), transparent 50%),
+        radial-gradient(ellipse 90% 60% at 0% 100%, rgba(15, 110, 86, .12), transparent 45%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+      background-attachment: fixed;
+    }
 
-.typing-bub{
-  background:linear-gradient(165deg,rgba(30,45,58,.95),rgba(22,35,48,.98));
-  border:1px solid rgba(29,158,117,.18);
-  border-radius:var(--radius-lg);border-bottom-right-radius:5px;
-  padding:13px 16px;display:flex;gap:6px;align-items:center;box-shadow:var(--shadow-sm);
-}
-.tdot{width:6px;height:6px;border-radius:50%;background:var(--gl);animation:bop 1.2s infinite ease-in-out;}
-.tdot:nth-child(2){animation-delay:.2s}.tdot:nth-child(3){animation-delay:.4s}
-@keyframes bop{0%,80%,100%{transform:translateY(0);opacity:.35}40%{transform:translateY(-6px);opacity:1}}
 
-.bzone{
-  flex-shrink:0;
-  background:linear-gradient(180deg,rgba(16,24,34,.95) 0%,rgba(11,18,26,.98) 100%);
-  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
-  border-top:1px solid var(--b);padding:11px 12px 14px;
-  display:flex;flex-direction:column;align-items:stretch;gap:9px;
-  box-shadow:0 -8px 32px rgba(0,0,0,.2);
-}
- 
+    #start {
+      position: absolute;
+      inset: 0;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      padding: 32px;
+      text-align: center;
+      background: inherit;
+      transition: opacity .45s var(--ease-soft), transform .45s var(--ease-soft), filter .45s ease;
+      will-change: opacity, transform;
+    }
 
-.chips-row{
-  display:flex;flex-direction:row;align-items:center;gap:6px;width:100%;
-}
-.chips-nav{
-  flex-shrink:0;width:34px;height:34px;border-radius:50%;
-  border:1px solid rgba(29,158,117,.35);background:rgba(26,42,56,.75);color:var(--gl);
-  cursor:pointer;display:flex;align-items:center;justify-content:center;
-  font-size:18px;line-height:1;padding:0;
-  transition:background .2s,border-color .2s,color .2s,opacity .2s;
-}
-.chips-nav:hover:not(:disabled){background:rgba(29,158,117,.14);border-color:rgba(46,207,154,.45);color:var(--t);}
-.chips-nav:disabled{opacity:.35;cursor:not-allowed;}
-.chips-viewport{
-  flex:1;min-width:0;overflow:hidden;padding:4px 0 12px;
-}
-.chips{
-  display:flex;flex-direction:row;flex-wrap:nowrap;gap:7px;
-  width:max-content;max-width:none;
-  transition:transform 0.38s var(--ease-out);will-change:transform;
-}
-.chip{
-  white-space:nowrap;font-size:10.5px;font-weight:600;padding:6px 12px;
-  border-radius:999px;border:1px solid var(--b);background:rgba(26,42,56,.5);color:var(--tm);
-  cursor:pointer;font-family:'Cairo',sans-serif;flex-shrink:0;
-  transition:background .25s var(--ease-soft),border-color .25s,color .25s,transform .2s var(--ease-out),box-shadow .25s;
-}
-.chip:hover{border-color:var(--b2);color:var(--t);transform:translateY(-1px);}
-.chip.on{background:rgba(29,158,117,.18);border-color:rgba(46,207,154,.45);color:var(--gl);box-shadow:0 2px 12px rgba(29,158,117,.15);}
- 
+    #start::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(circle at 50% 35%, rgba(46, 207, 154, .06), transparent 55%);
+    }
 
-.pills-row{display:flex;flex-direction:row;align-items:center;gap:6px;width:100%;}
-.pills-nav{
-  flex-shrink:0;width:34px;height:34px;border-radius:50%;
-  border:1px solid rgba(29,158,117,.35);background:rgba(26,42,56,.75);color:var(--gl);
-  cursor:pointer;display:flex;align-items:center;justify-content:center;
-  font-size:18px;line-height:1;padding:0;
-  transition:background .2s,border-color .2s,color .2s,opacity .2s;
-}
-.pills-nav:hover:not(:disabled){background:rgba(29,158,117,.14);border-color:rgba(46,207,154,.45);color:var(--t);}
-.pills-nav:disabled{opacity:.35;cursor:not-allowed;}
-.pills-viewport{flex:1;min-width:0;overflow:hidden;padding:2px 0 12px;}
-.pills{
-  display:flex;flex-direction:row;flex-wrap:nowrap;gap:7px;
-  width:max-content;max-width:none;
-  transition:transform 0.38s var(--ease-out);will-change:transform;
-}
-.pill{
-  white-space:nowrap;font-size:11px;font-weight:500;padding:7px 13px;
-  border-radius:999px;border:1px solid rgba(29,158,117,.22);
-  background:rgba(26,42,56,.65);color:var(--t);
-  cursor:pointer;font-family:'Cairo',sans-serif;flex-shrink:0;
-  transition:background .25s var(--ease-soft),border-color .25s,color .25s,transform .2s var(--ease-out),box-shadow .25s;
-}
-.pill:hover{border-color:var(--g);color:var(--gl);background:rgba(29,158,117,.12);transform:translateY(-2px);box-shadow:0 4px 14px rgba(29,158,117,.12);}
-.pill:active{transform:translateY(0) scale(.98)}
- 
+    #start.start-hide {
+      opacity: 0;
+      transform: scale(.97) translateY(8px);
+      filter: blur(2px);
+      pointer-events: none;
+    }
 
-.input-row{display:flex;gap:11px;align-items:flex-end;width:100%}
-.input-wrap{width:100%;display:flex;flex-direction:column;gap:4px}
-.input-field-label{font-size:10.5px;font-weight:600;color:var(--tm);letter-spacing:.04em;padding:0 2px;cursor:text;}
-.input-actions{display:flex;flex-direction:row;gap:8px;align-items:center;flex-shrink:0;}
- 
-.mic-btn{
-  width:48px;height:48px;border-radius:50%;
-  background:rgba(26,42,56,.85);border:1.5px solid rgba(29,158,117,.28);color:var(--gl);
-  cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;outline:none;
-  transition:transform .2s var(--ease-out),border-color .25s,background .25s,box-shadow .25s,color .2s;
-}
-.mic-btn svg{width:22px;height:22px}
-.mic-btn:hover:not(:disabled){border-color:rgba(46,207,154,.45);background:rgba(29,158,117,.12);color:var(--t);transform:scale(1.04);}
-.mic-btn.listening:hover:not(:disabled){border-color:rgba(240,100,90,.95);background:rgba(200,60,55,.55);color:#fff;transform:scale(1.03);}
-.mic-btn:focus-visible{box-shadow:0 0 0 3px rgba(29,158,117,.25);}
-.mic-btn:disabled{opacity:.35;cursor:not-allowed;}
-.mic-btn.listening{
-  border-color:rgba(220,80,70,.9);background:rgba(190,55,50,.45);color:#fff;
-  animation:micPulseRed 1.15s ease-in-out infinite;box-shadow:0 0 0 0 rgba(220,80,70,.5);
-  transition:background .45s var(--ease-soft),border-color .45s var(--ease-soft),transform .4s var(--ease-soft),box-shadow .45s ease,color .2s;
-}
-@keyframes micPulseRed{0%,100%{box-shadow:0 0 0 0 rgba(220,80,70,.45)}50%{box-shadow:0 0 0 11px rgba(220,80,70,0)}}
-@keyframes micRelease{0%{transform:scale(1.06);filter:brightness(1.08)}100%{transform:scale(1);filter:brightness(1)}}
-.mic-btn.mic-release{animation:micRelease .65s var(--ease-soft) forwards;}
- 
-textarea{
-  flex:1;background:rgba(22,35,48,.85);
-  border:1.5px solid rgba(29,158,117,.2);border-radius:var(--radius-xl);
-  padding:10px 15px;font-size:13px;color:var(--t);
-  font-family:'Cairo',sans-serif;resize:none;outline:none;
-  max-height:76px;min-height:42px;line-height:1.5;direction:rtl;
-  transition:border-color .25s ease,box-shadow .3s ease,background .25s ease,transform .2s ease;
-}
-textarea::placeholder{color:var(--tm);opacity:.85}
-textarea:hover{border-color:rgba(29,158,117,.32)}
-textarea:focus{border-color:var(--g);background:rgba(26,42,56,.95);box-shadow:0 0 0 3px rgba(29,158,117,.12),0 4px 20px rgba(0,0,0,.2);}
-textarea.voice-ready{
-  transition:border-color .55s var(--ease-soft),box-shadow .55s var(--ease-soft),background .55s ease;
-  animation:voiceFieldSettle 1.05s var(--ease-soft) forwards;
-}
-@keyframes voiceFieldSettle{
-  0%{border-color:rgba(29,158,117,.22);box-shadow:0 0 0 0 rgba(29,158,117,0)}
-  35%{border-color:rgba(46,207,154,.5);box-shadow:0 0 0 4px rgba(29,158,117,.18),0 6px 28px rgba(29,158,117,.12)}
-  100%{border-color:rgba(29,158,117,.32);box-shadow:0 0 0 3px rgba(29,158,117,.1),0 4px 18px rgba(0,0,0,.15)}
-}
-.input-wrap.voice-ready-wrap{transition:transform .5s var(--ease-soft);animation:inputWrapNudge .95s var(--ease-soft) forwards;}
-@keyframes inputWrapNudge{0%{transform:translateY(0)}40%{transform:translateY(-2px)}100%{transform:translateY(0)}}
- 
-.send-btn{
-  width:48px;height:48px;border-radius:50%;
-  background:linear-gradient(155deg,var(--gl) 0%,var(--g) 55%,var(--gd) 100%);
-  border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;
-  box-shadow:0 4px 16px rgba(29,158,117,.35),inset 0 1px 0 rgba(255,255,255,.15);
-  transition:transform .22s var(--ease-out),box-shadow .25s ease,filter .2s ease,opacity .2s;outline:none;
-}
-.send-btn:hover:not(:disabled){transform:translateY(-2px) scale(1.03);box-shadow:0 6px 22px rgba(29,158,117,.45);filter:brightness(1.06);}
-.send-btn:active:not(:disabled){transform:translateY(0) scale(.97)}
-.send-btn:focus-visible{box-shadow:0 0 0 3px rgba(29,158,117,.35),0 4px 16px rgba(29,158,117,.35);}
-.send-btn:disabled{opacity:.4;cursor:not-allowed;filter:grayscale(.3);box-shadow:none;}
-.send-btn svg{width:17px;height:17px;transition:transform .2s var(--ease-out)}
-.send-btn:hover:not(:disabled) svg{transform:translate(-1px,-1px)}
- 
-.footer{text-align:center;font-size:9px;color:rgba(122,148,168,.75);padding:4px 8px 6px;flex-shrink:0;letter-spacing:.04em;opacity:.9;}
- 
-@media (prefers-reduced-motion: reduce){
-  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;}
-  #start .logo::after{animation:none}
-  .hdr-dot{animation:none}
-  .mic-btn.listening{animation:none}
-  .mic-btn.mic-release{animation:none}
-  textarea.voice-ready{animation:none}
-  .input-wrap.voice-ready-wrap{animation:none}
-}
+    #start .logo-wrap {
+      position: relative;
+      animation: startLogo .9s var(--ease-out) both;
+    }
 
-  .choice-btns {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding: 4px 12px 8px 12px;
-  align-items: flex-start;
-}
-.choice-btn {
-  background: rgba(29,158,117,.12);
-  border: 1px solid rgba(29,158,117,.35);
-  border-radius: 12px;
-  color: var(--gl);
-  font-family: 'Cairo', sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  padding: 9px 18px;
-  cursor: pointer;
-  text-align: right;
-  direction: rtl;
-  transition: background .2s, border-color .2s, transform .15s;
-  width: 100%;
-  max-width: 320px;
-}
-.choice-btn:hover {
-  background: rgba(29,158,117,.22);
-  border-color: rgba(46,207,154,.55);
-  transform: translateY(-1px);
-}
-.choice-btn:active {
-  transform: translateY(0) scale(.98);
-}
+    @keyframes startLogo {
+      from {
+        opacity: 0;
+        transform: translateY(16px) scale(.92)
+      }
 
-</style>
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1)
+      }
+    }
+
+    #start .logo {
+      width: 92px;
+      height: 92px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, var(--gd) 0%, #0a4a3a 100%);
+      border: 2px solid rgba(46, 207, 154, .45);
+      box-shadow: var(--shadow-glow), var(--shadow-md), inset 0 1px 0 rgba(255, 255, 255, .08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      transition: transform .35s var(--ease-out), box-shadow .35s ease;
+    }
+
+    #start .logo::after {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
+      border: 1px solid rgba(29, 158, 117, .25);
+      animation: logoRing 3s ease-in-out infinite;
+    }
+
+    @keyframes logoRing {
+
+      0%,
+      100% {
+        opacity: .35;
+        transform: scale(1)
+      }
+
+      50% {
+        opacity: .65;
+        transform: scale(1.04)
+      }
+    }
+
+    #start .logo svg {
+      width: 50px;
+      height: 50px
+    }
+
+    #start h1 {
+      font-size: 23px;
+      font-weight: 700;
+      color: var(--t);
+      letter-spacing: .02em;
+      animation: startText .6s var(--ease-out) .12s both;
+    }
+
+    #start p {
+      font-size: 13px;
+      color: var(--tm);
+      line-height: 1.65;
+      max-width: 300px;
+      animation: startText .6s var(--ease-out) .22s both;
+    }
+
+    @keyframes startText {
+      from {
+        opacity: 0;
+        transform: translateY(10px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    #start-btn {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(165deg, var(--gl) 0%, var(--g) 45%, var(--gd) 100%);
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      padding: 15px 40px;
+      font-size: 16px;
+      font-weight: 700;
+      font-family: 'Cairo', sans-serif;
+      cursor: pointer;
+      width: 100%;
+      max-width: 300px;
+      box-shadow: 0 4px 20px rgba(29, 158, 117, .35), inset 0 1px 0 rgba(255, 255, 255, .2);
+      transition: transform .2s var(--ease-out), box-shadow .25s ease, filter .2s ease;
+      animation: startText .6s var(--ease-out) .32s both;
+    }
+
+    #start-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(105deg, transparent 40%, rgba(255, 255, 255, .18) 50%, transparent 60%);
+      transform: translateX(-100%);
+      transition: transform .6s var(--ease-out);
+    }
+
+    #start-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(29, 158, 117, .42);
+      filter: brightness(1.05);
+    }
+
+    #start-btn:hover::before {
+      transform: translateX(100%)
+    }
+
+    #start-btn:active {
+      transform: translateY(0) scale(.98)
+    }
+
+    #start-note {
+      font-size: 11px;
+      color: var(--tm);
+      animation: startText .6s var(--ease-out) .4s both;
+    }
+
+
+    #app {
+      display: none;
+      flex-direction: column;
+      height: calc(var(--vh, 100dvh));
+      max-width: 480px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity .5s var(--ease-out), transform .5s var(--ease-out);
+    }
+
+    #app.app-ready {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hdr {
+      background: linear-gradient(180deg, rgba(19, 30, 40, .92) 0%, rgba(13, 21, 32, .88) 100%);
+      backdrop-filter: saturate(140%) blur(12px);
+      -webkit-backdrop-filter: saturate(140%) blur(12px);
+      border-bottom: 1px solid var(--b);
+      padding: 12px 14px 10px;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      flex-shrink: 0;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, .15);
+    }
+
+    .hdr-av {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, var(--gd), #0c5c48);
+      border: 2px solid rgba(46, 207, 154, .35);
+      box-shadow: 0 2px 12px rgba(29, 158, 117, .2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      position: relative;
+      transition: transform .3s var(--ease-out), box-shadow .3s ease;
+    }
+
+    .hdr:hover .hdr-av {
+      transform: scale(1.03)
+    }
+
+    .hdr-av svg {
+      width: 22px;
+      height: 22px
+    }
+
+    .hdr-dot {
+      position: absolute;
+      bottom: 1px;
+      left: 1px;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: var(--gl);
+      border: 2px solid var(--s2);
+      box-shadow: 0 0 0 2px rgba(29, 158, 117, .25);
+      animation: statusPulse 2.2s ease-in-out infinite;
+    }
+
+    @keyframes statusPulse {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1)
+      }
+
+      50% {
+        opacity: .85;
+        transform: scale(.92)
+      }
+    }
+
+    .hdr-name {
+      font-size: 14.5px;
+      font-weight: 700;
+      letter-spacing: .02em
+    }
+
+    .hdr-status {
+      font-size: 10.5px;
+      color: var(--gl);
+      margin-top: 2px;
+      min-height: 15px;
+      transition: color .3s ease;
+    }
+
+    .hdr-badge {
+      font-size: 9px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: rgba(29, 158, 117, .12);
+      color: var(--gl);
+      border: 1px solid var(--b);
+      margin-right: auto;
+      letter-spacing: .35px;
+      transition: background .25s ease, border-color .25s ease;
+    }
+
+    .hdr-badge:hover {
+      background: rgba(29, 158, 117, .18)
+    }
+
+    /* ── MESSAGES ── */
+    .msgs {
+      flex: 1;
+      overflow-y: auto;
+      padding: 14px 12px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      scroll-behavior: smooth;
+    }
+
+    .msgs::-webkit-scrollbar {
+      width: 4px
+    }
+
+    .msgs::-webkit-scrollbar-thumb {
+      background: rgba(29, 158, 117, .28);
+      border-radius: 4px;
+    }
+
+    .msgs::-webkit-scrollbar-track {
+      background: transparent
+    }
+
+    .row {
+      display: flex;
+      gap: 8px;
+      align-items: flex-end
+    }
+
+    .row.u {
+      flex-direction: row-reverse
+    }
+
+    .row-av {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, var(--gd), #0a4a3a);
+      border: 1px solid rgba(46, 207, 154, .35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: transform .25s var(--ease-out);
+    }
+
+    .row:hover .row-av {
+      transform: scale(1.05)
+    }
+
+    .row-av svg {
+      width: 14px;
+      height: 14px
+    }
+
+    .row-col {
+      display: flex;
+      flex-direction: column
+    }
+
+    .bot .row-col {
+      align-items: flex-start
+    }
+
+    .u .row-col {
+      align-items: flex-end
+    }
+
+    @keyframes msgInBot {
+      from {
+        opacity: 0;
+        transform: translateY(14px) translateX(-6px) scale(.97)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) translateX(0) scale(1)
+      }
+    }
+
+    @keyframes msgInUser {
+      from {
+        opacity: 0;
+        transform: translateY(12px) translateX(8px) scale(.97)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) translateX(0) scale(1)
+      }
+    }
+
+    .row.msg-in.bot {
+      animation: msgInBot .48s var(--ease-out) both
+    }
+
+    .row.msg-in.u {
+      animation: msgInUser .42s var(--ease-out) both
+    }
+
+    .bubble {
+      max-width: 86%;
+      padding: 12px 15px;
+      border-radius: var(--radius-lg);
+      font-size: 13.5px;
+      line-height: 1.75;
+      letter-spacing: .01em;
+      transition: box-shadow .25s ease, transform .2s ease;
+    }
+
+    .bot .bubble {
+      background: linear-gradient(165deg, rgba(30, 45, 58, .95) 0%, rgba(22, 35, 48, .98) 100%);
+      border: 1px solid rgba(29, 158, 117, .18);
+      border-bottom-right-radius: 5px;
+      white-space: pre-wrap;
+      word-break: break-word;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .bot .bubble:hover {
+      box-shadow: var(--shadow-glow)
+    }
+
+    .u .bubble {
+      background: linear-gradient(165deg, var(--gl) 0%, var(--g) 50%, var(--gd) 100%);
+      border: 1px solid rgba(255, 255, 255, .12);
+      border-bottom-left-radius: 5px;
+      color: #fff;
+      font-weight: 500;
+      box-shadow: 0 4px 16px rgba(29, 158, 117, .28);
+    }
+
+    .row-time {
+      font-size: 9px;
+      color: var(--tm);
+      margin-top: 3px;
+      padding: 0 4px;
+      opacity: .85;
+      animation: timeFade .35s ease .12s both;
+    }
+
+    @keyframes timeFade {
+      from {
+        opacity: 0
+      }
+
+      to {
+        opacity: .85
+      }
+    }
+
+    .typing-bub {
+      background: linear-gradient(165deg, rgba(30, 45, 58, .95), rgba(22, 35, 48, .98));
+      border: 1px solid rgba(29, 158, 117, .18);
+      border-radius: var(--radius-lg);
+      border-bottom-right-radius: 5px;
+      padding: 13px 16px;
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .tdot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gl);
+      animation: bop 1.2s infinite ease-in-out;
+    }
+
+    .tdot:nth-child(2) {
+      animation-delay: .2s
+    }
+
+    .tdot:nth-child(3) {
+      animation-delay: .4s
+    }
+
+    @keyframes bop {
+
+      0%,
+      80%,
+      100% {
+        transform: translateY(0);
+        opacity: .35
+      }
+
+      40% {
+        transform: translateY(-6px);
+        opacity: 1
+      }
+    }
+
+    .bzone {
+      flex-shrink: 0;
+      background: linear-gradient(180deg, rgba(16, 24, 34, .95) 0%, rgba(11, 18, 26, .98) 100%);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-top: 1px solid var(--b);
+      padding: 11px 12px 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 9px;
+      box-shadow: 0 -8px 32px rgba(0, 0, 0, .2);
+    }
+
+
+    .chips-row {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 6px;
+      width: 100%;
+    }
+
+    .chips-nav {
+      flex-shrink: 0;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid rgba(29, 158, 117, .35);
+      background: rgba(26, 42, 56, .75);
+      color: var(--gl);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      line-height: 1;
+      padding: 0;
+      transition: background .2s, border-color .2s, color .2s, opacity .2s;
+    }
+
+    .chips-nav:hover:not(:disabled) {
+      background: rgba(29, 158, 117, .14);
+      border-color: rgba(46, 207, 154, .45);
+      color: var(--t);
+    }
+
+    .chips-nav:disabled {
+      opacity: .35;
+      cursor: not-allowed;
+    }
+
+    .chips-viewport {
+      flex: 1;
+      min-width: 0;
+      overflow: hidden;
+      padding: 4px 0 12px;
+    }
+
+    .chips {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      gap: 7px;
+      width: max-content;
+      max-width: none;
+      transition: transform 0.38s var(--ease-out);
+      will-change: transform;
+    }
+
+    .chip {
+      white-space: nowrap;
+      font-size: 10.5px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--b);
+      background: rgba(26, 42, 56, .5);
+      color: var(--tm);
+      cursor: pointer;
+      font-family: 'Cairo', sans-serif;
+      flex-shrink: 0;
+      transition: background .25s var(--ease-soft), border-color .25s, color .25s, transform .2s var(--ease-out), box-shadow .25s;
+    }
+
+    .chip:hover {
+      border-color: var(--b2);
+      color: var(--t);
+      transform: translateY(-1px);
+    }
+
+    .chip.on {
+      background: rgba(29, 158, 117, .18);
+      border-color: rgba(46, 207, 154, .45);
+      color: var(--gl);
+      box-shadow: 0 2px 12px rgba(29, 158, 117, .15);
+    }
+
+
+    .pills-row {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 6px;
+      width: 100%;
+    }
+
+    .pills-nav {
+      flex-shrink: 0;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid rgba(29, 158, 117, .35);
+      background: rgba(26, 42, 56, .75);
+      color: var(--gl);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      line-height: 1;
+      padding: 0;
+      transition: background .2s, border-color .2s, color .2s, opacity .2s;
+    }
+
+    .pills-nav:hover:not(:disabled) {
+      background: rgba(29, 158, 117, .14);
+      border-color: rgba(46, 207, 154, .45);
+      color: var(--t);
+    }
+
+    .pills-nav:disabled {
+      opacity: .35;
+      cursor: not-allowed;
+    }
+
+    .pills-viewport {
+      flex: 1;
+      min-width: 0;
+      overflow: hidden;
+      padding: 2px 0 12px;
+    }
+
+    .pills {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      gap: 7px;
+      width: max-content;
+      max-width: none;
+      transition: transform 0.38s var(--ease-out);
+      will-change: transform;
+    }
+
+    .pill {
+      white-space: nowrap;
+      font-size: 11px;
+      font-weight: 500;
+      padding: 7px 13px;
+      border-radius: 999px;
+      border: 1px solid rgba(29, 158, 117, .22);
+      background: rgba(26, 42, 56, .65);
+      color: var(--t);
+      cursor: pointer;
+      font-family: 'Cairo', sans-serif;
+      flex-shrink: 0;
+      transition: background .25s var(--ease-soft), border-color .25s, color .25s, transform .2s var(--ease-out), box-shadow .25s;
+    }
+
+    .pill:hover {
+      border-color: var(--g);
+      color: var(--gl);
+      background: rgba(29, 158, 117, .12);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 14px rgba(29, 158, 117, .12);
+    }
+
+    .pill:active {
+      transform: translateY(0) scale(.98)
+    }
+
+
+    .input-row {
+      display: flex;
+      gap: 11px;
+      align-items: flex-end;
+      width: 100%
+    }
+
+    .input-wrap {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 4px
+    }
+
+    .input-field-label {
+      font-size: 10.5px;
+      font-weight: 600;
+      color: var(--tm);
+      letter-spacing: .04em;
+      padding: 0 2px;
+      cursor: text;
+    }
+
+    .input-actions {
+      display: flex;
+      flex-direction: row;
+      gap: 8px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .mic-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(26, 42, 56, .85);
+      border: 1.5px solid rgba(29, 158, 117, .28);
+      color: var(--gl);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      outline: none;
+      transition: transform .2s var(--ease-out), border-color .25s, background .25s, box-shadow .25s, color .2s;
+    }
+
+    .mic-btn svg {
+      width: 22px;
+      height: 22px
+    }
+
+    .mic-btn:hover:not(:disabled) {
+      border-color: rgba(46, 207, 154, .45);
+      background: rgba(29, 158, 117, .12);
+      color: var(--t);
+      transform: scale(1.04);
+    }
+
+    .mic-btn.listening:hover:not(:disabled) {
+      border-color: rgba(240, 100, 90, .95);
+      background: rgba(200, 60, 55, .55);
+      color: #fff;
+      transform: scale(1.03);
+    }
+
+    .mic-btn:focus-visible {
+      box-shadow: 0 0 0 3px rgba(29, 158, 117, .25);
+    }
+
+    .mic-btn:disabled {
+      opacity: .35;
+      cursor: not-allowed;
+    }
+
+    .mic-btn.listening {
+      border-color: rgba(220, 80, 70, .9);
+      background: rgba(190, 55, 50, .45);
+      color: #fff;
+      animation: micPulseRed 1.15s ease-in-out infinite;
+      box-shadow: 0 0 0 0 rgba(220, 80, 70, .5);
+      transition: background .45s var(--ease-soft), border-color .45s var(--ease-soft), transform .4s var(--ease-soft), box-shadow .45s ease, color .2s;
+    }
+
+    @keyframes micPulseRed {
+
+      0%,
+      100% {
+        box-shadow: 0 0 0 0 rgba(220, 80, 70, .45)
+      }
+
+      50% {
+        box-shadow: 0 0 0 11px rgba(220, 80, 70, 0)
+      }
+    }
+
+    @keyframes micRelease {
+      0% {
+        transform: scale(1.06);
+        filter: brightness(1.08)
+      }
+
+      100% {
+        transform: scale(1);
+        filter: brightness(1)
+      }
+    }
+
+    .mic-btn.mic-release {
+      animation: micRelease .65s var(--ease-soft) forwards;
+    }
+
+    textarea {
+      flex: 1;
+      background: rgba(22, 35, 48, .85);
+      border: 1.5px solid rgba(29, 158, 117, .2);
+      border-radius: var(--radius-xl);
+      padding: 10px 15px;
+      font-size: 13px;
+      color: var(--t);
+      font-family: 'Cairo', sans-serif;
+      resize: none;
+      outline: none;
+      max-height: 76px;
+      min-height: 42px;
+      line-height: 1.5;
+      direction: rtl;
+      transition: border-color .25s ease, box-shadow .3s ease, background .25s ease, transform .2s ease;
+    }
+
+    textarea::placeholder {
+      color: var(--tm);
+      opacity: .85
+    }
+
+    textarea:hover {
+      border-color: rgba(29, 158, 117, .32)
+    }
+
+    textarea:focus {
+      border-color: var(--g);
+      background: rgba(26, 42, 56, .95);
+      box-shadow: 0 0 0 3px rgba(29, 158, 117, .12), 0 4px 20px rgba(0, 0, 0, .2);
+    }
+
+    textarea.voice-ready {
+      transition: border-color .55s var(--ease-soft), box-shadow .55s var(--ease-soft), background .55s ease;
+      animation: voiceFieldSettle 1.05s var(--ease-soft) forwards;
+    }
+
+    @keyframes voiceFieldSettle {
+      0% {
+        border-color: rgba(29, 158, 117, .22);
+        box-shadow: 0 0 0 0 rgba(29, 158, 117, 0)
+      }
+
+      35% {
+        border-color: rgba(46, 207, 154, .5);
+        box-shadow: 0 0 0 4px rgba(29, 158, 117, .18), 0 6px 28px rgba(29, 158, 117, .12)
+      }
+
+      100% {
+        border-color: rgba(29, 158, 117, .32);
+        box-shadow: 0 0 0 3px rgba(29, 158, 117, .1), 0 4px 18px rgba(0, 0, 0, .15)
+      }
+    }
+
+    .input-wrap.voice-ready-wrap {
+      transition: transform .5s var(--ease-soft);
+      animation: inputWrapNudge .95s var(--ease-soft) forwards;
+    }
+
+    @keyframes inputWrapNudge {
+      0% {
+        transform: translateY(0)
+      }
+
+      40% {
+        transform: translateY(-2px)
+      }
+
+      100% {
+        transform: translateY(0)
+      }
+    }
+
+    .send-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(155deg, var(--gl) 0%, var(--g) 55%, var(--gd) 100%);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 4px 16px rgba(29, 158, 117, .35), inset 0 1px 0 rgba(255, 255, 255, .15);
+      transition: transform .22s var(--ease-out), box-shadow .25s ease, filter .2s ease, opacity .2s;
+      outline: none;
+    }
+
+    .send-btn:hover:not(:disabled) {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 6px 22px rgba(29, 158, 117, .45);
+      filter: brightness(1.06);
+    }
+
+    .send-btn:active:not(:disabled) {
+      transform: translateY(0) scale(.97)
+    }
+
+    .send-btn:focus-visible {
+      box-shadow: 0 0 0 3px rgba(29, 158, 117, .35), 0 4px 16px rgba(29, 158, 117, .35);
+    }
+
+    .send-btn:disabled {
+      opacity: .4;
+      cursor: not-allowed;
+      filter: grayscale(.3);
+      box-shadow: none;
+    }
+
+    .send-btn svg {
+      width: 17px;
+      height: 17px;
+      transition: transform .2s var(--ease-out)
+    }
+
+    .send-btn:hover:not(:disabled) svg {
+      transform: translate(-1px, -1px)
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 9px;
+      color: rgba(122, 148, 168, .75);
+      padding: 4px 8px 6px;
+      flex-shrink: 0;
+      letter-spacing: .04em;
+      opacity: .9;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+
+      #start .logo::after {
+        animation: none
+      }
+
+      .hdr-dot {
+        animation: none
+      }
+
+      .mic-btn.listening {
+        animation: none
+      }
+
+      .mic-btn.mic-release {
+        animation: none
+      }
+
+      textarea.voice-ready {
+        animation: none
+      }
+
+      .input-wrap.voice-ready-wrap {
+        animation: none
+      }
+    }
+
+    .choice-btns {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 4px 12px 8px 12px;
+      align-items: flex-start;
+    }
+
+    .choice-btn {
+      background: rgba(29, 158, 117, .12);
+      border: 1px solid rgba(29, 158, 117, .35);
+      border-radius: 12px;
+      color: var(--gl);
+      font-family: 'Cairo', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 9px 18px;
+      cursor: pointer;
+      text-align: right;
+      direction: rtl;
+      transition: background .2s, border-color .2s, transform .15s;
+      width: 100%;
+      max-width: 320px;
+    }
+
+    .choice-btn:hover {
+      background: rgba(29, 158, 117, .22);
+      border-color: rgba(46, 207, 154, .55);
+      transform: translateY(-1px);
+    }
+
+    .choice-btn:active {
+      transform: translateY(0) scale(.98);
+    }
+  </style>
 </head>
+
 <body>
 
-<div id="start">
-  <div class="logo-wrap">
-    <div class="logo">
-      <svg viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="8" r="4.5" fill="#9FE1CB"/>
-        <path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8" fill="#9FE1CB"/>
-        <path d="M9 3.5Q12 2 15 3.5" stroke="#1D9E75" stroke-width="1.4" fill="none" stroke-linecap="round"/>
-      </svg>
-    </div>
-  </div>
-  <h1>دون بوسكو</h1>
-  <p>حديث مع دون بوسكو عن المعهد في القاهرة: البرامج، TVET، التوظيف، والتسجيل.</p>
-  <button id="start-btn" onclick="startApp()">بدء المحادثة</button>
-  <div id="start-note">Developed By Daniel Ghaly</div>
-</div>
-
-<div id="app">
-  <div class="hdr">
-    <div class="hdr-av">
-      <svg viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="8" r="4.5" fill="#9FE1CB"/>
-        <path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8" fill="#9FE1CB"/>
-        <path d="M9 3.5Q12 2 15 3.5" stroke="#1D9E75" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-      </svg>
-      <div class="hdr-dot"></div>
-    </div>
-    <div style="flex:1">
-      <div class="hdr-name">دون بوسكو</div>
-      <div class="hdr-status" id="hdr-status">قدّيسٌ ومربٍّ — معهد القاهرة</div>
-    </div>
-    <div class="hdr-badge">روض الفرج · 1926</div>
-  </div>
-
-  <div class="msgs" id="msgs"></div>
-
-  <div class="bzone">
-   <div class="chips-row">
-  <button type="button" class="chips-nav" id="chips-prev">‹</button>
-  <div class="chips-viewport" id="chips-viewport">
-    <div class="chips" id="chips"></div>
-  </div>
-  <button type="button" class="chips-nav" id="chips-next">›</button>
-</div>
-    <div class="pills-row">
-      <button type="button" class="pills-nav" id="pills-prev" aria-label="السابق">‹</button>
-      <div class="pills-viewport" id="pills-viewport">
-        <div class="pills" id="pills"></div>
+  <div id="start">
+    <div class="logo-wrap">
+      <div class="logo">
+        <svg viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="8" r="4.5" fill="#9FE1CB" />
+          <path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8" fill="#9FE1CB" />
+          <path d="M9 3.5Q12 2 15 3.5" stroke="#1D9E75" stroke-width="1.4" fill="none" stroke-linecap="round" />
+        </svg>
       </div>
-      <button type="button" class="pills-nav" id="pills-next" aria-label="التالي">›</button>
     </div>
-    <div class="input-wrap">
-      <label class="input-field-label" for="text-input">رسالتك</label>
-      <div class="input-row">
-        <div class="input-actions">
-          <button class="mic-btn" id="mic-btn" type="button"
-            title="تسجيل صوتي — اضغط مرة أخرى لإيقاف التسجيل وإرسال السؤال"
-            aria-label="تسجيل صوتي">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
-              <path d="M19 10v1a7 7 0 0 1-14 0v-1"/>
-              <line x1="12" y1="19" x2="12" y2="23"/>
-              <line x1="8"  y1="23" x2="16" y2="23"/>
-            </svg>
-          </button>
-          <button class="send-btn" id="send-btn" type="button" title="إرسال">
-            <svg viewBox="0 0 16 16" fill="none">
-              <path d="M14 8L2 2l3 6-3 6 12-6z" fill="white"/>
-            </svg>
-          </button>
+    <h1>دون بوسكو</h1>
+    <p>حديث مع دون بوسكو عن المعهد في القاهرة: البرامج، TVET، التوظيف، والتسجيل.</p>
+    <button id="start-btn" onclick="startApp()">بدء المحادثة</button>
+    <div id="start-note">محادثة نصية أو صوتية (Chrome أو Edge)</div>
+  </div>
+
+  <div id="app">
+    <div class="hdr">
+      <div class="hdr-av">
+        <svg viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="8" r="4.5" fill="#9FE1CB" />
+          <path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8" fill="#9FE1CB" />
+          <path d="M9 3.5Q12 2 15 3.5" stroke="#1D9E75" stroke-width="1.2" fill="none" stroke-linecap="round" />
+        </svg>
+        <div class="hdr-dot"></div>
+      </div>
+      <div style="flex:1">
+        <div class="hdr-name">دون بوسكو</div>
+        <div class="hdr-status" id="hdr-status">قدّيسٌ ومربٍّ — معهد القاهرة</div>
+      </div>
+      <div class="hdr-badge">روض الفرج · 1926</div>
+    </div>
+
+    <div class="msgs" id="msgs"></div>
+
+    <div class="bzone">
+      <div class="chips-row">
+        <button type="button" class="chips-nav" id="chips-prev">‹</button>
+        <div class="chips-viewport" id="chips-viewport">
+          <div class="chips" id="chips"></div>
         </div>
-        <textarea id="text-input"
-          placeholder="اكتب هنا أو استخدم الميكروفون…"
-          rows="1"
-          oninput="autoResize(this)"
-          onkeydown="handleEnter(event)">
+        <button type="button" class="chips-nav" id="chips-next">›</button>
+      </div>
+      <div class="pills-row">
+        <button type="button" class="pills-nav" id="pills-prev" aria-label="السابق">‹</button>
+        <div class="pills-viewport" id="pills-viewport">
+          <div class="pills" id="pills"></div>
+        </div>
+        <button type="button" class="pills-nav" id="pills-next" aria-label="التالي">›</button>
+      </div>
+      <div class="input-wrap">
+        <label class="input-field-label" for="text-input">رسالتك</label>
+        <div class="input-row">
+          <div class="input-actions">
+            <button class="mic-btn" id="mic-btn" type="button"
+              title="تسجيل صوتي — اضغط مرة أخرى لإيقاف التسجيل وإرسال السؤال" aria-label="تسجيل صوتي">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
+                <path d="M19 10v1a7 7 0 0 1-14 0v-1" />
+                <line x1="12" y1="19" x2="12" y2="23" />
+                <line x1="8" y1="23" x2="16" y2="23" />
+              </svg>
+            </button>
+            <button class="send-btn" id="send-btn" type="button" title="إرسال">
+              <svg viewBox="0 0 16 16" fill="none">
+                <path d="M14 8L2 2l3 6-3 6 12-6z" fill="white" />
+              </svg>
+            </button>
+          </div>
+          <textarea id="text-input" placeholder="اكتب هنا أو استخدم الميكروفون…" rows="1" oninput="autoResize(this)"
+            onkeydown="handleEnter(event)">
         </textarea>
+        </div>
       </div>
     </div>
+
+    <div class="footer">Google Gemini · donboscocairo.org</div>
   </div>
 
-  <div class="footer">Google Gemini · donboscocairo.org</div>
-</div>
+  <script>
+    'use strict';
 
-<script>
-'use strict';
+    const WORKER_URL = 'https://lively-disk-6167.automationn6.workers.dev';
 
-const WORKER_URL = 'https://lively-disk-6167.automationn6.workers.dev';
-
-
-const SYSTEM = `أنت مساعد ذكي متخصص لمعهد دون بوسكو القاهرة. مهمتك الأساسية مساعدة الطلاب وأولياء الأمور للحصول على معلومات دقيقة عن المعهد.
-
-أسلوب الرد:
-• احترافي ومباشر — كأنك موظف استقبال متخصص في المعهد
-• لا تبدأ ردك بـ "أنا دون بوسكو" أو "أسعدني تواصلك" في كل رد — نبرة مربٍّ حقيقية: عربية فصحى واضحة ودافئة دون مبالغة أو عبارات مفتعلة؛ لمسة مصرية خفيفة عند مخاطبة الشباب
-• لا تستخدم كلمات من لغات أخرى غير العربية والإنجليزية والإيطالية
-• الردود باللغة العربية فقط — بدون أي حروف صينية أو يابانية أو غيرها
-• اذكر معلومات المعهد بشكل منظم ومفيد
-• لو السؤال غير واضح اسأل للتوضيح مباشرة
-• لا تطوّل في المقدمات — اذهب للمعلومات مباشرة
-• الدقة: لا تخترع مواعيد تسجيل أو مصاريف أو أرقاماً غير واردة أدناه
-
-تنبيه مهم: هذا الشات بوت مخصص حصراً لمعهد دون بوسكو القاهرة — روض الفرج. لا تملك معلومات عن فروع أخرى.
-
-الاختصارات عند النطق: آي تي آي (ITI)، آي بي آي (IPI)، تيفيت (TVET).
-
-════════════════════════════════════════
-حياتي — يوحنا بوسكو
-════════════════════════════════════════
-• الولادة: 16 أغسطس 1815 في قرية بيكي (Becchi) قرب كاستيلنوفو دون بوسكو بإيطاليا؛ الوفاة: 31 يناير 1888 في تورينو عن 72 عاماً.
-• الأم: مارغريت (ماما مارغريت) ساعدتني بعد وفاة أبي وأنا صغير.
-• الكهنوت: رسامة كاهن 1841؛ كرّست حياتي لتعليم الشباب الفقراء والمهمشين في تورينو.
-• بداية الأوراتوريو: لقاء الشاب بارتولوميو غاريلي (Garelli) عام 1841 كان شرارة «الأوراتوريو».
-• الجمعية: أسّستُ جمعية السالزيان عام 1859.
-• التقديس: 1934؛ عيدي في الكنيسة: 31 يناير.
-• شعار رسالتي: النظام الوقائي — العقل والدين والمحبة.
-
-════════════════════════════════════════
-معهدنا في القاهرة
-════════════════════════════════════════
-• الاسم: Istituto Salesiano Don Bosco / معهد السالزيان دون بوسكو.
-• العنوان: 2 شارع عبد القادر طه، الساحل، القاهرة 11241. خريطة: https://goo.gl/maps/qjWFTa1GjZjeEihq8
-• الموقع: https://www.donboscocairo.org
-
-════════════════════════════════════════
-التواصل
-════════════════════════════════════════
-• هاتف: 02-24576794 و 02-24579650 (9:00–12:00)
-• جوال: 01024942814 — 01226304832
-• عام: info@donboscocairo.org
-• المدرسة: secretary@donboscocairo.org
-• TVET: segretaria.corsi@donboscocairo.org
-• توظيف: joboffice.coordinator@donboscocairo.org
-• فيسبوك: facebook.com/DonBoscoCai
-
-════════════════════════════════════════
-التاريخ في مصر
-════════════════════════════════════════
-• السالزيان في مصر منذ 1891؛ المعهد في القاهرة منذ 1926؛ احتفال المئوية 1926–2026.
-• 28 مارس 1970: بروتوكول مصري–إيطالي؛ دبلومات معترف بها في مصر وإيطاليا وأوروبا.
-
-════════════════════════════════════════
-البرامج الدراسية
-════════════════════════════════════════
-**آي تي آي ITI (خمس سنوات):**
-• عامان تمهيديان: لغات (عربي، إيطالي، إنجليزي) وعلوم.
-• من الثالث: تخصص كهرباء وإلكترونيات أو ميكانيكا وميكاترونيكس أو اتصالات وIT.
-• التخرج: امتحان دولة بلجنة فيها خبراء من إيطاليا.
-• المؤهل: دبلوم فوق المتوسط فني — تنسيق هندسة حكومية وخاصة ومعاهد عليا.
-
-**آي بي آي IPI (ثلاث سنوات):**
-• تخصص من السنة الأولى؛ ساعات عملي أكثر.
-• أقسام: كهرباء (PLC، طاقة شمسية) — ميكانيكا CNC — سيارات — لحام.
-• المؤهل: دبلوم صناعي — تنسيق معاهد ثلاث سنوات.
-
-**اللغات:** الإيطالية أولاً؛ الإنجليزية ثانية؛ العربية للدين والتربية البدنية.
-**القبول:** المعهد يقبل الطلاب والطالبات.
-
-════════════════════════════════════════
-TVET — دورات تدريبية
-════════════════════════════════════════
-• مسار منفصل: دورات مهنية للأفراد والشركات.
-• أقسام: سيارات، كهرباء، إلكترونيات، اتصالات، IT، طاقة متجددة، لغات، مهارات حياتية، أزياء، صيانة، ميكانيكا.
-• أمثلة: PLC، SCADA، HMI، Arduino، IoT، G SCAN، جرافيك، تصوير، طاقة كهروضوئية.
-• القائمة: donboscocairo.org/course/
-
-════════════════════════════════════════
-بعد التخرج
-════════════════════════════════════════
-• مكتب توظيف: يربط الخريجين بشركات ومصانع؛ joboffice.coordinator@donboscocairo.org
-• شراكات: Siemens، Eratec، مشروع Vescovini لفرص في إيطاليا.
-• اتفاقية MITS لخريجي الخمس سنوات: سنتان دراسة في إيطاليا ثم عقد عمل.
-
-════════════════════════════════════════
-التسجيل
-════════════════════════════════════════
-• المواعيد والمصاريف تُعلَن كل عام على donboscocairo.org.
-• اختبار قدرات: ذكاء، رياضيات، إنجليزي، مقابلة شخصية.
-• دورة صيفية تمهيدية: ~125 ساعة إيطالي ورياضيات وفيزياء بالإيطالي.
-• متابعة الدرجات: Spaggiari وClasseViva — donboscocairo.org/school/classeviva
-• المصاريف: من الإدارة فقط.
-
-════════════════════════════════════════
-الأنشطة
-════════════════════════════════════════
-• الأوراتوريو: مركز شبابي — غالباً مساء الإثنين 18:00–22:00.
-
-قواعد:
-• لا تُذكر مواعيد تسجيل أو مصاريف إلا من إعلان رسمي.
-• أجب بحزم على الأسئلة المحددة، واطلب توضيحاً على الأسئلة المبهمة.
-• لا تخاطب المستخدم بصيغة «ابني، ابنتك».`;
-
-
-
-const LOCAL_KB=[
-  {k:['عنوان','فين المعهد','فين','مكان','موقع','خرائط','روض','ساحل','شبرا','عبد القادر'],a:'معهدنا في القاهرة — بيتٌ تقنيٌّ للشباب.\n\n• الاسم: Istituto Salesiano Don Bosco\n• العنوان: 2 شارع عبد القادر طه، الساحل، القاهرة 11241 (روض الفرج / شبرا)\n• خريطة: https://goo.gl/maps/qjWFTa1GjZjeEihq8\n• الموقع: https://www.donboscocairo.org'},
-  {k:['اتأسس','تأسس','1926','مئوية','100','مية','2026','تاريخ المعهد'],a:'إخواني السالزيان خدموا مصر منذ 1891، وفرع القاهرة قام عام 1926.\nنحتفل الآن بقرب المئوية (1926–2026).\n\nأحدث الأخبار: donboscocairo.org'},
-  {k:['تليفون','هاتف','اتصال','رقم','فون','جوال'],a:'للتواصل:\n\n• 02-24576794 و02-24579650 (9:00–12:00)\n• جوال: 01024942814 — 01226304832\n• info@donboscocairo.org\n• secretary@donboscocairo.org\n• TVET: segretaria.corsi@donboscocairo.org\n• توظيف: joboffice.coordinator@donboscocairo.org\n\nجروب أولياء الأمور والطلاب والخريجين:\nاتحاد أولياء أمور طلبة معهد دون بوسكو القاهرة\nhttps://www.facebook.com/share/g/1CJpwMWQAw/'},
-  {k:['ايميل','إيميل','بريد','ميل'],a:'اختر البريد بحسب الموضوع:\n\n• عام: info@donboscocairo.org\n• المدرسة: secretary@donboscocairo.org\n• دورات TVET: segretaria.corsi@donboscocairo.org\n• توظيف: joboffice.coordinator@donboscocairo.org'},
-  {k:['جروب','مجموعة','اولياء امور','أولياء أمور','خريجين','فيسبوك جروب','اتحاد'],a:'جروب أولياء الأمور والطلاب والخريجين على فيسبوك:\n\nالاسم: اتحاد أولياء أمور طلبة معهد دون بوسكو القاهرة\nالرابط: https://www.facebook.com/share/g/1CJpwMWQAw/\n\nمكان ممتاز لأسئلتك — فيه أهالي وخريجون بيردوا من تجربتهم الحقيقية.'},
-  {k:['اسكندريه','اسكندرية','الإسكندرية','إسكندرية','alexandria','فرع تاني','فروع'],a:'هذا الشات بوت مخصص لمعهد دون بوسكو القاهرة (روض الفرج) فقط.\n\nلا أملك معلومات عن معهد دون بوسكو الإسكندرية — يُرجى التواصل معهم مباشرة عبر صفحتهم على فيسبوك أو موقعهم.'},
-  {k:['فيسبوك','يوتيوب','سوشيال','انستجرام','إنستغرام','تويتر'],a:'• فيسبوك: facebook.com/DonBoscoCai\n• يوتيوب: youtube.com/channel/UC1QbDALypMyxn5Qp4I4VXFA\n• Instagram وTwitter: تذييل donboscocairo.org\n• دورات TVET: صفحة DON BOSCO TVET Cairo\n• جروب الأولياء والخريجين: https://www.facebook.com/share/g/1CJpwMWQAw/'},
-  {k:['رؤية','رسالة','هدف المعهد','فلسفة','نظام وقائي'],a:'• الرؤية: تنمية شاملة للشباب لمواكبة التحديات والفرص.\n• الرسالة: تكوين شخصيات مستقيمة مع انضباط وفضيلة وتعليم تقني عالٍ.\n• الطريقة: النظام الوقائي — العقل والدين والمحبة.'},
-  {k:['iti','آي تي آي','خمس سنوات','5 سنوات','فوق المتوسط','خمس سنين','5 سنين'],a:'ITI — نظام الخمس سنوات:\n\nالسنتان الأولى والثانية:\n• لغات: عربي + إيطالي + إنجليزي\n• علوم: رياضيات، فيزياء، كيمياء، رسم فني، IT\n\nمن السنة الثالثة — التخصص:\n• كهرباء وإلكترونيات\n• ميكانيكا وميكاترونيكس\n• اتصالات وتكنولوجيا معلومات\n\nالتخرج: امتحان دولة بلجنة إيطالية.\nالمؤهل: دبلوم فوق المتوسط فني\nمعترف به في مصر وإيطاليا والاتحاد الأوروبي.'},
-  {k:['ipi','آي بي آي','ثلاث سنوات','3 سنوات','دبلوم صناعي','ثلاث سنين','3 سنين'],a:'IPI — نظام الثلاث سنوات:\n\nتخصص من السنة الأولى — ساعات عملي أعلى:\n• كهرباء (PLC، طاقة شمسية، لوحات تحكم)\n• ميكانيكا CNC وتشكيل معادن\n• ميكانيكا سيارات\n• لحام (أنواع متعددة)\n\nالتخرج: امتحان نهائي بلجنة 5 أفراد.\nالمؤهل: دبلوم صناعي\nمعترف به في مصر والاتحاد الأوروبي.'},
-  {k:['iti و ipi','iti أو ipi','آي تي آي وآي بي آي','أي أحسن بين المسارين','اي احسن بين المسارين','مسارين iti ipi','3 سنين و5 سنين','ثلاث وخمس'],a:'الفرق بين ITI و IPI:\n\nITI (5 سنوات):\n• تأسيس لغوي وعلمي قوي أول سنتين\n• تخصص من السنة الثالثة\n• المؤهل: دبلوم فوق المتوسط\n• يفتح باب الجامعات والمعاهد العليا\n\nIPI (3 سنوات):\n• تخصص من أول سنة — عملي أكثر\n• المؤهل: دبلوم صناعي\n• أسرع للدخول لسوق العمل\n\nكلاهما معترف به في مصر وأوروبا.\nلو مش متأكد اكتب "ساعدني أختار" وهرشح ليك المناسب.'},
-  {k:['tvet','تيفيت','دورات','كورسات','تدريب مهني','كورس'],a:'TVET — دورات مهنية منفصلة:\n\nأقسام: سيارات، كهرباء، إلكترونيات، IT، طاقة متجددة، لغات، مهارات حياتية، أزياء، ميكانيكا، لحام.\nأمثلة: PLC، SCADA، HMI، Arduino، IoT، G SCAN، جرافيك، تصوير، طاقة كهروضوئية.\n\nالقائمة: donboscocairo.org/course/\nللتواصل: segretaria.corsi@donboscocairo.org'},
-  {k:['توظيف','شغل','خريج','مكتب التوظيف','وظيفة','شغل بره'],a:'مكتب التوظيف يربط الخريجين بشركات ومصانع:\n\n• joboffice.coordinator@donboscocairo.org\n• شراكات: Siemens، Eratec\n• مشروع Vescovini: فرص عمل في إيطاليا\n• اتفاقية MITS لخريجي الخمس سنوات:\n  سنتان دراسة في معهد تقني إيطالي + عقد عمل'},
-  {k:['classeviva','كلاسي','درجات','حضور','spaggiari','متابعة','غياب'],a:'متابعة الدرجات والغياب:\nمنصتا Spaggiari وClasseViva\nالرابط: donboscocairo.org/school/classeviva'},
-  {k:['اوراتوريو','أوراتوريو','oratory','نشاط'],a:'الأوراتوريو في القاهرة مركزٌ شبابيٌّ ينشط غالباً مساء الإثنين 18:00–22:00.\nللموعد الدقيق: 02-24576794'},
-  {k:['تسجيل','التحاق','مصاريف','قبول','أقدم','اقدم','تقديم'],a:'المواعيد والمصاريف تُعلَن كل عام على donboscocairo.org\n\n• اختبار قدرات: ذكاء، رياضيات، إنجليزي، مقابلة\n• دورة صيفية تمهيدية: ~125 ساعة إيطالي + رياضيات + فيزياء بالإيطالي\n• التقييم فيها يحدد ITI أو IPI\n\nللاستفسار: secretary@donboscocairo.org أو 02-24576794'},
-  {k:['مين انت','مين إنت','دون بوسكو مين','من أنت','عرفني عليك'],a:'أنا يوحنا ملكيوري بوسكو — دون بوسكو — كاهنٌ ومربٍّ عشت في إيطاليا (1815–1888).\nأسّستُ جمعية السالزيان عام 1859.\nاليوم أحدّثك عن معهدنا في القاهرة — donboscocairo.org'},
-  {k:['سالزيان','1891','وصلوا مصر','تاريخ'],a:'السالزيان وصلوا مصر عام 1891.\nمعهد القاهرة أُسّس عام 1926.\nبروتوكول 1970 اعترف به رسمياً بين مصر وإيطاليا.'},
-  {k:['شهادة','معترف','اوروبا','ايطاليا','اعتراف','1970'],a:'الشهادة معترف بها في مصر وإيطاليا والاتحاد الأوروبي.\nبروتوكول 28 مارس 1970 يقرّ المعهد مؤسسةً تعليميةً مشتركة.'},
-  {k:['مميزات','ليه ادخل','ايه المميزات','ليه المعهد'],a:'مميزات المعهد:\n\n• إدارة سالزيان عالمية — نحو 100 عام خبرة\n• شهادة مصرية + إيطالية + معترف بها في الاتحاد الأوروبي\n• ورش ومعامل حديثة — إمكانية إتقان الإيطالية\n• مكتب توظيف وشراكات: Siemens، Eratec\n• فرص سفر ودراسة في إيطاليا (MITS، Vescovini)'},
-  {k:['جامعة','تنسيق','هندسة','بعد التخرج','معادلة','اكمل'],a:null},
-  {k:['بنات','فتيات','انثى','بنت'],a:'نعم، المعهد يقبل الطالبات والطلاب.'},
-  {k:['اختبار','قدرات','مقابلة','امتحان القبول'],a:'اختبار القدرات يشمل: ذكاء، رياضيات، إنجليزي، ومقابلة شخصية.\nالمواعيد تُعلَن سنوياً على donboscocairo.org'},
-  {k:['دورة صيفية','تمهيدي','125','صيفي'],a:'الدورة التمهيدية الصيفية:\n• ~125 ساعة\n• إيطالي مكثف من الصفر\n• رياضيات وفيزياء بالإيطالي\n• نتيجتها تحدد ITI أو IPI\n\nالمواعيد تُعلَن سنوياً على donboscocairo.org'},
-  {k:['1859','جمعية','اسست','السالزيان'],a:'في 1859 أسّستُ جمعية السالزيان.\nاليوم فيه أكثر من 15,000 مؤسسة في 130+ دولة.'},
-  {k:['نظام وقائي','عقل ودين','ثلاثة أعمدة'],a:'النظام الوقائي — أعمدتُه ثلاث:\n• العقلُ يوجّه\n• الدينُ يرفع\n• المحبةُ تربطُ المربّي بالفتى دون قسوة.'},
-];
-
-
-  
-const AR_DIACRITICS = /[\u064B-\u0652\u0670\u0640]/g;
-function normalizeText(input=''){
-  return input.toString().toLowerCase()
-    .replace(AR_DIACRITICS,'')
-    .replace(/[أإآا]/g,'ا').replace(/ى/g,'ي').replace(/ة/g,'ه')
-    .replace(/ؤ/g,'و').replace(/ئ/g,'ي')
-    .replace(/[\u200e\u200f\u200b-\u200d\uFEFF]/g,'')
-    .replace(/[^\w\s\u0600-\u06FF]+/g,' ')
-    .replace(/\s+/g,' ').trim();
-}
-function containsAny(text,list){const t=normalizeText(text);return list.some(i=>t.includes(normalizeText(i)));}
-function tokenize(text){return normalizeText(text).split(' ').filter(Boolean);}
- 
-
-function detectTrack(text){
-  const t=normalizeText(text);
-  if(containsAny(t,['iti','5 سنين','خمس سنين','خمس سنوات','5 سنوات','فوق المتوسط','دبلوم فوق المتوسط'])||/\b5\b/.test(t)) return 'iti';
-  if(containsAny(t,['ipi','3 سنين','ثلاث سنين','ثلاث سنوات','3 سنوات','دبلوم صناعي'])||/\b3\b/.test(t)) return 'ipi';
-  return null;
-}
- 
-
-function scoreMatch(query,entry){
-  const q=normalizeText(query); let score=0;
-  for(const kw of entry.k){
-    const k=normalizeText(kw); if(!k) continue;
-    if(q===k){score+=12;continue;}
-    if(q.includes(k)){score+=7+Math.min(k.length/12,3);continue;}
-    const kToks=tokenize(k).filter(tok=>tok.length>=2);
-    if(kToks.length===0) continue;
-    const qToks=tokenize(q);
-    const hits=kToks.filter(tok=>qToks.includes(tok));
-    if(hits.length===0) continue;
-    if(kToks.length===1){
-      score+=hits.length*1.8;
-    } else if(hits.length===kToks.length){
-      score+=hits.length*2;
+    const AR_DIACRITICS = /[\u064B-\u0652\u0670\u0640]/g;
+    function normalizeText(input = '') {
+      return input.toString().toLowerCase()
+        .replace(AR_DIACRITICS, '')
+        .replace(/[أإآا]/g, 'ا').replace(/ى/g, 'ي').replace(/ة/g, 'ه')
+        .replace(/ؤ/g, 'و').replace(/ئ/g, 'ي')
+        .replace(/[\u200e\u200f\u200b-\u200d\uFEFF]/g, '')
+        .replace(/[^\w\s\u0600-\u06FF]+/g, ' ')
+        .replace(/\s+/g, ' ').trim();
     }
-  }
-  return score;
-}
- 
-
-const DecisionBot={
-  state:null,
-  start(){
-    this.state={scoreITI:0,scoreIPI:0,step:1};
-    return 'خليني أساعدك تختار المسار المناسب — سؤالين بس 👇\n\nالسؤال الأول:\nهدفك الأساسي بعد المعهد إيه؟\n1) أكمل تعليم (كلية / معهد عالي / هندسة)\n2) أدخل سوق العمل بأسرع وقت';
-  },
-  reply(message){
-    if(!this.state) return null;
-    const msg=normalizeText(message);
-    const {step}=this.state;
-    if(step===1){
-      if(/1|تعليم|كليه|كلية|هندسه|هندسة|جامعه|جامعة|اكمل|أكمل/.test(msg)) this.state.scoreITI+=3;
-      else this.state.scoreIPI+=3;
-      this.state.step=2;
-      return 'السؤال الثاني:\nبتحب الدراسة النظرية مع العملي، ولا العملي بإيدك بشكل رئيسي؟\n1) دراسة + نظري + عملي (متوازن)\n2) عملي بإيدي أساساً';
-    }
-    if(step===2){
-      if(/1|دراسه|دراسة|نظري|متوازن/.test(msg)) this.state.scoreITI+=2;
-      else this.state.scoreIPI+=2;
-      this.state.step=3;
-      return 'السؤال الأخير:\nمستعد تدرس 5 سنين عشان تاخد مؤهل أقوى؟\n1) آه، مستعد\n2) لا، أفضل 3 سنين';
-    }
-    if(step===3){
-      if(/1|اه|آه|نعم|اي|أي/.test(msg)) this.state.scoreITI+=2;
-      else this.state.scoreIPI+=2;
-      const {scoreITI,scoreIPI}=this.state; this.state=null;
-      if(scoreITI>=scoreIPI){
-        return 'الترشيح: ITI — نظام الخمس سنوات\n\nليه؟\n• هدفك يتوافق مع فرص التعليم الأعلى\n• الشهادة أقوى وأوسع اعتراف\n• الباب مفتوح للجامعة والهندسة والمعاهد العليا\n• فرص سفر وعمل في إيطاليا عبر اتفاقية MITS\n\nاكتب "ITI" لو عايز تفاصيل أكتر.';
-      } else {
-        return 'الترشيح: IPI — نظام الثلاث سنوات\n\nليه؟\n• تخصص عملي من السنة الأولى\n• تدخل سوق العمل أسرع\n• ساعات عملي أعلى من النظري\n• مناسب لو هدفك مهارة حرفية قوية\n\nاكتب "IPI" لو عايز تفاصيل أكتر.';
-      }
-    }
-    return null;
-  },
-  isActive(){return this.state!==null;},
-  cancel(){this.state=null;}
-};
- 
-
-function getGraduationAnswer(track){
-  if(track==='iti') return 'بعد التخرج من ITI (5 سنوات):\n\nالمؤهل: دبلوم فوق المتوسط فني\n\nمسارات التعليم:\n• معاهد عليا تقنية — بدون معادلة\n• جامعات خاصة — وفق شروط كل جامعة\n• كليات هندسة حكومية — بعد امتحان معادلة\n\nفرص العمل:\n• شراكات مع Siemens وEratec\n• مشروع Vescovini: فرص عمل في إيطاليا\n• اتفاقية MITS: سنتان دراسة في إيطاليا + عقد عمل\n\nللاستفسار: joboffice.coordinator@donboscocairo.org';
-  if(track==='ipi') return 'بعد التخرج من IPI (3 سنوات):\n\nالمؤهل: دبلوم صناعي\n\nمسارات التعليم:\n• معاهد ثلاث سنوات (منها هندسة خاصة)\n• امتحان معادلة لو عايز تكمل هندسة\n\nفرص العمل:\n• دخول سريع لسوق العمل\n• شراكات صناعية عبر مكتب التوظيف\n\nللاستفسار: joboffice.coordinator@donboscocairo.org';
-  return 'بعد التخرج يعتمد على المسار:\n\n• IPI (3 سنوات): دبلوم صناعي → معاهد ثلاث سنوات → شغل مباشر\n• ITI (5 سنوات): دبلوم فوق المتوسط → معاهد عليا + جامعات + هندسة (بمعادلة)\n\nقولي بتدرس 3 سنين ولا 5 سنين وأديك الرد المناسب.';
-}
- 
-
-function smartReply(message){
-  const text=normalizeText(message);
-  const raw=message.trim();
-
-  if(/^(اهلا|أهلا|هلا|مرحبا|مرحباً|السلام|ازيك|إزيك|عامل ايه|عامل إيه|هاي|hi|hello|hey|كويس|بخير)[\s!.؟…]*$/i.test(normalizeText(raw))){
-    return 'أهلاً! أنا هنا للإجابة عن أسئلتك عن معهد دون بوسكو القاهرة.\n\nاسأل عن البرامج (ITI / IPI)، TVET، التسجيل، أو التوظيف — أو اكتب "ساعدني أختار" لو مش عارف المسار المناسب ليك.';
-  }
-  if(/بتتكلم|بتشتغل|بتفهم|إنت إيه|انت ايه|انت مين|إنت مين/.test(text)){
-    return 'أيوه، أنا شات بوت بيمثّل شخصية دون بوسكو — أقدر أجاوبك على أي سؤال عن معهد دون بوسكو القاهرة.\n\nاسأل وأنا هرد!';
-  }
+    function containsAny(text, list) { const t = normalizeText(text); return list.some(i => t.includes(normalizeText(i))); }
+    function tokenize(text) { return normalizeText(text).split(' ').filter(Boolean); }
 
 
-  if(DecisionBot.isActive()){
-    return DecisionBot.reply(message)||null;
-  }
+    const TOPICS = [
+      { label: 'حياتي', qs: ['امتى وصل السالزيان مصر؟', 'ليه اهتميت بالشباب؟', 'مين أنت يا دون بوسكو؟', 'إمتى أسست جمعية السالزيان؟'] },
+      { label: 'المعهد', qs: ['فين يقع معهدنا في القاهرة؟', 'إيه رؤية المعهد ورسالته؟', 'ليه الشهادات معترفة في أوروبا؟', 'إيه مميزات المعهد؟'] },
+      { label: 'البرامج', qs: ['إيه الفرق بين ITI و IPI؟', 'ساعدني أختار بين 3 سنين و5 سنين', 'إيه تخصصات ITI؟', 'إيه تخصصات IPI؟'] },
+      { label: 'بعد التخرج', qs: ['مكتب التوظيف بيعمل إيه؟', 'خريج ITI يدخل تنسيق إيه؟', 'فيه فرص شغل أو دراسة في إيطاليا؟', 'إيه مشروع MITS؟'] },
+      { label: 'التسجيل', qs: ['ما خطوات التقديم في المعهد؟', 'ما اختبار القدرات والدورة الصيفية؟', 'كيف أتابع درجات الطالب؟', 'هل المعهد يقبل الطالبات؟'] },
+      { label: 'تواصل', qs: ['أرقام التليفون والجوال وساعات الرد؟', 'فيه جروب لأولياء الأمور والخريجين؟', 'فيسبوك ويوتيوب للمعهد؟', 'إيميل التسجيل أو TVET؟'] },
+      { label: 'أنشطة', qs: ['الأوراتوريو إيه؟', 'فيه تدريب صيفي في التخصص؟', 'إيه أخبار المئوية 2026؟'] },
+    ];
 
-  if(containsAny(text,['ساعدني اختار','ساعدني أختار','مش عارف اختار','iti ولا ipi','ipi ولا iti','3 ولا 5','انهي احسن','أنهي أحسن'])){
-    return DecisionBot.start();
-  }
 
-  if(containsAny(text,['اسكندريه','اسكندرية','الإسكندرية','إسكندرية','alexandria'])){
-    return 'هذا الشات بوت مخصص لمعهد دون بوسكو القاهرة (روض الفرج) فقط.\n\nلا أملك معلومات عن معهد دون بوسكو الإسكندرية — يُرجى التواصل معهم مباشرة.';
-  }
-  if(containsAny(text,['بعد التخرج','تنسيق','جامعه','جامعة','هندسه','هندسة','معادله','معادلة','اكمل تعليم','أكمل تعليم'])){
-    return getGraduationAnswer(detectTrack(text));
-  }
+    let chatHistory = [], isBusy = false, decisionState = null;
+    let speechRecognition = null, micListening = false, speechFinalBuffer = '';
+    let voiceUpdatingFromSr = false, appendNextVoiceSession = false;
+    let pillsNavBound = false, pillsResizeTimer = 0;
 
-if (containsAny(text, ['مين عملك', 'من عملك', 'مين صنعك', 'مين برمجك', 'مين صاحبك', 'مين اللي عملك', 'created by', 'who made', 'who built', 'who created', 'طورك', 'برمجك', 'انشأك', 'أنشأك', 'صاحبك', 'بناك'])) {
-  return 'أنا تم تطويري بواسطة Daniel Ghaly 👨‍💻\n\nشات بوت مخصص لمعهد دون بوسكو القاهرة — روض الفرج.';
-}
-  
-  if(containsAny(text,['الفرق بين iti','الفرق بين ipi','iti و ipi','ipi و iti','آي تي آي وآي بي آي','أي أحسن بين','اي احسن بين'])
-    ||(containsAny(text,['فرق','الفرق'])&&containsAny(text,['iti','ipi','آي تي','آي بي','3 سنين','5 سنين','ثلاث سنين','خمس سنين']))){
-    return LOCAL_KB.find(e=>e.k.includes('iti و ipi'))?.a||null;
-  }
-  if(containsAny(text,['بيميز','مميز','مميزات','يميز'])&&containsAny(text,['مدرسه','مدرسة','تانيه','تانية','غير','معهد تاني','مدرسة تانيه','مقارنه','مقارنة','عن غير','وغيره'])){
-    return LOCAL_KB.find(e=>e.k.includes('مميزات'))?.a||null;
-  }
+    function trimHistory() { if (chatHistory.length > 30) chatHistory = chatHistory.slice(-20); }
 
-  const track=detectTrack(text);
-  if(track==='iti') return LOCAL_KB.find(e=>e.k.includes('iti'))?.a||null;
-  if(track==='ipi') return LOCAL_KB.find(e=>e.k.includes('ipi'))?.a||null;
- 
-
-  let best=null, bestScore=0;
-  for(const entry of LOCAL_KB){
-    if(!entry.a) continue;
-    const s=scoreMatch(text,entry);
-    if(s>bestScore){bestScore=s;best=entry;}
-  }
-  if(best&&bestScore>=6) return best.a;
-  return null;
-}
- 
-function isQueryTooVague(q){
-  const t=q.replace(/[؟?!.,،]/g,' ').replace(/\s+/g,' ').trim();
-  if(t.length<3) return true;
-  const words=t.split(/\s+/).filter(Boolean);
-  if(/^(اهلا|أهلا|هلا|مرحبا|مرحباً|السلام|ازيك|إزيك|عامل ايه|عامل إيه|هاي|hi|hello|hey|صباح|مساء|كيف حالك)[\s!.؟…]*$/i.test(t)) return true;
-  if(words.length<=2&&t.length<20) return true;
-  const wordCount={};
-  words.forEach(w=>{wordCount[w]=(wordCount[w]||0)+1;});
-  const maxRepeat=Math.max(...Object.values(wordCount));
-  if(maxRepeat/words.length>0.4&&words.length>3) return true;
-  if(words.length>=6){
-    const half=Math.floor(words.length/2);
-    const firstHalf=words.slice(0,half).join(' ');
-    const secondHalf=words.slice(half).join(' ');
-    if(secondHalf.includes(firstHalf)||firstHalf.includes(secondHalf)) return true;
-  }
-  const meaningful=words.filter(w=>w.replace(/[^\u0600-\u06FFa-z]/gi,'').length>=2);
-  if(words.length>4&&meaningful.length/words.length<0.35) return true;
-  return false;
-}
- 
-function findLocalAnswer(q){
-  if(isQueryTooVague(q)) return null;
-  return smartReply(q);
-}
-
-const TOPICS=[
-  {label:'حياتي',     qs:['امتى وصل السالزيان مصر؟','ليه اهتميت بالشباب؟','مين أنت يا دون بوسكو؟','إمتى أسست جمعية السالزيان؟']},
-  {label:'المعهد',    qs:['فين يقع معهدنا في القاهرة؟','إيه رؤية المعهد ورسالته؟','ليه الشهادات معترفة في أوروبا؟','إيه مميزات المعهد؟']},
-  {label:'البرامج',   qs:['إيه الفرق بين ITI و IPI؟','ساعدني أختار بين 3 سنين و5 سنين','إيه تخصصات ITI؟','إيه تخصصات IPI؟']},
-  {label:'بعد التخرج',qs:['مكتب التوظيف بيعمل إيه؟','خريج ITI يدخل تنسيق إيه؟','فيه فرص شغل أو دراسة في إيطاليا؟','إيه مشروع MITS؟']},
-  {label:'التسجيل',   qs:['ما خطوات التقديم في المعهد؟','ما اختبار القدرات والدورة الصيفية؟','كيف أتابع درجات الطالب؟','هل المعهد يقبل الطالبات؟']},
-  {label:'تواصل',     qs:['أرقام التليفون والجوال وساعات الرد؟','فيه جروب لأولياء الأمور والخريجين؟','فيسبوك ويوتيوب للمعهد؟','إيميل التسجيل أو TVET؟']},
-  {label:'أنشطة',     qs:['الأوراتوريو إيه؟','فيه تدريب صيفي في التخصص؟','إيه أخبار المئوية 2026؟']},
-];
- 
-
-let chatHistory=[],isBusy=false;
-let speechRecognition=null,micListening=false;
-let voiceUpdatingFromSr=false;
-let pillsNavBound=false,pillsResizeTimer=0;
- 
-function trimHistory(){if(chatHistory.length>30) chatHistory=chatHistory.slice(-20);}
- 
-function setInputControlsBusy(busy){
-  const send=document.getElementById('send-btn'),mic=document.getElementById('mic-btn');
-  if(send) send.disabled=busy;
-  if(mic)  mic.disabled=busy;
-  if(busy&&speechRecognition&&micListening){try{speechRecognition.stop();}catch(e){}}
-}
- 
-
-function normalizeArabicSpeech(s){
-  if(!s) return '';
-  return s.replace(/\u0640/g,'').replace(/[\u200B-\u200D\uFEFF]/g,'').replace(/\s+/g,' ').trim();
-}
-
-function refineArabicTranscript(s){
-  let t = normalizeArabicSpeech(s);
-  if(!t) return '';
-  const words = t.split(/\s+/), out = [];
-  for(let i = 0; i < words.length; i++){
-    if(i === 0 || words[i] !== words[i-1]) out.push(words[i]);
-  }
-  return out.join(' ');
-}
-
-function pickBestTranscript(result){
-  if(!result || !result.length) return '';
-  if(result.length === 1) return result[0].transcript || '';
-  let bestIdx = 0, bestConf = -1;
-  for(let j = 0; j < result.length; j++){
-    const c = result[j].confidence;
-    if(typeof c === 'number' && c > bestConf){ bestConf = c; bestIdx = j; }
-  }
-  if(bestConf >= 0) return result[bestIdx].transcript || '';
-  let longest = '';
-  for(let j = 0; j < result.length; j++){
-    const tr = result[j].transcript || '';
-    if(tr.length > longest.length) longest = tr;
-  }
-  return longest || result[0].transcript || '';
-}
-
-function initSpeechRecognition(){
-  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-  const micBtn = document.getElementById('mic-btn');
-  if(!micBtn) return;
-  if(!SR){ micBtn.style.display = 'none'; return; }
-
-  speechRecognition = new SR();
-  speechRecognition.lang            = 'ar-EG';
-  speechRecognition.interimResults  = true;
-  speechRecognition.continuous      = false;    
-  speechRecognition.maxAlternatives = 3;
-
-  const textInput = document.getElementById('text-input');
-
-  speechRecognition.onstart = () => {
-    micListening = true;
-    micBtn.classList.add('listening');
-    setStatus('أستمع… اضغط الأحمر لإيقاف وإرسال السؤال');
-    voiceUpdatingFromSr = true;
-    textInput.value = '';
-    voiceUpdatingFromSr = false;
-    autoResize(textInput);
-  };
-
-  speechRecognition.onresult = (e) => {
-    let finals = '', interim = '';
-    for(let i = 0; i < e.results.length; i++){
-      const t = pickBestTranscript(e.results[i]);
-      if(e.results[i].isFinal) finals  += (finals  ? ' ' : '') + t;
-      else                      interim += (interim ? ' ' : '') + t;
-    }
-    const merged = normalizeArabicSpeech(finals + (interim ? ' ' + interim : ''));
-    voiceUpdatingFromSr = true;
-    textInput.value = merged;
-    voiceUpdatingFromSr = false;
-    autoResize(textInput);
-  };
-
-  speechRecognition.onerror = (ev) => {
-    if     (ev.error === 'not-allowed')    setStatus('اسمح بالميكروفون من شريط العنوان');
-    else if(ev.error === 'no-speech')      setStatus('لم يُسمَع صوت — أعد المحاولة');
-    else if(ev.error === 'audio-capture')  setStatus('الميكروفون غير متاح');
-    else if(ev.error !== 'aborted')        setStatus('تعذّر التعرف على الصوت');
-    micBtn.classList.remove('listening');
-    micListening = false;
-  };
-
-  speechRecognition.onend = () => {
-    micListening = false;
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    micBtn.classList.remove('listening');
-    if(!reduce){
-      micBtn.classList.add('mic-release');
-      setTimeout(() => micBtn.classList.remove('mic-release'), 700);
+    function setInputControlsBusy(busy) {
+      const send = document.getElementById('send-btn'), mic = document.getElementById('mic-btn');
+      if (send) send.disabled = busy;
+      if (mic) mic.disabled = busy;
+      if (busy && speechRecognition && micListening) { try { speechRecognition.stop(); } catch (e) { } }
     }
 
-    const q = refineArabicTranscript(textInput.value || '');
-    voiceUpdatingFromSr = true;
-    textInput.value = '';
-    voiceUpdatingFromSr = false;
-    autoResize(textInput);
 
-    if(q && !isBusy){
-      if(reduce) sendMessage(q);
-      else setTimeout(() => sendMessage(q), 100);
-    } else if(!isBusy){
-      setStatus('أنا معك — اكتب سؤالك');
+    function normalizeArabicSpeech(s) {
+      if (!s) return '';
+      return s.replace(/\u0640/g, '').replace(/[\u200B-\u200D\uFEFF]/g, '').replace(/\s+/g, ' ').trim();
     }
-  };
-
-  micBtn.addEventListener('click', () => {
-    if(isBusy || !speechRecognition) return;
-    try{
-      if(micListening){
-        speechRecognition.stop();
-      } else {
-        speechRecognition.start();
-      }
-    } catch(err){
-      if(err.name === 'InvalidStateError'){
-        try{ speechRecognition.stop(); } catch(e2){}
-      }
+    function refineArabicTranscript(s) {
+      let t = normalizeArabicSpeech(s); if (!t) return '';
+      const words = t.split(/\s+/), out = [];
+      for (let i = 0; i < words.length; i++) { if (i === 0 || words[i] !== words[i - 1]) out.push(words[i]); }
+      return out.join(' ');
     }
-  });
-}
-
-function startApp(){
-  const startEl=document.getElementById('start'),appEl=document.getElementById('app');
-  let revealed=false;
-  function revealApp(){
-    if(revealed) return; revealed=true;
-    startEl.style.display='none';appEl.style.display='flex';
-    document.getElementById('send-btn').addEventListener('click',()=>sendMessage());
-    buildTopics();initSpeechRecognition();
-    requestAnimationFrame(()=>requestAnimationFrame(()=>appEl.classList.add('app-ready')));
-    const intro='اهلا يا ابنائي الاعزاء.\nأنا يوحنا بوسكو — دون بوسكو — أحدّثك عن معهدنا في القاهرة (روض الفرج): ثانوية فنية إيطالية، مساران ITI وIPI، وتيفيت للدورات، ومكتب توظيف.\n\nتنبيه: هذا الشات بوت مخصص لمعهد دون بوسكو القاهرة فقط — لا أملك معلومات عن فروع أخرى.\n\nاسأل عن البرامج، التقديم، TVET، التوظيف، أو سيرتي. كل التفاصيل على donboscocairo.org';
-    setTimeout(()=>appendMessage('bot',intro),380);
-  }
-  startEl.classList.add('start-hide');
-  const onEnd=(e)=>{if(e.propertyName!=='opacity') return;startEl.removeEventListener('transitionend',onEnd);revealApp();};
-  startEl.addEventListener('transitionend',onEnd);
-  setTimeout(()=>{startEl.removeEventListener('transitionend',onEnd);revealApp();},550);
-}
- 
-
-async function sendMessage(overrideText){
-  const input=document.getElementById('text-input');
-  const q=(overrideText||input.value).trim();
-  if(!q||isBusy) return;
-  input.value='';autoResize(input);
-  isBusy=true;setInputControlsBusy(true);setStatus('جاري التجهيز…');
-
-  const looksLikeNumber=/^[١٢12]$/.test(q.trim());
-
-  if(DecisionBot.isActive()){
-    if(looksLikeNumber){
-      const botReply=DecisionBot.reply(q);
-      if(botReply){
-        appendMessage('user',q);
-        chatHistory.push({role:'user',content:q});
-        removeChoiceButtons();
-        showTyping();
-        setTimeout(()=>{
-          hideTyping();
-          chatHistory.push({role:'assistant',content:botReply});
-          trimHistory();
-          appendMessage('bot',botReply);
-          if(DecisionBot.isActive()){
-            const step=DecisionBot.state?.step;
-            if(step===2) appendChoiceButtons(['دراسة + نظري + عملي (متوازن)','عملي بإيدي أساساً']);
-            else if(step===3) appendChoiceButtons(['آه، مستعد','لا، أفضل 3 سنين']);
+    function pickBestTranscript(result) {
+      if (!result || !result.length) return '';
+      if (result.length === 1) return result[0].transcript || '';
+      let bestIdx = 0, bestConf = -1;
+      for (let j = 0; j < result.length; j++) { const c = result[j].confidence; if (typeof c === 'number' && c > bestConf) { bestConf = c; bestIdx = j; } }
+      if (bestConf >= 0) return result[bestIdx].transcript || '';
+      let longest = '';
+      for (let j = 0; j < result.length; j++) { const tr = result[j].transcript || ''; if (tr.length > longest.length) longest = tr; }
+      return longest || result[0].transcript || '';
+    }
+    function appendFinalSegment(buffer, segment) {
+      const t = (segment || '').trim(); if (!t) return buffer; if (!buffer) return t;
+      return buffer + (!/\s$/.test(buffer) && !/^\s/.test(t) ? ' ' : '') + t;
+    }
+    function initSpeechRecognition() {
+      const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+      const micBtn = document.getElementById('mic-btn');
+      if (!micBtn) return;
+      if (!SR) { micBtn.style.display = 'none'; return; }
+      speechRecognition = new SR();
+      speechRecognition.lang = 'ar-EG'; speechRecognition.interimResults = true; speechRecognition.continuous = true;
+      try { speechRecognition.maxAlternatives = 5; } catch (e) { try { speechRecognition.maxAlternatives = 3; } catch (e2) { speechRecognition.maxAlternatives = 1; } }
+      const textInput = document.getElementById('text-input');
+      if (textInput) {
+        const mark = () => {
+          if (!voiceUpdatingFromSr) {
+            appendNextVoiceSession = false;
+            setTimeout(() => { if (textInput.value.trim() === '') speechFinalBuffer = ''; }, 50);
           }
-          isBusy=false;setInputControlsBusy(false);setStatus('أنا معك — اكتب سؤالك');
-        },420);
-        return;
+        };
+        textInput.addEventListener('keydown', mark); textInput.addEventListener('paste', mark); textInput.addEventListener('cut', mark);
       }
-    } else {
-      DecisionBot.cancel();
+      speechRecognition.onstart = () => { micListening = true; micBtn.classList.add('listening'); setStatus('أستمع… اضغط الأحمر لإيقاف وإرسال السؤال'); };
+      speechRecognition.onresult = (e) => {
+        let finalText = '';
+        let interimText = '';
+        for (let i = 0; i < e.results.length; i++) {
+          const r = e.results[i];
+          const t = pickBestTranscript(r);
+          if (r.isFinal) finalText += (finalText ? ' ' : '') + t;
+          else interimText += t;
+        }
+        const input = document.getElementById('text-input');
+        if (!voiceUpdatingFromSr && input.value.trim() === '') {
+          speechFinalBuffer = '';
+        }
+        if (finalText) speechFinalBuffer = finalText;
+        const merged = normalizeArabicSpeech(speechFinalBuffer + (interimText ? ' ' + interimText : ''));
+        voiceUpdatingFromSr = true; input.value = merged; voiceUpdatingFromSr = false;
+        autoResize(input);
+      };
+      speechRecognition.onerror = (ev) => {
+        if (ev.error === 'not-allowed') setStatus('اسمح بالميكروفون من شريط العنوان');
+        else if (ev.error === 'no-speech') setStatus('لم يُسمَع صوت — أعد المحاولة');
+        else if (ev.error === 'audio-capture') setStatus('الميكروفون غير متاح');
+        else if (ev.error !== 'aborted') setStatus('تعذّر التعرف على الصوت');
+        micBtn.classList.remove('listening'); micListening = false; speechFinalBuffer = ''; clearVoiceUi();
+      };
+      function clearVoiceUi() {
+        const input = document.getElementById('text-input'), wrap = input && input.closest('.input-wrap');
+        if (input) input.classList.remove('voice-ready'); if (wrap) wrap.classList.remove('voice-ready-wrap');
+      }
+      function finishVoice() {
+        const input = document.getElementById('text-input');
+        const q = refineArabicTranscript(speechFinalBuffer || input.value || ''); speechFinalBuffer = '';
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        micBtn.classList.remove('listening');
+        if (!reduce) { micBtn.classList.add('mic-release'); setTimeout(() => micBtn.classList.remove('mic-release'), 700); }
+        if (!q || isBusy) {
+          voiceUpdatingFromSr = true; input.value = ''; voiceUpdatingFromSr = false;
+          autoResize(input); clearVoiceUi(); if (!isBusy) setStatus('أنا معك — اكتب سؤالك'); return;
+        }
+        clearVoiceUi(); voiceUpdatingFromSr = true; input.value = ''; voiceUpdatingFromSr = false; autoResize(input);
+        if (reduce) sendMessage(q); else setTimeout(() => sendMessage(q), 100);
+      }
+      speechRecognition.onend = () => { micListening = false; finishVoice(); };
+      micBtn.addEventListener('click', () => {
+        if (isBusy || !speechRecognition) return;
+        try {
+          if (micListening) { speechRecognition.stop(); }
+          else {
+            const input = document.getElementById('text-input');
+            if (appendNextVoiceSession && input.value.trim()) { speechFinalBuffer = input.value.trim() + ' '; }
+            else { speechFinalBuffer = ''; voiceUpdatingFromSr = true; input.value = ''; voiceUpdatingFromSr = false; }
+            autoResize(input); speechRecognition.start();
+          }
+        } catch (err) { if (err.name === 'InvalidStateError') { try { speechRecognition.stop(); } catch (e2) { } } }
+      });
+    }
+
+
+    function startApp() {
+      const startEl = document.getElementById('start'), appEl = document.getElementById('app');
+      let revealed = false;
+      function revealApp() {
+        if (revealed) return; revealed = true;
+        startEl.style.display = 'none'; appEl.style.display = 'flex';
+        document.getElementById('send-btn').addEventListener('click', () => sendMessage());
+        buildTopics(); initSpeechRecognition();
+        requestAnimationFrame(() => requestAnimationFrame(() => appEl.classList.add('app-ready')));
+        const intro = 'اهلا يا ابنائي الاعزاء.\nأنا يوحنا بوسكو — دون بوسكو — أحدّثك عن معهدنا في القاهرة (روض الفرج): ثانوية فنية إيطالية، مساران ITI وIPI، وتيفيت للدورات، ومكتب توظيف.\n\nتنبيه: هذا الشات بوت مخصص لمعهد دون بوسكو القاهرة فقط — لا أملك معلومات عن فروع أخرى.\n\nاسأل عن البرامج، التقديم، TVET، التوظيف، أو سيرتي. كل التفاصيل على donboscocairo.org';
+        setTimeout(() => appendMessage('bot', intro), 380);
+      }
+      startEl.classList.add('start-hide');
+      const onEnd = (e) => { if (e.propertyName !== 'opacity') return; startEl.removeEventListener('transitionend', onEnd); revealApp(); };
+      startEl.addEventListener('transitionend', onEnd);
+      setTimeout(() => { startEl.removeEventListener('transitionend', onEnd); revealApp(); }, 550);
+    }
+
+
+    async function sendMessage(overrideText) {
+      const input = document.getElementById('text-input');
+      const q = (overrideText || input.value).trim();
+      if (!q || isBusy) return;
+      appendNextVoiceSession = false;
+      input.value = ''; autoResize(input);
+      isBusy = true; setInputControlsBusy(true); setStatus('جاري التجهيز…');
+
+      appendMessage('user', q); chatHistory.push({ role: 'user', content: q });
       removeChoiceButtons();
-    }
-  }
+      showTyping(); setStatus('جاري التفكير…'); trimHistory();
 
-  const localQuick=findLocalAnswer(q);
-  if(localQuick){
-    appendMessage('user',q);
-    chatHistory.push({role:'user',content:q});
-    removeChoiceButtons();
-    showTyping();
-    setTimeout(()=>{
-      hideTyping();
-      chatHistory.push({role:'assistant',content:localQuick});
-      trimHistory();
-      appendMessage('bot',localQuick);
-      if(DecisionBot.isActive()){
-        appendChoiceButtons(['أكمل تعليم (كلية / هندسة)','أدخل سوق العمل بسرعة']);
-      }
-      isBusy=false;setInputControlsBusy(false);setStatus('أنا معك — اكتب سؤالك');
-    },420);
-    return;
-  }
-
-  appendMessage('user',q);chatHistory.push({role:'user',content:q});
-  removeChoiceButtons();
-  showTyping();setStatus('جاري التفكير…');trimHistory();
-
-  try{
-    const geminiMessages=[];
-    chatHistory.forEach(msg=>{
-      const role=msg.role==='assistant'?'model':'user';
-      if(geminiMessages.length>0&&geminiMessages[geminiMessages.length-1].role===role){
-        geminiMessages[geminiMessages.length-1].parts[0].text+='\n'+msg.content;
-      } else {
-        geminiMessages.push({role,parts:[{text:msg.content}]});
-      }
-    });
-    const contents=geminiMessages.map(m=>({role:m.role,parts:m.parts.map(p=>({text:String(p.text??'')}))}));
-    if(contents.length&&contents[0].role==='user'){
-      contents[0].parts[0].text=SYSTEM+'\n\n---\n\n'+contents[0].parts[0].text;
-    } else {
-      contents.unshift({role:'user',parts:[{text:SYSTEM}]});
-    }
-    const modelCandidates=['gemini-2.5-flash','gemini-2.0-flash','gemini-2.5-flash-lite','gemini-1.5-flash-002','gemini-1.5-flash'];
-    let res=null,data=null;
-    for(let i=0;i<modelCandidates.length;i++){
-      const model=modelCandidates[i];
-      res=await fetch(WORKER_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model,contents,generationConfig:{maxOutputTokens:4096,temperature:0.4,topP:0.9}})});
-      data=await res.json().catch(()=>({}));
-      if(res.ok) break;
-      if((res.status===404||res.status===400)&&i<modelCandidates.length-1){console.warn(`Model ${model}: ${res.status}`);continue;}
-      break;
-    }
-    hideTyping();
-    const parts=data.candidates?.[0]?.content?.parts;
-    const raw=Array.isArray(parts)?parts.map(p=>typeof p.text==='string'?p.text:'').join(''):'';
-    let reply=raw.replace(/\r\n/g,'\n').replace(/\n{3,}/g,'\n\n').trim();
-    reply=reply.replace(/[\u4E00-\u9FFF\u3400-\u4DBF\u3000-\u303F\uFF00-\uFFEF\u3040-\u309F\u30A0-\u30FF]/g,'');
-    reply=reply
-      .replace(/^أنا دون بوسكو[،,]?\s*/i,'')
-      .replace(/^أنا يوحنا بوسكو[،,]?\s*/i,'')
-      .replace(/^أسعدني (أن تتصل بي|تواصلك|سؤالك)[،,.]?\s*/i,'')
-      .replace(/^يسعدني (أن أساعدك|مساعدتك)[،,.]?\s*/i,'')
-      .replace(/\n{3,}/g,'\n\n').trim();
-    if(reply.length){
-      const nonArabicEnglish=reply.replace(/[\u0600-\u06FF\u0020-\u007Fa-zA-Z0-9\n\r\t.,،؟?!:؛()\-•*]/g,'');
-      if(nonArabicEnglish.length/reply.length>0.05){
-        reply=reply.replace(/[^\u0600-\u06FF\u0020-\u007Fa-zA-Z0-9\n\r\t.,،؟?!:؛()\-•*«»""'']/g,'').trim();
-      }
-    }
-    if(res&&res.ok&&reply){
-      chatHistory.push({role:'assistant',content:reply});trimHistory();
-      removeChoiceButtons();
-      appendMessage('bot',reply);
-      if(DecisionBot.isActive()){
-        const step=DecisionBot.state?.step;
-        if(step===1) appendChoiceButtons(['أكمل تعليم (كلية / هندسة)','أدخل سوق العمل بسرعة']);
-        else if(step===2) appendChoiceButtons(['دراسة + نظري + عملي (متوازن)','عملي بإيدي أساساً']);
-        else if(step===3) appendChoiceButtons(['آه، مستعد','لا، أفضل 3 سنين']);
-      }
-      setStatus('أنا معك — اكتب سؤالك');
-    } else {
-      if(res?.status===429){
-        hideTyping();
-        isBusy=false;setInputControlsBusy(false);
-        return;
-      }
-      let errMsg='اصبر شويه يا ابني لغايه ما اخد نفسي شويه 🤭.';
-      if(res?.status===403) errMsg='تم رفض الوصول — تحقق من إعدادات الـ Worker.';
-      else if(data?.error?.message) errMsg='خطأ: '+data.error.message;
-      appendMessage('bot',errMsg);setStatus('أنا معك — اكتب سؤالك');
-    }
-  } catch(err){
-    console.error('Fetch Error:',err);hideTyping();
-    appendMessage('bot','تعذّر الاتصال بالخدمة — تأكد من اتصال الإنترنت.');
-    setStatus('أنا معك — اكتب سؤالك');
-  } finally {
-    isBusy=false;setInputControlsBusy(false);
-  }
-}
- 
-
-function appendMessage(role,text){
-  const msgs=document.getElementById('msgs'),isBot=role==='bot';
-  const row=document.createElement('div');row.className='row msg-in '+(isBot?'bot':'u');
-  if(isBot){const av=document.createElement('div');av.className='row-av';av.innerHTML=`<svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="5.5" r="3" fill="#9FE1CB"/><path d="M2 15c0-3 2.5-5 6-5s6 2 6 5" fill="#9FE1CB"/></svg>`;row.appendChild(av);}
-  const col=document.createElement('div');col.className='row-col';
-  const bub=document.createElement('div');bub.className='bubble';bub.textContent=text;
-  const time=document.createElement('div');time.className='row-time';
-  time.textContent=new Date().toLocaleTimeString('ar-EG',{hour:'2-digit',minute:'2-digit'});
-  col.appendChild(bub);col.appendChild(time);row.appendChild(col);msgs.appendChild(row);
-  msgs.scrollTop=msgs.scrollHeight;return bub;
-}
-
-  function appendChoiceButtons(choices) {
-  const msgs = document.getElementById('msgs');
-  const wrap = document.createElement('div');
-  wrap.className = 'choice-btns';
-  wrap.id = 'choice-btns';
-  choices.forEach((label, idx) => {
-    const btn = document.createElement('button');
-    btn.className = 'choice-btn';
-    btn.textContent = (idx + 1) + ') ' + label;
-    btn.onclick = () => {
-      removeChoiceButtons();
-      sendMessage(String(idx + 1));
-    };
-    wrap.appendChild(btn);
-  });
-  msgs.appendChild(wrap);
-  msgs.scrollTop = msgs.scrollHeight;
-}
-
-function removeChoiceButtons() {
-  document.getElementById('choice-btns')?.remove();
-}
-
-function showTyping(){
-  const msgs=document.getElementById('msgs');
-  const row=document.createElement('div');row.id='typing-row';row.className='row bot msg-in';
-  row.innerHTML=`<div class="row-av"><svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="5.5" r="3" fill="#9FE1CB"/><path d="M2 15c0-3 2.5-5 6-5s6 2 6 5" fill="#9FE1CB"/></svg></div><div class="typing-bub"><div class="tdot"></div><div class="tdot"></div><div class="tdot"></div></div>`;
-  msgs.appendChild(row);msgs.scrollTop=msgs.scrollHeight;
-}
-function hideTyping(){document.getElementById('typing-row')?.remove();}
-function setStatus(t){document.getElementById('hdr-status').textContent=t;}
-function autoResize(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,76)+'px';}
-function handleEnter(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage();}}
- 
-
-function resetChipsSlide(){const t=document.getElementById('chips');if(!t) return;t.dataset.off='0';t.style.transform='translate3d(0,0,0)';}
-function updateChipsNavState(){
-  const v=document.getElementById('chips-viewport'),t=document.getElementById('chips');
-  const prev=document.getElementById('chips-prev'),next=document.getElementById('chips-next');
-  if(!v||!t||!prev||!next) return;
-  const max=Math.max(0,t.scrollWidth-v.clientWidth),o=parseFloat(t.dataset.off||'0')||0;
-  if(max<1){prev.disabled=next.disabled=true;return;}
-  prev.disabled=o<=0.5;next.disabled=o>=max-0.5;
-}
-function slideChips(delta){
-  const v=document.getElementById('chips-viewport'),t=document.getElementById('chips');
-  if(!v||!t) return;
-  const max=Math.max(0,t.scrollWidth-v.clientWidth);
-  const step=Math.min(220,Math.max(80,v.clientWidth*0.55));
-  let o=parseFloat(t.dataset.off||'0')||0;
-  o=Math.max(0,Math.min(max,o+delta*step));
-  t.dataset.off=String(o);t.style.transform=`translate3d(${o}px,0,0)`;
-  updateChipsNavState();
-}
-function scheduleChipsNavUpdate(){requestAnimationFrame(()=>{resetChipsSlide();updateChipsNavState();});}
-
-function resetPillsSlide(){const t=document.getElementById('pills');if(!t) return;t.dataset.off='0';t.style.transform='translate3d(0,0,0)';}
-function updatePillsNavState(){
-  const v=document.getElementById('pills-viewport'),t=document.getElementById('pills');
-  const prev=document.getElementById('pills-prev'),next=document.getElementById('pills-next');
-  if(!v||!t||!prev||!next) return;
-  const max=Math.max(0,t.scrollWidth-v.clientWidth),o=parseFloat(t.dataset.off||'0')||0;
-  if(max<1){prev.disabled=next.disabled=true;return;}
-  prev.disabled=o<=0.5;next.disabled=o>=max-0.5;
-}
-function slidePills(delta){
-  const v=document.getElementById('pills-viewport'),t=document.getElementById('pills');
-  if(!v||!t) return;
-  const max=Math.max(0,t.scrollWidth-v.clientWidth);
-  const step=Math.min(220,Math.max(100,v.clientWidth*0.62));
-  let o=parseFloat(t.dataset.off||'0')||0;
-  o=Math.max(0,Math.min(max,o+delta*step));
-  t.dataset.off=String(o);t.style.transform=`translate3d(${o}px,0,0)`;
-  updatePillsNavState();
-}
-function schedulePillsNavUpdate(){requestAnimationFrame(()=>{resetPillsSlide();updatePillsNavState();});}
- 
-
-function buildTopics(){
-  const chipsEl=document.getElementById('chips'),pillsEl=document.getElementById('pills');
-  if(!pillsNavBound){
-    pillsNavBound=true;
-    document.getElementById('chips-prev')?.addEventListener('click',()=>slideChips(-1));
-    document.getElementById('chips-next')?.addEventListener('click',()=>slideChips(1));
-    document.getElementById('pills-prev')?.addEventListener('click',()=>slidePills(-1));
-    document.getElementById('pills-next')?.addEventListener('click',()=>slidePills(1));
-    window.addEventListener('resize',()=>{
-      clearTimeout(pillsResizeTimer);
-      pillsResizeTimer=setTimeout(()=>{
-        requestAnimationFrame(()=>{
-          const t=document.getElementById('pills'),vp=document.getElementById('pills-viewport');
-          if(!t||!vp) return;
-          const max=Math.max(0,t.scrollWidth-vp.clientWidth);
-          let o=Math.min(parseFloat(t.dataset.off||'0')||0,max);
-          t.dataset.off=String(o);t.style.transform=`translate3d(${o}px,0,0)`;
-          updatePillsNavState();scheduleChipsNavUpdate();
+      try {
+        const geminiMessages = [];
+        chatHistory.forEach(msg => {
+          const role = msg.role === 'assistant' ? 'model' : 'user';
+          if (geminiMessages.length > 0 && geminiMessages[geminiMessages.length - 1].role === role) {
+            geminiMessages[geminiMessages.length - 1].parts[0].text += '\n' + msg.content;
+          } else {
+            geminiMessages.push({ role, parts: [{ text: msg.content }] });
+          }
         });
-      },120);
-    });
-  }
-  const makePill=(q)=>{
-    const p=document.createElement('div');p.className='pill';p.textContent=q;
-    p.onclick=()=>{if(!isBusy) sendMessage(q);};return p;
-  };
-  TOPICS.forEach((topic,i)=>{
-    const chip=document.createElement('div');
-    chip.className='chip'+(i===0?' on':'');chip.textContent=topic.label;
-    chip.onclick=()=>{
-      chipsEl.querySelectorAll('.chip').forEach((c,j)=>c.classList.toggle('on',j===i));
-      pillsEl.innerHTML='';topic.qs.forEach(q=>pillsEl.appendChild(makePill(q)));
-      schedulePillsNavUpdate();scheduleChipsNavUpdate();
-    };
-    chipsEl.appendChild(chip);
-  });
-  TOPICS[0].qs.forEach(q=>pillsEl.appendChild(makePill(q)));
-  schedulePillsNavUpdate();
-  scheduleChipsNavUpdate();
-}
-</script>
+        const contents = geminiMessages.map(m => ({ role: m.role, parts: m.parts.map(p => ({ text: String(p.text ?? '') })) }));
+
+        const modelCandidates = ['gemini-2.5-flash', 'gemini-2.0-flash', 'gemini-2.5-flash-lite', 'gemini-1.5-flash-002', 'gemini-1.5-flash'];
+        let res = null, data = null;
+
+
+        for (let i = 0; i < modelCandidates.length; i++) {
+          const model = modelCandidates[i];
+          res = await fetch(WORKER_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ model, contents, decisionState, generationConfig: { maxOutputTokens: 4096, temperature: 0.4, topP: 0.9 } })
+          });
+          data = await res.json().catch(() => ({}));
+          if (res.ok) {
+            decisionState = data.decisionState;
+            if (data.choices) appendChoiceButtons(data.choices);
+            break;
+          }
+          if ((res.status === 404 || res.status === 400) && i < modelCandidates.length - 1) continue;
+          break;
+        }
+
+        hideTyping();
+        const parts = data.candidates?.[0]?.content?.parts;
+        const raw = Array.isArray(parts) ? parts.map(p => typeof p.text === 'string' ? p.text : '').join('') : '';
+        let reply = raw.replace(/\r\n/g, '\n').replace(/\n{3,}/g, '\n\n').trim();
+        reply = reply.replace(/[\u4E00-\u9FFF\u3400-\u4DBF\u3000-\u303F\uFF00-\uFFEF\u3040-\u309F\u30A0-\u30FF]/g, '');
+        reply = reply
+          .replace(/^أنا دون بوسكو[،,]?\s*/i, '')
+          .replace(/^أنا يوحنا بوسكو[،,]?\s*/i, '')
+          .replace(/^أسعدني (أن تتصل بي|تواصلك|سؤالك)[،,.]?\s*/i, '')
+          .replace(/^يسعدني (أن أساعدك|مساعدتك)[،,.]?\s*/i, '')
+          .replace(/\n{3,}/g, '\n\n')
+          .trim();
+
+        if (reply.length) {
+          const nonArabicEnglish = reply.replace(/[\u0600-\u06FF\u0020-\u007Fa-zA-Z0-9\n\r\t.,،؟?!:؛()\-•*]/g, '');
+          if (nonArabicEnglish.length / reply.length > 0.05) {
+            reply = reply.replace(/[^\u0600-\u06FF\u0020-\u007Fa-zA-Z0-9\n\r\t.,،؟?!:؛()\-•*«»""'']/g, '').trim();
+          }
+        }
+
+        if (res && res.ok && reply) {
+          chatHistory.push({ role: 'assistant', content: reply }); trimHistory();
+          appendMessage('bot', reply);
+          setStatus('أنا معك — اكتب سؤالك');
+        } else {
+          let errMsg = 'تعذّر إتمام الرد حالياً. أعد المحاولة بعد لحظات.';
+          if (res?.status === 403) errMsg = 'تم رفض الوصول — تحقق من إعدادات الـ Worker.';
+          else if (res?.status === 429) errMsg = 'تم تجاوز حد الطلبات — انتظر قليلاً.';
+          else if (data?.error?.message) errMsg = 'خطأ: ' + data.error.message;
+          appendMessage('bot', errMsg); setStatus('أنا معك — اكتب سؤالك');
+        }
+      } catch (err) {
+        console.error('Fetch Error:', err); hideTyping();
+        appendMessage('bot', 'تعذّر الاتصال بالخدمة — تأكد من اتصال الإنترنت.');
+        setStatus('أنا معك — اكتب سؤالك');
+      } finally {
+        isBusy = false; setInputControlsBusy(false);
+      }
+    }
+
+
+
+    function appendMessage(role, text) {
+      const msgs = document.getElementById('msgs'), isBot = role === 'bot';
+      const row = document.createElement('div'); row.className = 'row msg-in ' + (isBot ? 'bot' : 'u');
+      if (isBot) { const av = document.createElement('div'); av.className = 'row-av'; av.innerHTML = `<svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="5.5" r="3" fill="#9FE1CB"/><path d="M2 15c0-3 2.5-5 6-5s6 2 6 5" fill="#9FE1CB"/></svg>`; row.appendChild(av); }
+      const col = document.createElement('div'); col.className = 'row-col';
+      const bub = document.createElement('div'); bub.className = 'bubble'; bub.textContent = text;
+      const time = document.createElement('div'); time.className = 'row-time';
+      time.textContent = new Date().toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' });
+      col.appendChild(bub); col.appendChild(time); row.appendChild(col); msgs.appendChild(row);
+      msgs.scrollTop = msgs.scrollHeight; return bub;
+    }
+
+    function appendChoiceButtons(choices) {
+      const msgs = document.getElementById('msgs');
+      const wrap = document.createElement('div');
+      wrap.className = 'choice-btns';
+      wrap.id = 'choice-btns';
+      choices.forEach((label, idx) => {
+        const btn = document.createElement('button');
+        btn.className = 'choice-btn';
+        btn.textContent = (idx + 1) + ') ' + label;
+        btn.onclick = () => {
+          removeChoiceButtons();
+          sendMessage(String(idx + 1));
+        };
+        wrap.appendChild(btn);
+      });
+      msgs.appendChild(wrap);
+      msgs.scrollTop = msgs.scrollHeight;
+    }
+
+    function removeChoiceButtons() {
+      document.getElementById('choice-btns')?.remove();
+    }
+
+    function showTyping() {
+      const msgs = document.getElementById('msgs');
+      const row = document.createElement('div'); row.id = 'typing-row'; row.className = 'row bot msg-in';
+      row.innerHTML = `<div class="row-av"><svg viewBox="0 0 16 16" fill="none">
+                  <circle cx="8" cy="5.5" r="3" fill="#9FE1CB" />
+                  <path d="M2 15c0-3 2.5-5 6-5s6 2 6 5" fill="#9FE1CB" />
+                </svg></div>
+              <div class="typing-bub">
+                <div class="tdot"></div>
+                <div class="tdot"></div>
+                <div class="tdot"></div>
+              </div>`;
+      msgs.appendChild(row); msgs.scrollTop = msgs.scrollHeight;
+    }
+    function hideTyping() { document.getElementById('typing-row')?.remove(); }
+    function setStatus(t) { document.getElementById('hdr-status').textContent = t; }
+    function autoResize(el) {
+      el.style.height = 'auto'; el.style.height = Math.min(el.scrollHeight, 76) +
+        'px';
+    }
+    function handleEnter(e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); } }
+
+    function resetChipsSlide() { const t = document.getElementById('chips'); if (!t) return; t.dataset.off = '0'; t.style.transform = 'translate3d(0,0,0)'; }
+    function updateChipsNavState() {
+      const v = document.getElementById('chips-viewport'), t = document.getElementById('chips');
+      const prev = document.getElementById('chips-prev'), next = document.getElementById('chips-next');
+      if (!v || !t || !prev || !next) return;
+      const max = Math.max(0, t.scrollWidth - v.clientWidth), o = parseFloat(t.dataset.off || '0') || 0;
+      if (max < 1) { prev.disabled = next.disabled = true; return; }
+      prev.disabled = o <= 0.5; next.disabled = o >= max - 0.5;
+    }
+    function slideChips(delta) {
+      const v = document.getElementById('chips-viewport'), t = document.getElementById('chips');
+      if (!v || !t) return;
+      const max = Math.max(0, t.scrollWidth - v.clientWidth);
+      const step = Math.min(220, Math.max(80, v.clientWidth * 0.55));
+      let o = parseFloat(t.dataset.off || '0') || 0;
+      o = Math.max(0, Math.min(max, o + delta * step));
+      t.dataset.off = String(o); t.style.transform = `translate3d(${o}px,0,0)`;
+      updateChipsNavState();
+    }
+    function scheduleChipsNavUpdate() { requestAnimationFrame(() => { resetChipsSlide(); updateChipsNavState(); }); }
+
+    function resetPillsSlide() { const t = document.getElementById('pills'); if (!t) return; t.dataset.off = '0'; t.style.transform = 'translate3d(0,0,0)'; }
+    function updatePillsNavState() {
+      const v = document.getElementById('pills-viewport'), t = document.getElementById('pills');
+      const prev = document.getElementById('pills-prev'), next = document.getElementById('pills-next');
+      if (!v || !t || !prev || !next) return;
+      const max = Math.max(0, t.scrollWidth - v.clientWidth), o = parseFloat(t.dataset.off || '0') || 0;
+      if (max < 1) { prev.disabled = next.disabled = true; return; }
+      prev.disabled = o <= 0.5; next.disabled = o >= max - 0.5;
+    }
+    function slidePills(delta) {
+      const v = document.getElementById('pills-viewport'), t = document.getElementById('pills');
+      if (!v || !t) return;
+      const max = Math.max(0, t.scrollWidth - v.clientWidth);
+      const step = Math.min(220, Math.max(100, v.clientWidth * 0.62));
+      let o = parseFloat(t.dataset.off || '0') || 0;
+      o = Math.max(0, Math.min(max, o + delta * step));
+      t.dataset.off = String(o); t.style.transform = `translate3d(${o}px,0,0)`;
+      updatePillsNavState();
+    }
+    function schedulePillsNavUpdate() { requestAnimationFrame(() => { resetPillsSlide(); updatePillsNavState(); }); }
+
+
+    function buildTopics() {
+      const chipsEl = document.getElementById('chips'), pillsEl = document.getElementById('pills');
+      if (!pillsNavBound) {
+        pillsNavBound = true;
+        document.getElementById('chips-prev')?.addEventListener('click', () => slideChips(-1));
+        document.getElementById('chips-next')?.addEventListener('click', () => slideChips(1));
+        document.getElementById('pills-prev')?.addEventListener('click', () => slidePills(-1));
+        document.getElementById('pills-next')?.addEventListener('click', () => slidePills(1));
+        window.addEventListener('resize', () => {
+          clearTimeout(pillsResizeTimer);
+          pillsResizeTimer = setTimeout(() => {
+            requestAnimationFrame(() => {
+              const t = document.getElementById('pills'), vp = document.getElementById('pills-viewport');
+              if (!t || !vp) return;
+              const max = Math.max(0, t.scrollWidth - vp.clientWidth);
+              let o = Math.min(parseFloat(t.dataset.off || '0') || 0, max);
+              t.dataset.off = String(o); t.style.transform = `translate3d(${o}px,0,0)`;
+              updatePillsNavState(); scheduleChipsNavUpdate();
+            });
+          }, 120);
+        });
+      }
+      const makePill = (q) => {
+        const p = document.createElement('div'); p.className = 'pill'; p.textContent = q;
+        p.onclick = () => { if (!isBusy) sendMessage(q); }; return p;
+      };
+      TOPICS.forEach((topic, i) => {
+        const chip = document.createElement('div');
+        chip.className = 'chip' + (i === 0 ? ' on' : ''); chip.textContent = topic.label;
+        chip.onclick = () => {
+          chipsEl.querySelectorAll('.chip').forEach((c, j) => c.classList.toggle('on', j === i));
+          pillsEl.innerHTML = ''; topic.qs.forEach(q => pillsEl.appendChild(makePill(q)));
+          schedulePillsNavUpdate(); scheduleChipsNavUpdate();
+        };
+        chipsEl.appendChild(chip);
+      });
+      TOPICS[0].qs.forEach(q => pillsEl.appendChild(makePill(q)));
+      schedulePillsNavUpdate();
+      scheduleChipsNavUpdate();
+    }
+  </script>
 </body>
+
 </html>
